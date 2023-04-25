@@ -1,0 +1,138 @@
+/*estilos para la pagina utilizando paleta de colores de Adobe*/
+
+:root {
+  --color-primario: #c1e5fc;
+  --color-secundario: #f2a950;
+  --color-fondo: #fcf6ef;
+}
+
+body {
+  background-color: var(--color-fondo);
+}
+
+h1 {
+  color: var(--color-primario);
+}
+
+.button {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+
+/* Estilos para el header */
+ header {
+    display: flex;
+    align-items: center;
+    background: rgba(244, 239, 239, 0.7);
+    width: 100%;
+   z-index: 100;
+    
+  }
+
+
+  /* Estilos para la barra de navegación */
+
+  .navbar-nav .nav-item {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 40px;
+  }
+  
+  .nav-link {
+    color: #303a34; 
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  
+ 
+  .navbar-toggler {
+    border-color: transparent; /* color de borde del botón de hamburguesa */
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28130%2c 130%2c 130%2c 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* imagen de hamburguesa */
+    width: 24px; /* ancho del icono de hamburguesa */
+    height: 24px; /* altura del icono de hamburguesa */
+  }
+  
+
+  nav {
+    display: flex;
+    margin-top: 25px;
+    font-size: 20px;
+    overflow: hidden;
+  }
+
+  nav a:hover {
+    background-color: #6482a2;
+  color: white; 
+  }
+  /* Estilo para la portada */
+
+  .search-container {
+    position: absolute;
+    top: 45%;
+    left: 40%;
+   
+  }
+  
+  .search-wrapper {
+    background-color: rgba(255, 255, 255, 0.8); /* fondo semitransparente */
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wider-input {
+    width: auto;
+  }
+  
+  /* .portada {
+    position: relative;
+    width: 100%;
+    height: 200vh;
+  } */
+  
+  .portada-img {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    20%{
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .portada-img {
+    width: 100%;
+    height: 50%;
+    max-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+    animation: fadeInOut 10s ease-in-out infinite;
+  }
+  .portada-img:hover {
+    opacity: 0.8;
+  }
+
+  /* Estilo para el boton de Login */
+  .login-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }
