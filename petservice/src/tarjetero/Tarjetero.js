@@ -7,9 +7,7 @@ const Tarjetero = () => {
   return (
     <div className='tarjetero'>
         <TarjetaBlog/>
-        <TarjetaBlog/>
-        <TarjetaBlog/>
-        <TarjetaBlog/>
+        
         <Tarjeta/>
         <Tarjeta/>
         <Tarjeta/>
