@@ -12,6 +12,7 @@ import imagen9 from '../assets/img9.jpg';
 import imagen10 from '../assets/img10.jpg';
 import imagen11 from '../assets/img11.jpg';
 import imagen12 from '../assets/img12.jpg';
+import imagen13 from '../assets/img13.jpg';
 
 function Portada() {
   const [index, setIndex] = useState(0);
@@ -28,7 +29,8 @@ function Portada() {
     imagen9,
     imagen10, 
     imagen11,
-    imagen12
+    imagen12,
+    imagen13
   ];
 
   useEffect(() => {

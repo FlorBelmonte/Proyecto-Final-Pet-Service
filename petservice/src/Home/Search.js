@@ -10,7 +10,7 @@ function Search() {
     }
   
     return (
-      <Form onSubmit={handleSubmit} className="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center">
+      <Form onSubmit={handleSubmit} className="position-relative top-30 start-30 translate-middle d-flex justify-content-center align-items-center">
         <Form.Control type="text" placeholder="Buscar..." value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} className="me-2 wider-input" />
         <Button variant="primary" type="submit">Buscar</Button>
       </Form>
