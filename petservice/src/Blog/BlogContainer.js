@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+
 import Blog from "./Blog.js";
 import "./blog.css"
 
@@ -35,7 +37,7 @@ return(
         <form className='formularioBlog' onSubmit={handleAddPost}>
         <textarea className='inputTexto' type="text" name="text" placeholder="Escribe aquí tu post" />
         <input className='inputArchivo' type="file" name="image" accept="image/*" />
-        <button className='btnEnviar' type="submit">Publicar</button>
+        <Button variant="primary" type="submit" style={{ padding: "1px 8px", fontSize: "14px" }} >Publicar</Button>
         </form>
         <Blog posts={posts} />
     </div>

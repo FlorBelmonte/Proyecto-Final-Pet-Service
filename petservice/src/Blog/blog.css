@@ -35,7 +35,6 @@
     border: 2px solid rgb(54, 91, 109) ;
     border-radius: 15px;
     height: 15%;
-    background-color:var(--color-primario) ;
 }
 
 .btnEnviar:hover{
