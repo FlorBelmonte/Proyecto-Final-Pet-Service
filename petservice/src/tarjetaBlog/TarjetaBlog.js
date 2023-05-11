@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Button } from 'react-bootstrap';
 import "./tarjetaBlog.css"
 
 
@@ -27,7 +28,7 @@ function handleClickCerrarModal(e) {
       <div className='conenedorParrafo'>
         <p className='descripcionTarjetaBlog'>{text}</p>
       </div>
-      <button className='btnAbrir' id={id} onClick={handleClickAbrirModal}>abrir</button>
+      <Button className='btnAbrir' id={id} onClick={handleClickAbrirModal}>Abrir</Button>
       <button className='btnCerrar' id={id} onClick={handleClickCerrarModal}>X</button>
     </div>
   );
