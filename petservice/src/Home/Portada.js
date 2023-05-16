@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Search from './Search';
 import imagen1 from '../assets/img1.jpg';
 import imagen2 from '../assets/img2.jpg';
 import imagen3 from '../assets/img3.jpg';
@@ -52,11 +51,7 @@ function Portada() {
     <div className='portada-container'>
       <div className="portada">
         <img src={imagenes[index]} className="portada-img" alt="Imagen de portada"/>
-        <div className="search-container">
-          <div className="search-wrapper">
-            <Search />
-          </div>
-        </div>
+        
       </div>
     </div>
   );

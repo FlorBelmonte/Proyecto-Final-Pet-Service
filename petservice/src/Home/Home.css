@@ -23,7 +23,6 @@ h1 {
 /* Estilos para el header */
  header {
     display: flex;
-    align-items: center;
     background: rgba(244, 239, 239, 0.7);
     width: 100%;
    z-index: 100;
@@ -35,7 +34,8 @@ h1 {
 
   .navbar-nav .nav-item {
     font-family: Arial, Helvetica, sans-serif;
-    margin-right: 45px;
+    margin-right: 17px;
+    margin-left: 2px;
   }
   
   .nav-link {
@@ -68,24 +68,29 @@ h1 {
     background-color: #6482a2;
   color: white; 
   }
-  /* Estilo para la portada */
 
-  .search-container {
-    position: absolute;
-    top: 25%;
-    left: 78%;
-   
+ /* Estilos para el input de búsqueda */
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .search-input {
+    width: 300px;
   }
-  .search-wrapper {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* .wider-input {
-    width: auto;
-  } */
-  
+}
+
+/*estilo para la portada*/  
   .portada-img {
     position: relative;
     top: 0;
