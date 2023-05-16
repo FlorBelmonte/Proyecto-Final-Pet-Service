@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {Button} from 'react-bootstrap'
+import "./LoginFormulario.css"
 
 function LoginFormulario() {
   const [formData, setFormData] = useState({
@@ -42,6 +44,7 @@ function LoginFormulario() {
   };
 
   return (
+    <div className="contenedor">
     <form onSubmit={handleSubmit}>
       <label htmlFor="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
@@ -61,9 +64,11 @@ function LoginFormulario() {
       <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
       <input type="text" id="libretaSanitaria" name="libretaSanitaria" value={formData.libretaSanitaria} onChange={handleInputChange} />
 
-      <button type="submit">Enviar</button>
+      <Button type="submit" className="btn btn-primary rounded-lg me-2">Enviar</Button>
     </form>
+    </div>
   );
 };
 
 export default LoginFormulario;
+

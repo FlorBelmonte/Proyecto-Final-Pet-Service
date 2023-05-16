@@ -1,12 +1,12 @@
 import LoginFormulario from "./login/LoginFormulario";
-import Tarjetero from "./tarjetero/Tarjetero";
+// import Tarjetero from "./tarjetero/Tarjetero";
 
 
 
 function App() {
   return (
     <div >
-      <Tarjetero/>
+      {/* <Tarjetero/> */}
       <LoginFormulario/>
     
     </div>
