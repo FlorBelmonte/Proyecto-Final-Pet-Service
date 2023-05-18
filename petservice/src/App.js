@@ -14,11 +14,11 @@ function App() {
     <div >
 
       {/* <Tarjetero/> */}
-      <FormPerdidosEncontrados/>
+      {/* <FormPerdidosEncontrados/> */}
 
-//       <Home/>
-//       <BlogContainer/>
-//       <Tarjetero/>
+      <Home/>
+     {/* <BlogContainer/> */}
+      {/* <Tarjetero/> */}
     </div>
   );
 }
