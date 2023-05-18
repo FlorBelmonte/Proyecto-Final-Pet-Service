@@ -1,6 +1,6 @@
 import React from 'react'
 import "./tarjeta.css"
-import imagen from '../imagenes/Petservice.png'
+import imagen from '../assets/logo.png'
 import puntaje from '../assets/PetservicePata.png'
 
 const Tarjeta = () => {

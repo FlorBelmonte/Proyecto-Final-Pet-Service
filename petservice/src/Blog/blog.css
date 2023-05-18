@@ -1,0 +1,48 @@
+.blog{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.formularioBlog{
+    width: 310px;
+    height: 256px;
+    border:3px solid  rgb(54, 91, 109) ;
+    border-radius: 5px;
+    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+    margin: 5px;
+    color:rgb(54, 91, 109)  ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.inputTexto{
+    margin: auto;
+    width: 90%;
+    height: 60%;
+    resize: none;
+}
+
+.inputArchivo{
+    margin: auto; 
+    width: 90%;
+    justify-content: center;
+}
+
+.btnEnviar{
+    border: 2px solid rgb(54, 91, 109) ;
+    border-radius: 15px;
+    height: 15%;
+}
+
+.btnEnviar:hover{
+    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+}
+
+.contenedorBlog{
+    background-color:var(--color-secundario) ;
+    width: 100vw;
+    height:auto;
+}
