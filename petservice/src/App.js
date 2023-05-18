@@ -1,9 +1,7 @@
-
-import FormPerdidosEncontrados from "./FormPerdidosEncontrados/FormPerdidosEncontrados.js";
+// import FormPerdidosEncontrados from "./FormPerdidosEncontrados/FormPerdidosEncontrados.js";
 // import Tarjetero from "./tarjetero/Tarjetero";
-
-import BlogContainer from './Blog/BlogContainer.js';
-// import Home from "./Home/Home.js";
+// import BlogContainer from './Blog/BlogContainer.js';
+import Home from "./Home/Home.js";
 
 
 
@@ -14,12 +12,11 @@ function App() {
   return (
     <div >
 
-      {/* <Tarjetero/> */}
-      <FormPerdidosEncontrados/>
+       <Home/>
+       {/* <BlogContainer/> */}
+       {/* <Tarjetero/> */}
+       {/* <FormPerdidosEncontrados/> */}
 
-//       <Home/>
-//       <BlogContainer/>
-//       <Tarjetero/>
     </div>
   );
 }
