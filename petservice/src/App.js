@@ -7,16 +7,18 @@ import Home from "./Home/Home.js";
 
 
 
+
 function App() {
 
   return (
     <div >
 
-       <Home/>
-       {/* <BlogContainer/> */}
-       {/* <Tarjetero/> */}
-       {/* <FormPerdidosEncontrados/> */}
+      {/* <Tarjetero/> */}
+      <FormPerdidosEncontrados/>
 
+//       <Home/>
+//       <BlogContainer/>
+//       <Tarjetero/>
     </div>
   );
 }
