@@ -1,12 +1,12 @@
 import FormPerdidosEncontrados from "./FormPerdidosEncontrados.js/FormPerdidosEncontrados";
-import Tarjetero from "./tarjetero/Tarjetero";
+// import Tarjetero from "./tarjetero/Tarjetero";
 
 
 
 function App() {
   return (
     <div >
-      <Tarjetero/>
+      {/* <Tarjetero/> */}
       <FormPerdidosEncontrados/>
     </div>
   );
