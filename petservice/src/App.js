@@ -1,4 +1,4 @@
-import FormPerdidosEncontrados from "./FormPerdidosEncontrados.js/FormPerdidosEncontrados";
+import FormPerdidosEncontrados from "./FormPerdidosEncontrados/FormPerdidosEncontrados.js";
 // import Tarjetero from "./tarjetero/Tarjetero";
 
 
