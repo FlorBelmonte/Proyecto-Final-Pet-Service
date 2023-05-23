@@ -1,0 +1,36 @@
+.contenedor{
+    background: rgba(244, 239, 239, 0.7);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  label {
+    margin-bottom: 0.5rem;
+  }
+  
+  input,
+  button {
+    width: 50%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #fbe7d9;
+    border-color: rgb(128, 126, 126);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: rgb(13, 13, 13);
+    padding: 0.70rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3a3aec;
+  }

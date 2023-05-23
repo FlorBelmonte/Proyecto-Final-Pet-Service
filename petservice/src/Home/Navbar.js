@@ -1,13 +1,22 @@
-import React from 'react';
-import './Home.css'
+import React, { useState } from 'react';
+import Search from './Search';
+import './Home.css';
 
 function Navbar() {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const handleToggle = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  const navbarClass = isCollapsed ? 'navbar-collapse collapse' : 'navbar-collapse collapse show';
+
   return (
-    <nav className="navbar navbar-expand-lg  justify-content-between">
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav className="navbar navbar-expand-lg justify-content-between">
+      <button className="navbar-toggler" type="button" onClick={handleToggle}>
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse ml-auto" id="navbarNav">
+      <div className={navbarClass} id="navbarNav">
         <ul className="navbar-nav mr-auto text-center">
           <li className="nav-item">
             <a className="nav-link" href="#">Hoteles</a>
@@ -33,11 +42,21 @@ function Navbar() {
           <li className="nav-item">
             <a className="nav-link" href="#">Blog</a>
           </li>
+          <li className="nav-item">
+            <div className="search-container">
+              <div className="search-wrapper">
+                <Search />
+              </div>
+            </div>
+          </li>
         </ul>
-
       </div>
     </nav>
   );
 }
 
 export default Navbar;
+
+
+
+
