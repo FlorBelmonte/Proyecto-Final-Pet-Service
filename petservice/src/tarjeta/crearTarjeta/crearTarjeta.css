@@ -1,0 +1,39 @@
+.marcoCrearTarjeta{
+    width: 60%;
+    height: 75vh;
+    border:3px solid  rgb(54, 91, 109) ;
+    border-radius: 5px;
+    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+    margin: 5px;
+    color:rgb(54, 91, 109)  ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.formCrearTarjeta{
+    flex-wrap: wrap;
+    margin-top: 5px;
+    width: 80%;
+    
+    
+}
+
+.formCrearTarjeta div{
+    justify-content: center;
+}
+
+p{  
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 5px;
+}
+
+textarea{
+    margin-top: 10px;
+}
+
+button{
+   margin-left: 70%;
+}
