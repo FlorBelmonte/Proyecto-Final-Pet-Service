@@ -5,13 +5,6 @@ import Home from "./Home/Home.js";
 
 import ServiciosContextProvider from './context/ServiciosContext.js';
 import Tarjetero from "./tarjetero/Tarjetero";
-=======
-
-
-
- main
-
-
 
 function App() {
 
@@ -31,7 +24,6 @@ function App() {
 
      {/* <BlogContainer/> */}
       {/* <Tarjetero/> */}
- main
     </div>
   );
 }
