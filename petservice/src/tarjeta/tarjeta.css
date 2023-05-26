@@ -42,10 +42,7 @@ h4{
   text-overflow: ellipsis; /* Muestra los tres puntos */
 }
 
-.imgPuntaje{
-    width: 25px;
-    height: auto;
-}
+
 .precio{
     color:green;
     font-size: 2rem;
