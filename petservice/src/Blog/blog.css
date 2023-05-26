@@ -43,6 +43,6 @@
 
 .contenedorBlog{
     background-color:var(--color-secundario) ;
-    width: 100vw;
+    width: 99vw;
     height:auto;
 }
