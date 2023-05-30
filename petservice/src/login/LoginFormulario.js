@@ -45,7 +45,7 @@ function LoginFormulario() {
 
   return (
     <div className="contenedor">
-    <form onSubmit={handleSubmit}>
+    <form className="formulario" onSubmit={handleSubmit}>
       <label htmlFor="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
 
