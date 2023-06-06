@@ -15,7 +15,7 @@ export default function ServiciosContextProvider({children}){
             precio: 20,
             informacion: "Es la primera pizzeria Pet friendly de la zona. hay un sector exclusivo para las mascotas donde pueden disfrutar de un plato de alimento balanceado y agua. O si prefiere puede llevar a su mascota a su meza para que compartan el una experiencia inigualable",
             votos:45,
-            puntuacion:4,
+            puntuacion:180,
             localidad:"Ayacucho"
            },
            {
@@ -26,7 +26,7 @@ export default function ServiciosContextProvider({children}){
             precio: 750,
             informacion: "Hotel de 5 estrellas para que pueda disfrutar de una experiencia unica. Disfrute de nuestra nueva pileta apta para mascotas. Cuidados caninos, zala de entretenimiento para gatos y nuestro exclusivo centro de estetica para mascotas. Todo esto ademas de nuestros servicios tradicionales! Contactese con nosotros para mas informacion",
             votos:250,
-            puntuacion:5,
+            puntuacion:1250,
             localidad:"Tandil"
            },
            {
@@ -37,7 +37,7 @@ export default function ServiciosContextProvider({children}){
             precio: 15,
             informacion: "disfrute de nuestro patio de comidas. tenemos lo mejores calzones de la ciudad. si viene con su mascota le regalamos un delicioso cafe!",
             votos:11,
-            puntuacion:3,
+            puntuacion:33,
             localidad:"tandil"
            }
 

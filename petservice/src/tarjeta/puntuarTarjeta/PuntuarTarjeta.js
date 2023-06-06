@@ -3,9 +3,11 @@ import puntaje from '../../assets/PetservicePata.png'
 import "./puntuarTarjeta.css"
 
 const PuntuarTarjeta = (puntuacion, votos) => {
-    console.log(puntuacion.puntuacion)
+
+   const votosResultado=  puntuacion.puntuacion/puntuacion.votos
+    
   const votacion=[];
-  for (let i=0;i<puntuacion.puntuacion;i++){
+  for (let i=0;i<votosResultado;i++){
     votacion.push(i)
   } 
 
@@ -17,7 +19,7 @@ const PuntuarTarjeta = (puntuacion, votos) => {
   return (
     <>
     
-    {graficarVotacion}
+    {graficarVotacion }
     </>
     
   )
