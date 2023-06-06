@@ -3,16 +3,16 @@ import "./tarjeta.css"
 import PuntuarTarjeta from './puntuarTarjeta/PuntuarTarjeta';
 
 
-const Tarjeta = ({ id, nombre, imagen, puntuacion, precio, info, votos}) => {
+const Tarjeta = ({id, nombre, imagen, puntuacion, precio, info, votos, key}) => {
 
-  const arrValores=[id, nombre, imagen,puntuacion, precio, info, votos];
+  const arrValores=[id, nombre, imagen,puntuacion, precio, info, votos, key ];
   
 
 
  const [modal, setModal]=useState('tarjeta') 
 
  const mostrar=()=>{
-  
+    console.log(arrValores[0])
     setModal('abrirModal')
   }
   
