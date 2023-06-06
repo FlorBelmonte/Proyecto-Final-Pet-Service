@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Button} from 'react-bootstrap'
 import "./LoginFormulario.css"
 
-function LoginFormulario() {
+function LoginFormulario({onClose}) {
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -12,7 +12,7 @@ function LoginFormulario() {
     libretaSanitaria: "",
     submitted: false
   });
-
+  
   function handleInputChange (event){
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -35,6 +35,7 @@ function LoginFormulario() {
         libretaSanitaria: "",
         submitted: true
       });
+      onClose();
     }
   };
 
@@ -45,7 +46,7 @@ function LoginFormulario() {
 
   return (
     <div className="contenedor">
-    <form onSubmit={handleSubmit}>
+    <form className="formulario" onSubmit={handleSubmit}>
       <label htmlFor="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
 
@@ -64,7 +65,7 @@ function LoginFormulario() {
       <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
       <input type="text" id="libretaSanitaria" name="libretaSanitaria" value={formData.libretaSanitaria} onChange={handleInputChange} />
 
-      <Button type="submit" className="btn btn-primary rounded-lg me-2">Enviar</Button>
+      <Button type="submit" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
     </form>
     </div>
   );
