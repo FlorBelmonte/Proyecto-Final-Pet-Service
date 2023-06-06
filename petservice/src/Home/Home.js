@@ -12,7 +12,9 @@ function Home() {
   const handleLoginClick = () => {
     setShowLoginForm(true);
   };
-
+  const handleCloseLoginForm = () => {
+    setShowLoginForm(false);
+  };
   return (
     <div>
       <header>
@@ -25,11 +27,8 @@ function Home() {
           </button>
         </div>
       </header>
-      {showLoginForm && <LoginFormulario />}
-      <Portada />
+      {showLoginForm ? (<LoginFormulario onClose={handleCloseLoginForm} />) : (<Portada/>)}
       <Footer />
-
-    
     </div>
   );
 }
