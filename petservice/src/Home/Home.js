@@ -4,17 +4,29 @@ import './Home.css';
 import logo from '../assets/logo.png';
 import Portada from './Portada';
 import Footer from './Footer';
-import LoginFormulario from '../login/LoginFormulario'; 
+import LoginFormulario from '../login/LoginFormulario';
+import icono from '../assets/acceso.png'
 
 function Home() {
-  const [showLoginForm, setShowLoginForm] = useState(false); 
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
   };
+
   const handleCloseLoginForm = () => {
     setShowLoginForm(false);
   };
+
+  const handleLoginFormSubmit = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <div>
       <header>
@@ -22,12 +34,28 @@ function Home() {
 
         <Navbar />
         <div className="login-link">
-          <button className="btn btn-outline-primary me-2" type="button" onClick={handleLoginClick}>
-            Iniciar sesión
-          </button>
+          {isLoggedIn ? (
+            <>
+             <div className="greeting">
+                <img src={icono} alt="Acceso" className="acceso-img" />
+                <span>¡Hola!</span>
+              </div>
+              <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
+              Iniciar sesión
+            </button>
+          )}
         </div>
       </header>
-      {showLoginForm ? (<LoginFormulario onClose={handleCloseLoginForm} />) : (<Portada/>)}
+      {showLoginForm ? (
+        <LoginFormulario onClose={handleCloseLoginForm} onSubmit={handleLoginFormSubmit} />
+      ) : (
+        <Portada />
+      )}
       <Footer />
     </div>
   );

@@ -68,7 +68,20 @@ h1 {
     background-color: #6482a2;
   color: white; 
   }
-
+/* Estilo para icono y saludo de bienvenida al loguearse */
+  .greeting {
+    display:inline;
+    align-items: center;
+    font-weight:bold;
+    margin-right: 10px; 
+  }
+  
+  .acceso-img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+  
  /* Estilos para el input de búsqueda */
 
 .search-wrapper {
