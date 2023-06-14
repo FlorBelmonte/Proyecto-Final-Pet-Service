@@ -10,6 +10,7 @@ import icono from '../assets/acceso.png'
 function Home() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
@@ -19,8 +20,9 @@ function Home() {
     setShowLoginForm(false);
   };
 
-  const handleLoginFormSubmit = () => {
+  const handleLoginFormSubmit = (username) => {
     setIsLoggedIn(true);
+    setUsername(username)
   };
 
   const handleLogout = () => {
@@ -38,7 +40,7 @@ function Home() {
             <>
              <div className="greeting">
                 <img src={icono} alt="Acceso" className="acceso-img" />
-                <span>¡Hola!</span>
+                <span>¡Hola, {username}!</span>
               </div>
               <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
                 Cerrar sesión

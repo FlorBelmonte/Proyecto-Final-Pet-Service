@@ -36,7 +36,7 @@ function LoginFormulario({ onClose, onSubmit }) {
         submitted: true
       });
       onClose();
-      onSubmit();
+      onSubmit(formData.nombre);
     }
   }
 
