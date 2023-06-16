@@ -4,30 +4,77 @@ import './Home.css';
 import logo from '../assets/logo.png';
 import Portada from './Portada';
 import Footer from './Footer';
-import LoginFormulario from '../login/LoginFormulario'; 
+import LoginFormulario from '../login/LoginFormulario';
+import Acceder from '../Ingreso/Acceder';
+import icono from '../assets/acceso.png';
 
 function Home() {
-  const [showLoginForm, setShowLoginForm] = useState(false); 
+  const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
 
-  const handleLoginClick = () => {
-    setShowLoginForm(true);
+  const handleLoginClick = () => { //manejador de evento para el boton "Crear Cuenta"
+    setActiveComponent('LoginFormulario')
   };
-  const handleCloseLoginForm = () => {
-    setShowLoginForm(false);
+
+  const handleCloseLoginForm = () => {  // manejador de evento para cerrar el componente "LoginFormulario"
+    setActiveComponent(null); 
   };
+
+  const handleLoginFormSubmit = ({username}) => {   // Manejador de evento para enviar el LoginFormulario
+    setIsLoggedIn(true);
+    setUsername(username);
+    setActiveComponent(null); //establece el componente activo como null y se muestra la Portada 
+  };
+
+  const handleLogout = () => { 
+    setIsLoggedIn(false);
+    setUsername('');
+  };
+
+  const handleAccessClick = () => {  // Manejador de evento para el botón "Iniciar Sesión"
+    setActiveComponent('Acceder'); 
+  };
+
   return (
     <div>
       <header>
         <img src={logo} alt="Logo" width="170" height="170" style={{ marginRight: 'auto' }} />
-
         <Navbar />
         <div className="login-link">
-          <button className="btn btn-outline-primary me-2" type="button" onClick={handleLoginClick}>
-            Iniciar sesión
-          </button>
+          {isLoggedIn ? (
+            <>
+              <div className="greeting">
+                <img src={icono} alt="Acceso" className="acceso-img" />
+                <span>¡Hola, {username}!</span>
+              </div>
+              <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
+                Crear cuenta
+              </button>
+              <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
+                Iniciar Sesión
+              </button>
+            </>
+          )}
         </div>
       </header>
-      {showLoginForm ? (<LoginFormulario onClose={handleCloseLoginForm} />) : (<Portada/>)}
+
+      {activeComponent === 'LoginFormulario' && (
+        <LoginFormulario onClose={handleCloseLoginForm} onSubmit={handleLoginFormSubmit} />
+      )}
+
+      {activeComponent === 'Acceder' && (
+        <Acceder onClose={() => setActiveComponent(null)} onLogin={handleLoginFormSubmit} />
+      )}
+
+      {(!activeComponent || activeComponent === 'Portada') && <Portada />}
+
       <Footer />
     </div>
   );
