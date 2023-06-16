@@ -159,6 +159,10 @@ h1 {
 .slow-fade .modal-dialog {
   animation: slow-fade 0.5s ease;
 }
+/* .custom-backdrop {
+  background-color: rgb(0, 0, 0, 1)
+} */
+
 
 /* Estilo para el footer */
 .footer {

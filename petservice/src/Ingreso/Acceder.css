@@ -1,0 +1,15 @@
+.acceso{
+  max-width: 30%;
+  margin: 0 auto; 
+  padding-top: 4%;
+  padding-bottom: 20%;
+}
+.acceder-container {
+    background-image: url('../assets/img14.jpg'); 
+    background-size: cover;
+    min-height: 90vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
