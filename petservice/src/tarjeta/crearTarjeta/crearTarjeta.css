@@ -1,6 +1,6 @@
 .marcoCrearTarjeta{
     width: 60%;
-    height: 75vh;
+    /* height: 75vh; */
     border:3px solid  rgb(54, 91, 109) ;
     border-radius: 5px;
     background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
@@ -34,6 +34,9 @@ textarea{
     margin-top: 10px;
 }
 
-button{
-   margin-left: 70%;
+.btn-enviar {
+    margin-left: 80px;
+    margin-top: 145px;
+    margin-bottom: 3%;
 }
+

@@ -59,7 +59,7 @@ contextServicios.setServicios([
             <div><p>defina el precio:</p><input type='number'name='precio' ></input></div>
             <div><p>Ingrese la localidad:</p><input type='text' name='localidad'></input></div>
             <textarea type='text' name='informacion' placeholder='Escribe aqui la informacion sobre tu servicio!!!' />
-            <Button className='btnAbrir' type='submit'>Enviar</Button>
+            <Button className='btnAbrir btn-enviar' type='submit'>Enviar</Button>
         </form>  
     </div>
   )

@@ -6,6 +6,9 @@ export const ServiciosContext = createContext(null);//crea el contexto
 
 //proveedor del contexto
 export default function ServiciosContextProvider({children}){
+
+  
+
      const [servicios, setServicios]=useState([
         {
             id: "Pizza Dog",
@@ -18,7 +21,7 @@ export default function ServiciosContextProvider({children}){
             puntuacion:180,
             localidad:"Ayacucho"
            },
-           {
+           /* {
             id: "Palace",
             nombre: "Palace",
             servicio: "Hotel",
@@ -39,14 +42,15 @@ export default function ServiciosContextProvider({children}){
             votos:11,
             puntuacion:33,
             localidad:"tandil"
-           }
+           } */
 
      ])
 
 
         //paso en el value lo que quiero ocmpartir a los otros componentes
     return(
-        <ServiciosContext.Provider value={{servicios, setServicios}}> 
+        <ServiciosContext.Provider value={{servicios, setServicios}} 
+        > 
             {children}
         </ServiciosContext.Provider>
     )
