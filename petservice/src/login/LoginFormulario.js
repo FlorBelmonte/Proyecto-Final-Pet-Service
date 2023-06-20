@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import "./LoginFormulario.css";
 
 function LoginFormulario({ onClose, onSubmit }) {
-  
+
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
@@ -13,9 +13,7 @@ function LoginFormulario({ onClose, onSubmit }) {
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [errors, setErrors] = useState({});
 
-  
   const handleSubmit = (e) => {
-    
     if (validateForm()) {
       const data = {
         nombre,
@@ -35,10 +33,10 @@ function LoginFormulario({ onClose, onSubmit }) {
         body: JSON.stringify(data),
       })
         .then(response => {
-          if (1==1){
-          //if (response.ok) {
-            
-            alert("Se envio correctamente el formulario")
+          if (1 == 1) {
+            //if (response.ok) {
+
+            alert("Se envió correctamente el formulario")
             //Limpia los campos después del envío
             setNombre('');
             setApellido('');
@@ -47,10 +45,10 @@ function LoginFormulario({ onClose, onSubmit }) {
             setEspecieMascota('');
             setLibretaSanitaria('');
             onClose();
-            onSubmit({ username:nombre });
+            onSubmit({ username: nombre });
           } else {
-            alert("Ocurrio un error al enviar el formulario")
-            
+            alert("Ocurrió un error al enviar el formulario")
+
             throw new Error('Error al enviar el formulario');
           }
         })
@@ -108,88 +106,89 @@ function LoginFormulario({ onClose, onSubmit }) {
 
   return (
     <div className="contenedor">
-      <form action="" className="formulario" >
+      <Form className="formulario">
 
-        <label htmlFor="nombre">Nombre:</label>
-        <input 
-          type="text" 
-          id="nombre" 
-          name="nombre" 
-          value={nombre} 
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
-        {errors.nombre && <span>{errors.nombre}</span>}
+        <Form.Group controlId="nombre">
+          <Form.Label>Nombre:</Form.Label>
+          <Form.Control
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          {errors.nombre && <Form.Text className="text-danger">{errors.nombre}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="apellido">Apellido:</label>
-        <input type="text" 
-         id="apellido" 
-         name="apellido"  
-         value={apellido} 
-         onChange={(e) => setApellido(e.target.value)}
-         required
-        />
-        {errors.apellido && <span>{errors.apellido}</span>}
+        <Form.Group controlId="apellido">
+          <Form.Label>Apellido:</Form.Label>
+          <Form.Control
+            type="text"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            required
+          />
+          {errors.apellido && <Form.Text className="text-danger">{errors.apellido}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="email">Email:</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        {errors.email && <span>{errors.email}</span>}
+        <Form.Group controlId="email">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {errors.email && <Form.Text className="text-danger">{errors.email}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="nombreMascota">Nombre de la mascota:</label>
-        <input 
-          type="text" 
-          id="nombreMascota" 
-          name="nombreMascota" 
-          value={nombreMascota} 
-          onChange={(e) => setNombreMascota(e.target.value)}
-          required
-        />
-        {errors.nombreMascota && <span>{errors.nombreMascota}</span>}
+        <Form.Group controlId="nombreMascota">
+          <Form.Label>Nombre de la mascota:</Form.Label>
+          <Form.Control
+            type="text"
+            value={nombreMascota}
+            onChange={(e) => setNombreMascota(e.target.value)}
+            required
+          />
+          {errors.nombreMascota && <Form.Text className="text-danger">{errors.nombreMascota}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="especieMascota">Especie de la mascota:</label>
-        <input 
-          type="text" 
-          id="especieMascota" 
-          name="especieMascota" 
-          value={especieMascota} 
-          onChange={(e) => setEspecieMascota(e.target.value)}
-          required
-        />
-        {errors.especieMascota && <span>{errors.especieMascota}</span>}
+        <Form.Group controlId="especieMascota">
+          <Form.Label>Especie de la mascota:</Form.Label>
+          <Form.Control
+            type="text"
+            value={especieMascota}
+            onChange={(e) => setEspecieMascota(e.target.value)}
+            required
+          />
+          {errors.especieMascota && <Form.Text className="text-danger">{errors.especieMascota}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
-        <input 
-          type="text" 
-          id="libretaSanitaria" 
-          name="libretaSanitaria" 
-          value={libretaSanitaria} 
-          onChange={(e) => setLibretaSanitaria(e.target.value)}
-          required
-        />
-        {errors.libretaSanitaria && <span>{errors.libretaSanitaria}</span>}
+        <Form.Group controlId="libretaSanitaria">
+          <Form.Label>Libreta sanitaria:</Form.Label>
+          <Form.Control
+            type="text"
+            value={libretaSanitaria}
+            onChange={(e) => setLibretaSanitaria(e.target.value)}
+            required
+          />
+          {errors.libretaSanitaria && <Form.Text className="text-danger">{errors.libretaSanitaria}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="aceptaTerminos">Acepto términos y condiciones:</label>
-        <input
-          type="checkbox"
-          checked={aceptaTerminos}
-          onChange={(e) => setAceptaTerminos(e.target.checked)}
-        />
-        {errors.aceptaTerminos && <span>{errors.aceptaTerminos}</span>}
+        <Form.Group controlId="aceptaTerminos">
+          <Form.Check
+            type="checkbox"
+            label="Acepto términos y condiciones"
+            checked={aceptaTerminos}
+            onChange={(e) => setAceptaTerminos(e.target.checked)}
+            isInvalid={!!errors.aceptaTerminos}
+          />
+          {errors.aceptaTerminos && <Form.Text className="text-danger">{errors.aceptaTerminos}</Form.Text>}
+        </Form.Group>
 
-
-        <Button onClick={handleSubmit}   type="button"  className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
-      </form>
+        <Button onClick={handleSubmit} type="button" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
+      </Form>
     </div>
   );
 }
 
 export default LoginFormulario;
-
-
