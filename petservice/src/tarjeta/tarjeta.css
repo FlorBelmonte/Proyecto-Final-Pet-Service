@@ -16,12 +16,16 @@
     
     
 }
+
+   
+
 .tarjeta-content{
-    width: 310px;
+    width: 380px;
     height: 256px;
     margin: 5px;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .imgTarjeta{
@@ -39,6 +43,7 @@
     margin-top: 3px;
     margin-right: 3px;
     padding-left: 5%;
+    
 }
 
 h4{

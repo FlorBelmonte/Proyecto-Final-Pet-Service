@@ -21,7 +21,7 @@ export default function ServiciosContextProvider({children}){
             puntuacion:180,
             localidad:"Ayacucho"
            },
-           /* {
+             {
             id: "Palace",
             nombre: "Palace",
             servicio: "Hotel",
@@ -36,13 +36,13 @@ export default function ServiciosContextProvider({children}){
             id: "CatZone",
             nombre: "CatZone",
             servicio: "Restaurante",
-            imagen: "https://www.alfaforni.com/wp-content/uploads/2022/10/20220928_142615-scaled.jpg",
+            imagen: "https://media-cdn.tripadvisor.com/media/photo-s/09/0e/f2/a4/patio-de-comidas.jpg",
             precio: 15,
             informacion: "disfrute de nuestro patio de comidas. tenemos lo mejores calzones de la ciudad. si viene con su mascota le regalamos un delicioso cafe!",
             votos:11,
             puntuacion:33,
             localidad:"tandil"
-           } */
+           } 
 
      ])
 

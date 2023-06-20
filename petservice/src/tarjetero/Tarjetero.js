@@ -12,7 +12,7 @@ const Tarjetero = () => {
 
   const tarjetas=contextServicios.servicios.map((t)=>(
    
-    <Tarjeta  key={t.id} id={t.id} nombre={t.nombre} imagen={t.imagen} puntuacion={t.puntuacion} precio={t.precio} info={t.informacion} votos={t.votos} />
+    <Tarjeta  key={t.id} id={t.id} nombre={t.nombre} servicio={t.servicio} imagen={t.imagen} puntuacion={t.puntuacion} precio={t.precio} info={t.informacion} votos={t.votos} />
   ))
 
   console.log(contextServicios)

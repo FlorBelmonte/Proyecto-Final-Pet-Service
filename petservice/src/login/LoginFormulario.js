@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {Button} from 'react-bootstrap'
-import "./LoginFormulario.css"
+import { Button } from 'react-bootstrap';
+import "./LoginFormulario.css";
 
-function LoginFormulario() {
+function LoginFormulario({ onClose, onSubmit }) {
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -13,18 +13,18 @@ function LoginFormulario() {
     submitted: false
   });
 
-  function handleInputChange (event){
+  function handleInputChange(event) {
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
     }));
-  };
+  }
 
-  function handleSubmit (event){
+  function handleSubmit(event) {
     event.preventDefault();
     if (validacionForm()) {
-      // iria el fetch para enviar la data al servidor
+      // iría el fetch para enviar la data al servidor
       console.log(formData);
       setFormData({
         nombre: "",
@@ -35,40 +35,43 @@ function LoginFormulario() {
         libretaSanitaria: "",
         submitted: true
       });
+      onClose();
+      onSubmit({ username: formData.nombre });
     }
-  };
+  }
 
-  function validacionForm (){
+  function validacionForm() {
     // aca iria la validacion del los campos del formulario
     return true;
-  };
+  }
 
   return (
     <div className="contenedor">
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
+      <form className="formulario" onSubmit={handleSubmit}>
+        <label htmlFor="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
 
-      <label htmlFor="apellido">Apellido:</label>
-      <input type="text" id="apellido" name="apellido" value={formData.apellido} onChange={handleInputChange} />
+        <label htmlFor="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value={formData.apellido} onChange={handleInputChange} />
 
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
 
-      <label htmlFor="nombreMascota">Nombre de la mascota:</label>
-      <input type="text" id="nombreMascota" name="nombreMascota" value={formData.nombreMascota} onChange={handleInputChange} />
+        <label htmlFor="nombreMascota">Nombre de la mascota:</label>
+        <input type="text" id="nombreMascota" name="nombreMascota" value={formData.nombreMascota} onChange={handleInputChange} />
 
-      <label htmlFor="especieMascota">Especie de la mascota:</label>
-      <input type="text" id="especieMascota" name="especieMascota" value={formData.especieMascota} onChange={handleInputChange} />
+        <label htmlFor="especieMascota">Especie de la mascota:</label>
+        <input type="text" id="especieMascota" name="especieMascota" value={formData.especieMascota} onChange={handleInputChange} />
 
-      <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
-      <input type="text" id="libretaSanitaria" name="libretaSanitaria" value={formData.libretaSanitaria} onChange={handleInputChange} />
+        <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
+        <input type="text" id="libretaSanitaria" name="libretaSanitaria" value={formData.libretaSanitaria} onChange={handleInputChange} />
 
-      <Button type="submit" className="btn btn-primary rounded-lg me-2">Enviar</Button>
-    </form>
+        <Button type="submit" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
+      </form>
     </div>
   );
-};
+}
 
 export default LoginFormulario;
+
 

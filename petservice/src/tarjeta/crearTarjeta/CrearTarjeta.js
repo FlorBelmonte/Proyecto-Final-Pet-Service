@@ -25,8 +25,8 @@ contextServicios.setServicios([
      imagen: imagen.value,
      precio: precio.value,
      informacion: informacion.value,
-     votos:0,
-     puntuacion:0,
+     votos:1,
+     puntuacion:5,
      localidad:localidad.value
     },
     ...contextServicios.servicios,
