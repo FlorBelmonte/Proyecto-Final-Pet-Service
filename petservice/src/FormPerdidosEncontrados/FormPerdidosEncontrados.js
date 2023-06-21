@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './FormPerdidosEncontrados.css'
 
-function FormPerdidosEncontrados() {
+function FormPerdidosEncontrados({onSubmit}) {
   const [nombre, setNombre] = useState("");
   const [raza, setRaza] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -32,6 +32,8 @@ function FormPerdidosEncontrados() {
     formData.append("raza", raza);
     formData.append("descripcion", descripcion);
     formData.append("imagen", imagen);
+
+    onSubmit()
   }
 
   return (
