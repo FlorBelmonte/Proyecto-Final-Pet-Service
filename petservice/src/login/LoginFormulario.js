@@ -7,6 +7,7 @@ function LoginFormulario({ onClose, onSubmit }) {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [nombreMascota, setNombreMascota] = useState('');
   const [especieMascota, setEspecieMascota] = useState('');
   const [libretaSanitaria, setLibretaSanitaria] = useState('');
@@ -21,6 +22,7 @@ function LoginFormulario({ onClose, onSubmit }) {
         nombre,
         apellido,
         email,
+        password,
         nombreMascota,
         especieMascota,
         libretaSanitaria
@@ -43,6 +45,7 @@ function LoginFormulario({ onClose, onSubmit }) {
             setNombre('');
             setApellido('');
             setEmail('');
+            setPassword ('');
             setNombreMascota('');
             setEspecieMascota('');
             setLibretaSanitaria('');
@@ -79,6 +82,18 @@ function LoginFormulario({ onClose, onSubmit }) {
       formIsValid = false;
     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       errors.email = 'El email es inválido';
+      formIsValid = false;
+    }
+    
+    
+    if (password.trim() === '') {
+      errors.password = 'Debe ingresar una contraseña';
+      formIsValid = false;
+    } else if (password.length < 6) {
+      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      formIsValid = false;
+    }else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+      errors.password = 'La contraseña debe contener letras y números';
       formIsValid = false;
     }
 
@@ -141,6 +156,17 @@ function LoginFormulario({ onClose, onSubmit }) {
           required
         />
         {errors.email && <span>{errors.email}</span>}
+
+        <label htmlFor="password">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {errors.password && <span>{errors.password}</span>}
 
         <label htmlFor="nombreMascota">Nombre de la mascota:</label>
         <input 
