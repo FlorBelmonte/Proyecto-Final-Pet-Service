@@ -1,4 +1,3 @@
-// import FormPerdidosEncontrados from "./FormPerdidosEncontrados/FormPerdidosEncontrados.js";
 // import Tarjetero from "./tarjetero/Tarjetero";
 //  import BlogContainer from './Blog/BlogContainer.js';
 import Home from "./Home/Home.js";
@@ -12,7 +11,6 @@ function App() {
     <div >
 
       {/* <Tarjetero/> */}
-      {/* <FormPerdidosEncontrados/> */}
 
       <Home/>
 
