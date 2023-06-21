@@ -1,0 +1,96 @@
+.modal{
+    position: fixed;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center; 
+  
+} 
+
+.contenidoModal{
+    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    border-radius: 10px;
+}
+
+
+h2{
+    font-size: 4rem;
+    text-align: center;
+}
+
+.contImgYValoracion{
+    flex-direction: row;
+    display: flex;
+
+}
+
+.conValoracion{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorPValorar,
+.conValoracion input,
+.conValoracion button{
+    width: 40%;
+    margin-top: 5%;
+}
+
+.contenedorPValorar{
+    margin-left: 5%;
+    padding-left: 5%;
+}
+.imgTarjeta{
+    width: 40%;
+    height: auto;
+    margin-left: 5%;
+}
+
+
+.inputNombre{
+    width: 50vw;
+    height: 20vh;
+}
+
+
+.abrirModal .precio{
+    font-size: 5rem;
+}
+
+.abrirModal .menuVotar{
+    visibility: visible;
+}
+
+ .cancelar{
+    position: relative;
+    top: 0;
+    left: 96%; 
+    margin-top: 1rem;
+    margin-right: 1rem;
+    background-color: red;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    font-weight: bold;
+}
+
+.info{
+    margin-top: 5%;
+    text-align: center;
+    margin-left: 10%;
+
+}

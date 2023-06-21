@@ -1,19 +1,35 @@
+/********************************** modal *****************************************/
+
+
+/***********************************************************************************************/
+
+
 
 .tarjeta{
-    width: 310px;
-    height: 256px;
+    width: 400px;
+    height: 300px;
     border:3px solid  rgb(54, 91, 109) ;
     border-radius: 5px;
     background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
-    margin: 5px;
+    
     color:rgb(54, 91, 109)  ;
+    
+    
+}
+
+   
+
+.tarjeta-content{
+    width: 380px;
+    height: 256px;
+    margin: 5px;
     display: flex;
     flex-wrap: wrap;
     
 }
 
 .imgTarjeta{
-    width: 40%;
+    width: 500%;
     height: 65%;
     border:3px solid  rgb(54, 91, 109) ;
     border-radius: 5px;
@@ -27,6 +43,7 @@
     margin-top: 3px;
     margin-right: 3px;
     padding-left: 5%;
+    
 }
 
 h4{
@@ -53,43 +70,4 @@ h4{
     visibility: hidden;
 }
 
-
-/********************************** modal *****************************************/
-.abrirModal{
-    position: fixed;
-    margin: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    display: flex;
-    flex-wrap: wrap;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
-}
-
-.abrirModal h4{
-    font-size: 5rem;
-}
-.abrirModal .precio{
-    font-size: 5rem;
-}
-
-.abrirModal .menuVotar{
-    visibility: visible;
-}
-
-.abrirModal .cancelar{
-     position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    background-color: red;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    color: white;
-    font-weight: bold;
-}
-
+/***********************************************************************************/
