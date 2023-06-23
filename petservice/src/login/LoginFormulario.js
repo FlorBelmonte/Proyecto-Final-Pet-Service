@@ -157,7 +157,7 @@ function LoginFormulario({ onClose, onSubmit }) {
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>PASSWORD:</Form.Label>
+          <Form.Label>Password:</Form.Label>
           <Form.Control
             type="password"
             value={password}

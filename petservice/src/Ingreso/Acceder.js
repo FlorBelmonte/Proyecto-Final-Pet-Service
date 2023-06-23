@@ -15,11 +15,11 @@ function Acceder({ onLogin }) {
     setPassword(event.target.value);
   };
 
-  const validateAcceder = () => {
+  const validateAcceder = () => { 
     let accederIsValid = true;
     const errors = {};
 
-    if (email.trim() === '') {
+    if (email.trim() === '') { //validacion del email 
       errors.email = 'Debe ingresar un correo electrónico';
       accederIsValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
@@ -27,13 +27,13 @@ function Acceder({ onLogin }) {
       accederIsValid = false;
     }
 
-    if (password.trim() === '') {
+    if (password.trim() === '') { //validacion de la contraseña
       errors.password = 'Debe ingresar una contraseña';
       accederIsValid = false;
-    }else if (password.length < 6) {
+    } else if (password.length < 6) {
       errors.password = 'La contraseña debe tener al menos 6 caracteres';
-      accederIsValid= false;
-    }else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+      accederIsValid = false;
+    } else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
       errors.password = 'La contraseña debe contener letras y números';
       accederIsValid = false;
     }
@@ -42,9 +42,11 @@ function Acceder({ onLogin }) {
     return accederIsValid;
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     if (validateAcceder()) {
-      try {
+      try { // Envío de la solicitud de inicio de sesión
         const response = await fetch('http//:localhost:3000/...', {
           method: 'POST',
           headers: {
@@ -57,7 +59,7 @@ function Acceder({ onLogin }) {
         });
 
         // if (response.ok) {
-          if (1==1){
+        if (1 === 1) {
           const data = await response.json();
           console.log('Respuesta:', data);
           onLogin(email, password); //se llama a la funcion de inicio de sesion 
@@ -76,42 +78,42 @@ function Acceder({ onLogin }) {
     }
   };
 
-   
   return (
     <div className="acceder-container">
-    <form onSubmit={handleSubmit} className="acceso">
-      
-      <div className="form-group">
-        <label htmlFor="email">Email:</label>
-        <input type="email" 
-        className="form-control" 
-        id="email" 
-        name="email" 
-        value={email} 
-        onChange={handleEmailChange} 
-        required
-        />
-        {errors.email && <span>{errors.email}</span>}
+      <form onSubmit={handleSubmit} className="acceso">
 
-      </div>
+        <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+            id="email"
+            name="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
+          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="password">Contraseña:</label>
-        <input type="password" 
-        className="form-control" 
-        id="password" 
-        name="password" 
-        value={password} 
-        onChange={handlePasswordChange} 
-        required
-        />
-        {errors.password && <span>{errors.password}</span>}
-      </div>
+        <div className={`form-group ${errors.password ? 'has-error' : ''}`}>
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            type="password"
+            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+            id="password"
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
+          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+        </div>
 
-      <Button type="button" onClick={handleSubmit} variant="primary">
-        Ingresar
-      </Button>
-    </form>
+        <Button type="submit" variant="primary">
+          Ingresar
+        </Button>
+      </form>
     </div>
   );
 }
