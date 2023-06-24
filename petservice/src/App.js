@@ -1,29 +1,20 @@
-// import FormPerdidosEncontrados from "./FormPerdidosEncontrados/FormPerdidosEncontrados.js";
-// import Tarjetero from "./tarjetero/Tarjetero";
-//  import BlogContainer from './Blog/BlogContainer.js';
+ import BlogContainer from './Blog/BlogContainer.js';
 import Home from "./Home/Home.js";
 
-// import ServiciosContextProvider from './context/ServiciosContext.js';
-// import Tarjetero from "./tarjetero/Tarjetero";
+import ServiciosContextProvider from './context/ServiciosContext.js';
+import Tarjetero from "./tarjetero/Tarjetero";
 
 function App() {
 
   return (
     <div >
-
-      {/* <Tarjetero/> */}
-      {/* <FormPerdidosEncontrados/> */}
-
       <Home/>
 
-      {/* <BlogContainer/>
+      <BlogContainer/>
       <ServiciosContextProvider>
         <Tarjetero/>
-      </ServiciosContextProvider> */}
-      
+      </ServiciosContextProvider>
 
-     {/* <BlogContainer/> */}
-      {/* <Tarjetero/> */}
     </div>
   );
 }

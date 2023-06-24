@@ -1,47 +1,57 @@
-.marcoCrearTarjeta{
-    width: 60%;
-    /* height: 75vh; */
-    border:3px solid  rgb(54, 91, 109) ;
-    border-radius: 5px;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
-    margin: 5px;
-    color:rgb(54, 91, 109)  ;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-}
-
-.formCrearTarjeta{
-    flex-wrap: wrap;
-    margin-top: 5px;
-    width: 80%;
-    
-    
-}
-
-.formCrearTarjeta div{
-    justify-content: center;
-}
-
-p{  
-    font-size: 1.2rem;
-    padding: 0;
-    margin: 5px;
-}
-
-textarea{
-    margin-top: 10px;
-}
-
-.btn-enviar {
-    margin-left: 80px;
-    margin-top: 145px;
-
-    margin-bottom: 3%;
-}
-
-
+.marcoCrearTarjeta {
+    background-image:linear-gradient(90deg, var(--color-primario) ,var(--color-secundario));
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formCrearTarjeta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .btn-enviar {
+    width: 20%;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-enviar:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  @media (min-width: 768px) {
+    .formCrearTarjeta {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
 
 
 
