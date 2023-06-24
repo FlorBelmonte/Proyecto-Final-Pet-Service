@@ -22,10 +22,10 @@ function Home() {
     setActiveComponent(null);
   };
 
-  const handleLoginFormSubmit = ({username}) => {   // Manejador de evento para enviar el LoginFormulario
+  const handleLoginFormSubmit = ({ username }) => { // Manejador de evento para enviar el LoginFormulario
     setIsLoggedIn(true);
     setUsername(username);
-    setActiveComponent(null); //establece el componente activo como null y se muestra la Portada 
+    setActiveComponent(null); // establece el componente activo como null y muestra la Portada
   };
 
   const handleLogout = () => {

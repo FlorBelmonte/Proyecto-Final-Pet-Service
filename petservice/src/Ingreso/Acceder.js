@@ -51,7 +51,7 @@ function Acceder({ onLogin }) {
       setMostrarDivError(false);
       setMostrarErrorExcepcion(false);
       try { // Envío de la solicitud de inicio de sesión
-        const response = await fetch('http://localhost:3000/usuario/login', {
+        const response = await fetch('http://localhost:3000/usuario/login/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -61,32 +61,27 @@ function Acceder({ onLogin }) {
             password,
           }),
         });
-
-         if (response.ok) {
-          
+        if (response.ok) {
           const data = await response.json();
           console.log('Respuesta:', data);
-          alert("data:"+data.Estado)
           if(data.Estado===200 && data.Existe){
-            alert("entroo al if")
-            onLogin(email,password); //se llama a la funcion de inicio de sesion
-          
+            onLogin({ username: email }); //se llama a la funcion de inicio de sesion
+            // Restablecer los campos a vacio
+            setEmail('');
+            setPassword('');
+            setErrors({});
+
           }else if(data.Estado==200 && !data.Existe){
             setMostrarDivError(true);
           }
         } else {
-          setMostrarDivError(true);
+          setMostrarErrorExcepcion(true)
           console.error('Error en la solicitud:', response.status);
         }
       } catch (error) {
-        alert("ocurrio un error"+error)
+        setMostrarErrorExcepcion(true)
         console.error('Error:', error);
       }
-
-      // Restablecer los campos a vacio
-      //setEmail('');
-      setPassword('');
-      setErrors({});
     }
   };
 

@@ -13,8 +13,10 @@ function LoginFormulario({ onClose, onSubmit }) {
   const [libretaSanitaria, setLibretaSanitaria] = useState('');
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [errors, setErrors] = useState({});
+  const [mostrarErrorExcepcion, setMostrarErrorExcepcion] = useState(false);
 
   const handleSubmit = (e) => {
+    setMostrarErrorExcepcion(false);
     if (validateForm()) {
       const data = {
         nombre,
@@ -25,37 +27,38 @@ function LoginFormulario({ onClose, onSubmit }) {
         especieMascota,
         libretaSanitaria
       };
-
+      
       // Realiza la solicitud al servidor
-      fetch('http//:localhost:3000/usuario/registro', {
+      fetch('http://localhost:3000/usuario/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
-        .then(response => {
-          if (response.ok) {
-            alert("Se envió correctamente el formulario")
-            //Limpia los campos después del envío
-            setNombre('');
-            setApellido('');
-            setEmail('');
-            setPassword ('');
-            setNombreMascota('');
-            setEspecieMascota('');
-            setLibretaSanitaria('');
-            onClose();
-            onSubmit({ username: nombre });
-          } else {
-            alert("Ocurrió un error al enviar el formulario")
-
-            throw new Error('Error al enviar el formulario');
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      .then(response => {
+        console.log(response)
+        if (response.ok) {
+          alert("Se envió correctamente el formulario")
+          //Limpia los campos después del envío
+          setNombre('');
+          setApellido('');
+          setEmail('');
+          setPassword ('');
+          setNombreMascota('');
+          setEspecieMascota('');
+          setLibretaSanitaria('');
+          onClose();
+          onSubmit({ username: email });
+        } else {
+          setMostrarErrorExcepcion(true);
+          throw new Error('Error al enviar el formulario');
+        }
+      })
+      .catch(error => {
+        setMostrarErrorExcepcion(true);
+        console.error(error);
+      });
     }
   };
 
@@ -209,6 +212,10 @@ function LoginFormulario({ onClose, onSubmit }) {
           />
           {errors.aceptaTerminos && <Form.Text className="text-danger">{errors.aceptaTerminos}</Form.Text>}
         </Form.Group>
+        
+        <div>
+        {mostrarErrorExcepcion && <div>Ocurrió un error, intente mas tarde.</div>}
+        </div>
 
         <Button onClick={handleSubmit} type="button" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
       </Form>
