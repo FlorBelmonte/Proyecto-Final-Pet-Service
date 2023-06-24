@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --output-path=D:\\source_noe\\pet-service-backend\\client",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

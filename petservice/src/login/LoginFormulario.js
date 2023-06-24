@@ -27,7 +27,7 @@ function LoginFormulario({ onClose, onSubmit }) {
       };
 
       // Realiza la solicitud al servidor
-      fetch('http//:localhost:3000/usuario', {
+      fetch('http//:localhost:3000/usuario/registro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,9 +35,7 @@ function LoginFormulario({ onClose, onSubmit }) {
         body: JSON.stringify(data),
       })
         .then(response => {
-          if (1 == 1) {
-            //if (response.ok) {
-
+          if (response.ok) {
             alert("Se envió correctamente el formulario")
             //Limpia los campos después del envío
             setNombre('');

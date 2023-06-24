@@ -6,6 +6,9 @@ function Acceder({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [mostrarDivError, setMostrarDivError] = useState(false);
+  const [mostrarErrorExcepcion, setMostrarErrorExcepcion] = useState(false);
+
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -45,11 +48,13 @@ function Acceder({ onLogin }) {
   const handleSubmit = async () => {
     
     if (validateAcceder()) {
+      setMostrarDivError(false);
+      setMostrarErrorExcepcion(false);
       try { // Envío de la solicitud de inicio de sesión
         const response = await fetch('http://localhost:3000/usuario/login', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             email,
@@ -57,18 +62,20 @@ function Acceder({ onLogin }) {
           }),
         });
 
-        // if (response.ok) {
-          if (1==1) {
+         if (response.ok) {
+          
           const data = await response.json();
           console.log('Respuesta:', data);
+          alert("data:"+data.Estado)
+          if(data.Estado===200 && data.Existe){
+            alert("entroo al if")
+            onLogin(email,password); //se llama a la funcion de inicio de sesion
           
-          if(data.Estado && data.existe){
-          alert(data.Mensaje)
-          onLogin(email, password); //se llama a la funcion de inicio de sesion
-          }else if(data.Estado && !data.existe){
-            alert(data.Mensaje)
+          }else if(data.Estado==200 && !data.Existe){
+            setMostrarDivError(true);
           }
         } else {
+          setMostrarDivError(true);
           console.error('Error en la solicitud:', response.status);
         }
       } catch (error) {
@@ -77,7 +84,7 @@ function Acceder({ onLogin }) {
       }
 
       // Restablecer los campos a vacio
-      setEmail('');
+      //setEmail('');
       setPassword('');
       setErrors({});
     }
@@ -114,7 +121,12 @@ function Acceder({ onLogin }) {
           />
           {errors.password && <div className="invalid-feedback">{errors.password}</div>}
         </div>
-
+        <div>
+        {mostrarErrorExcepcion && <div>Ocurrió un error, intente mas tarde.</div>}
+        </div>
+        <div>
+        {mostrarDivError && <div>Usuario o contraseña inválido.</div>}
+        </div>
         <Button type="button" onClick={handleSubmit} variant="primary">
           Ingresar
         </Button>
