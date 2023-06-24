@@ -27,7 +27,7 @@ function LoginFormulario({ onClose, onSubmit }) {
       };
 
       // Realiza la solicitud al servidor
-      fetch('http//:localhost:3000/...', {
+      fetch('http//:localhost:3000/usuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

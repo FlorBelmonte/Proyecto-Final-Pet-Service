@@ -42,12 +42,11 @@ function Acceder({ onLogin }) {
     return accederIsValid;
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
+    
     if (validateAcceder()) {
       try { // Envío de la solicitud de inicio de sesión
-        const response = await fetch('http//:localhost:3000/...', {
+        const response = await fetch('http://localhost:3000/usuario/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -59,15 +58,21 @@ function Acceder({ onLogin }) {
         });
 
         // if (response.ok) {
-        if (1 === 1) {
+          if (1==1) {
           const data = await response.json();
           console.log('Respuesta:', data);
-          onLogin(email, password); //se llama a la funcion de inicio de sesion 
+          
+          if(data.Estado && data.existe){
+          alert(data.Mensaje)
+          onLogin(email, password); //se llama a la funcion de inicio de sesion
+          }else if(data.Estado && !data.existe){
+            alert(data.Mensaje)
+          }
         } else {
           console.error('Error en la solicitud:', response.status);
         }
       } catch (error) {
-        alert("ocurrio un error")
+        alert("ocurrio un error"+error)
         console.error('Error:', error);
       }
 
@@ -80,7 +85,7 @@ function Acceder({ onLogin }) {
 
   return (
     <div className="acceder-container">
-      <form onSubmit={handleSubmit} className="acceso">
+      <form className="acceso">
 
         <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
           <label htmlFor="email">Email:</label>
@@ -110,7 +115,7 @@ function Acceder({ onLogin }) {
           {errors.password && <div className="invalid-feedback">{errors.password}</div>}
         </div>
 
-        <Button type="submit" variant="primary">
+        <Button type="button" onClick={handleSubmit} variant="primary">
           Ingresar
         </Button>
       </form>
