@@ -1,8 +1,8 @@
  import BlogContainer from './Blog/BlogContainer.js';
 import Home from "./Home/Home.js";
 
-import ServiciosContextProvider from './context/ServiciosContext.js';
-import Tarjetero from "./tarjetero/Tarjetero";
+// import ServiciosContextProvider from './context/ServiciosContext.js';
+// import Tarjetero from "./tarjetero/Tarjetero";
 
 function App() {
 
@@ -11,9 +11,9 @@ function App() {
       <Home/>
 
       <BlogContainer/>
-      <ServiciosContextProvider>
+      {/* <ServiciosContextProvider>
         <Tarjetero/>
-      </ServiciosContextProvider>
+      </ServiciosContextProvider> */}
 
     </div>
   );
