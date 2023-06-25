@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Search from './Search';
 import './Home.css';
 
-function Navbar() {
+function Navbar({onSearchClick}) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const handleSearchClick = () => {
+    onSearchClick(); // Llama a la función proporcionada por el componente padre Home
   };
 
   const navbarClass = isCollapsed ? 'navbar-collapse collapse' : 'navbar-collapse collapse show';
@@ -37,7 +41,7 @@ function Navbar() {
             <a className="nav-link" href="#">Actividades</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Paseos</a>
+          <a className="nav-link" href="#" onClick={handleSearchClick}>Búsquedas</a>          
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">Blog</a>

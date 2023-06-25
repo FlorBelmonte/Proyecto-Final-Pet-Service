@@ -7,6 +7,7 @@ import Footer from './Footer';
 import LoginFormulario from '../login/LoginFormulario';
 import Acceder from '../Ingreso/Acceder';
 import icono from '../assets/acceso.png';
+import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados.js';
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
@@ -18,7 +19,7 @@ function Home() {
   };
 
   const handleCloseLoginForm = () => {  // manejador de evento para cerrar el componente "LoginFormulario"
-    setActiveComponent(null); 
+    setActiveComponent(null);
   };
 
   const handleLoginFormSubmit = ({username}) => {   // Manejador de evento para enviar el LoginFormulario
@@ -27,20 +28,28 @@ function Home() {
     setActiveComponent(null); //establece el componente activo como null y se muestra la Portada 
   };
 
-  const handleLogout = () => { 
+  const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername('');
   };
 
   const handleAccessClick = () => {  // Manejador de evento para el botón "Iniciar Sesión"
-    setActiveComponent('Acceder'); 
+    setActiveComponent('Acceder');
+  };
+
+  const handleNavbarSearchClick = () => {   //manejador de evento para la sección "Búsqueda"
+    setActiveComponent('FormPerdidosEncontrados');
+  };
+
+  const handleFormSubmit = () => {
+    setActiveComponent(null);
   };
 
   return (
     <div>
       <header>
         <img src={logo} alt="Logo" width="170" height="170" style={{ marginRight: 'auto' }} />
-        <Navbar />
+        <Navbar onSearchClick={handleNavbarSearchClick} />
         <div className="login-link">
           {isLoggedIn ? (
             <>
@@ -71,6 +80,10 @@ function Home() {
 
       {activeComponent === 'Acceder' && (
         <Acceder onClose={() => setActiveComponent(null)} onLogin={handleLoginFormSubmit} />
+      )}
+
+      {activeComponent === 'FormPerdidosEncontrados' && (
+        <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
       )}
 
       {(!activeComponent || activeComponent === 'Portada') && <Portada />}

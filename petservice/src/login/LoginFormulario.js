@@ -1,77 +1,221 @@
 import React, { useState } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import "./LoginFormulario.css";
 
 function LoginFormulario({ onClose, onSubmit }) {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
-    nombreMascota: "",
-    especieMascota: "",
-    libretaSanitaria: "",
-    submitted: false
-  });
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  }
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nombreMascota, setNombreMascota] = useState('');
+  const [especieMascota, setEspecieMascota] = useState('');
+  const [libretaSanitaria, setLibretaSanitaria] = useState('');
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (validacionForm()) {
-      // iría el fetch para enviar la data al servidor
-      console.log(formData);
-      setFormData({
-        nombre: "",
-        apellido: "",
-        email: "",
-        nombreMascota: "",
-        especieMascota: "",
-        libretaSanitaria: "",
-        submitted: true
-      });
-      onClose();
-      onSubmit({ username: formData.nombre });
+  const handleSubmit = (e) => {
+    if (validateForm()) {
+      const data = {
+        nombre,
+        apellido,
+        email,
+        password,
+        nombreMascota,
+        especieMascota,
+        libretaSanitaria
+      };
+
+      // Realiza la solicitud al servidor
+      fetch('http//:localhost:3000/...', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => {
+          if (1 == 1) {
+            //if (response.ok) {
+
+            alert("Se envió correctamente el formulario")
+            //Limpia los campos después del envío
+            setNombre('');
+            setApellido('');
+            setEmail('');
+            setPassword ('');
+            setNombreMascota('');
+            setEspecieMascota('');
+            setLibretaSanitaria('');
+            onClose();
+            onSubmit({ username: nombre });
+          } else {
+            alert("Ocurrió un error al enviar el formulario")
+
+            throw new Error('Error al enviar el formulario');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
-  }
+  };
 
-  function validacionForm() {
-    // aca iria la validacion del los campos del formulario
-    return true;
-  }
+  const validateForm = () => {
+    let formIsValid = true;
+    const errors = {};
+
+    if (!nombre) {
+      errors.nombre = 'El nombre es requerido';
+      formIsValid = false;
+    }
+
+    if (!apellido) {
+      errors.apellido = 'El apellido es requerido';
+      formIsValid = false;
+    }
+
+    if (!email) {
+      errors.email = 'El email es requerido';
+      formIsValid = false;
+    } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      errors.email = 'El email es inválido';
+      formIsValid = false;
+    }
+
+    
+    if (password.trim() === '') {
+      errors.password = 'Debe ingresar una contraseña';
+      formIsValid = false;
+    } else if (password.length < 6) {
+      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      formIsValid = false;
+    }else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+      errors.password = 'La contraseña debe contener letras y números';
+      formIsValid = false;
+    }
+
+    if (!nombreMascota) {
+      errors.nombreMascota = 'El nombre de la mascota es requerido';
+      formIsValid = false;
+    }
+
+    if (!especieMascota) {
+      errors.especieMascota = 'La especie de la mascota es requerida';
+      formIsValid = false;
+    }
+
+    if (!libretaSanitaria) {
+      errors.libretaSanitaria = 'La libreta sanitaria es requerida';
+      formIsValid = false;
+    }
+
+    if (!aceptaTerminos) {
+      errors.aceptaTerminos = 'Debes aceptar los términos y condiciones';
+      formIsValid = false;
+    }
+
+    setErrors(errors);
+    return formIsValid;
+  };
 
   return (
     <div className="contenedor">
-      <form className="formulario" onSubmit={handleSubmit}>
-        <label htmlFor="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
+      <Form className="formulario">
 
-        <label htmlFor="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" value={formData.apellido} onChange={handleInputChange} />
+        <Form.Group controlId="nombre">
+          <Form.Label>Nombre:</Form.Label>
+          <Form.Control
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          {errors.nombre && <Form.Text className="text-danger">{errors.nombre}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+        <Form.Group controlId="apellido">
+          <Form.Label>Apellido:</Form.Label>
+          <Form.Control
+            type="text"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            required
+          />
+          {errors.apellido && <Form.Text className="text-danger">{errors.apellido}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="nombreMascota">Nombre de la mascota:</label>
-        <input type="text" id="nombreMascota" name="nombreMascota" value={formData.nombreMascota} onChange={handleInputChange} />
+        <Form.Group controlId="email">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {errors.email && <Form.Text className="text-danger">{errors.email}</Form.Text>}
+        </Form.Group>
 
-        <label htmlFor="especieMascota">Especie de la mascota:</label>
-        <input type="text" id="especieMascota" name="especieMascota" value={formData.especieMascota} onChange={handleInputChange} />
+        <Form.Group controlId="password">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+        </Form.Group>
+        
 
-        <label htmlFor="libretaSanitaria">Libreta sanitaria:</label>
-        <input type="text" id="libretaSanitaria" name="libretaSanitaria" value={formData.libretaSanitaria} onChange={handleInputChange} />
+        <Form.Group controlId="nombreMascota">
+          <Form.Label>Nombre de la mascota:</Form.Label>
+          <Form.Control
+            type="text"
+            value={nombreMascota}
+            onChange={(e) => setNombreMascota(e.target.value)}
+            required
+          />
+          {errors.nombreMascota && <Form.Text className="text-danger">{errors.nombreMascota}</Form.Text>}
+        </Form.Group>
 
-        <Button type="submit" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
-      </form>
+        <Form.Group controlId="especieMascota">
+          <Form.Label>Especie de la mascota:</Form.Label>
+          <Form.Control
+            type="text"
+            value={especieMascota}
+            onChange={(e) => setEspecieMascota(e.target.value)}
+            required
+          />
+          {errors.especieMascota && <Form.Text className="text-danger">{errors.especieMascota}</Form.Text>}
+        </Form.Group>
+
+        <Form.Group controlId="libretaSanitaria">
+          <Form.Label>Libreta sanitaria:</Form.Label>
+          <Form.Control
+            type="text"
+            value={libretaSanitaria}
+            onChange={(e) => setLibretaSanitaria(e.target.value)}
+            required
+          />
+          {errors.libretaSanitaria && <Form.Text className="text-danger">{errors.libretaSanitaria}</Form.Text>}
+        </Form.Group>
+
+        <Form.Group controlId="aceptaTerminos">
+          <Form.Check
+            type="checkbox"
+            label="Acepto términos y condiciones"
+            checked={aceptaTerminos}
+            onChange={(e) => setAceptaTerminos(e.target.checked)}
+            isInvalid={!!errors.aceptaTerminos}
+          />
+          {errors.aceptaTerminos && <Form.Text className="text-danger">{errors.aceptaTerminos}</Form.Text>}
+        </Form.Group>
+
+        <Button onClick={handleSubmit} type="button" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
+      </Form>
     </div>
   );
 }
 
 export default LoginFormulario;
-
-
