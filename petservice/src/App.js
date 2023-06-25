@@ -4,7 +4,7 @@
 
 import Home from "./Home/Home.js";
 
-// import ServiciosContextProvider from './context/ServiciosContext.js';
+ import ServiciosContextProvider from './context/ServiciosContext.js';
 // import Tarjetero from "./tarjetero/Tarjetero";
 
 function App() {
@@ -12,7 +12,13 @@ function App() {
   return (
     <div >
 
-      <Home/>
+
+      {/* <Tarjetero/> */}
+      <ServiciosContextProvider>
+        <Home/>
+      </ServiciosContextProvider>
+      
+
 
       <BlogContainer/>
       {/* <ServiciosContextProvider>
