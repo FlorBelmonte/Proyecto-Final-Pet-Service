@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Search from './Search';
 import './Home.css';
 
-function Navbar({onSearchClick}) {
+function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, onBlogClick}) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
@@ -11,6 +11,34 @@ function Navbar({onSearchClick}) {
 
   const handleSearchClick = () => {
     onSearchClick(); // Llama a la función proporcionada por el componente padre Home
+  };
+
+  const handleNavbarHotelesClick=()=>{
+    onHotelesClick();
+  };
+
+  const handleNavbarAerolineasClick=()=>{
+    onAerolineasClick();
+  };
+
+  const handleNavbarPaseadoresClick=()=>{
+    onPaseadoresClick();
+  };
+
+  const handleNavbarRestaurantesClick=()=>{
+    onRestaurantesClick();
+  };
+
+  const handleNavbarVeterinariasClick=()=>{
+    onVeterinariasClick();
+  };
+
+  const handleNavbarActividadesClick=()=>{
+    onActividadesClick();
+  };
+
+  const handleNavbarBlogClick=()=>{
+    onBlogClick();
   };
 
   const navbarClass = isCollapsed ? 'navbar-collapse collapse' : 'navbar-collapse collapse show';
@@ -23,28 +51,28 @@ function Navbar({onSearchClick}) {
       <div className={navbarClass} id="navbarNav">
         <ul className="navbar-nav mr-auto text-center">
           <li className="nav-item">
-            <a className="nav-link" href="#">Hoteles</a>
+            <a className="nav-link" href="#" onClick={handleNavbarHotelesClick}>Hoteles</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Aerolíneas</a>
+            <a className="nav-link" href="#" onClick={handleNavbarAerolineasClick}>Aerolíneas</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Paseadores</a>
+            <a className="nav-link" href="#"  onClick={handleNavbarPaseadoresClick}>Paseadores</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Restaurantes</a>
+            <a className="nav-link" href="#"  onClick={handleNavbarRestaurantesClick}>Restaurantes</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Veterinarias</a>
+            <a className="nav-link" href="#"  onClick={handleNavbarVeterinariasClick}>Veterinarias</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Actividades</a>
+            <a className="nav-link" href="#"  onClick={handleNavbarActividadesClick}>Actividades</a>
           </li>
           <li className="nav-item">
           <a className="nav-link" href="#" onClick={handleSearchClick}>Búsquedas</a>          
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Blog</a>
+            <a className="nav-link" href="#" onClick={handleNavbarBlogClick}>Blog</a>
           </li>
           <li className="nav-item">
             <div className="search-container">
