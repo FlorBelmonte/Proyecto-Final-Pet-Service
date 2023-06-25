@@ -1,40 +1,51 @@
-import React from 'react'
-import { useState } from 'react'
-import { Button } from 'react-bootstrap';
-import "./tarjetaBlog.css"
-
-
+import React from 'react';
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import "./tarjetaBlog.css";
 
 const TarjetBlog = ({ image, text, id }) => {
+  const [modal, setModal] = useState(false);
 
-const [modal, setModal]=useState('tarjetaBlog');
+  const handleAbrirModal = () => {
+    setModal(true);
+  };
 
-function handleClickAbrirModal(e) {
- /* setModal('tarjetaBlogModal')  */
- const divContenedora= e.target.parentNode;
- divContenedora.className=setModal('tarjetaBlogModal');
-}
-
-function handleClickCerrarModal(e) {
-  /* setModal('tarjetaBlogModal')  */
-  const divContenedora= e.target.parentNode;
-  divContenedora.className=setModal('tarjetaBlog');
- }
-
+  const handleCerrarModal = () => {
+    setModal(false);
+  };
 
   return (
-    <div id={`tarjetaBlog${id}`} className={modal}>
-      <img className='imgTarjetaBlog'src={image} alt={image} />
-      <div className='conenedorParrafo'>
-        <p className='descripcionTarjetaBlog'>{text}</p>
+    <div className="tarjetaBlog">
+      <img className="imgTarjetaBlog" src={image} alt={image} />
+      <div className="conenedorParrafo">
+        <p className="descripcionTarjetaBlog">{text}</p>
       </div>
-      <Button className='btnAbrir' id={id} onClick={handleClickAbrirModal}>Abrir</Button>
-      <button className='btnCerrar' id={id} onClick={handleClickCerrarModal}>X</button>
+      <Button className="btnAbrir" onClick={handleAbrirModal}>
+        Abrir
+      </Button>
+      <Modal show={modal} onHide={handleCerrarModal} centered>
+        <Modal.Header closeButton={false}>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="tarjetaBlogModal">
+            <img className="imgTarjetaBlog" src={image} alt={image} />
+            <div className="conenedorParrafo">
+              <p className="descripcionTarjetaBlog">{text}</p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleCerrarModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default TarjetBlog;
+
 
 
 

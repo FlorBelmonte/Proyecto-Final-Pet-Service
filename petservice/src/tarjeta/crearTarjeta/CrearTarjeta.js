@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ServiciosContext } from '../../context/ServiciosContext';
 import { Button } from 'react-bootstrap';
 import "./crearTarjeta.css"
@@ -40,29 +39,46 @@ contextServicios.setServicios([
      localidad.value=''
      
     }
+    return (
+        <div className='marcoCrearTarjeta container'>
+          <form className='formCrearTarjeta' onSubmit={handleAddPost}>
+            <div className='form-group'>
+              <label>Nombre:</label>
+              <input type='text' name='nombre' className='form-control' />
+            </div>
+            <div className='form-group'>
+              <label>Elija un servicio:</label>
+              <select id='servicio' name='servicio' defaultValue='Restaurante' className='form-control'>
+                <option>Hotel</option>
+                <option>Restaurante</option>
+                <option>Paseador</option>
+                <option>Aerolinea</option>
+                <option>Veterinaria</option>
+                <option>Actividad</option>
+              </select>
+            </div>
+            <div className='form-group'>
+              <label>Seleccione una imagen:</label>
+              <input type='file' name='imagen' className='form-control-file' />
+            </div>
+            <div className='form-group'>
+              <label>Defina el precio:</label>
+              <input type='number' name='precio' className='form-control' />
+            </div>
+            <div className='form-group'>
+              <label>Ingrese la localidad:</label>
+              <input type='text' name='localidad' className='form-control' />
+            </div>
+            <div className='form-group'>
+              <label>Información:</label>
+              <textarea type='text' name='informacion' className='form-control' placeholder='Escribe aquí la información sobre tu servicio!!!' />
+            </div>
+            <Button className='btn btn-primary btn-enviar' type='submit'>Enviar</Button>
+          </form>
+        </div>
+      );
+    };
+    
+    export default CrearTarjeta;
 
 
-  return (
-    <div className='marcoCrearTarjeta'> 
-        <form className='formCrearTarjeta' onSubmit={handleAddPost}>
-            <div><p>Nombre:</p><input type='text' name='nombre' ></input></div>
-            <div><p>Elija un servicio:</p>
-                <select id="servicio" name="servicio" defaultValue={"Restaurante"}>
-                    <option>Hotel</option>
-                    <option>Restaurante</option>
-                    <option>Paseador</option>
-                    <option>Aerolinea</option>
-                    <option>Veterinaria</option>
-                    <option>Actividad</option>
-                </select></div>
-            <div><p>seleccione una imagen:</p><input type='file' name='imagen'/></div>
-            <div><p>defina el precio:</p><input type='number'name='precio' ></input></div>
-            <div><p>Ingrese la localidad:</p><input type='text' name='localidad'></input></div>
-            <textarea type='text' name='informacion' placeholder='Escribe aqui la informacion sobre tu servicio!!!' />
-            <Button className='btnAbrir btn-enviar' type='submit'>Enviar</Button>
-        </form>  
-    </div>
-  )
-}
-
-export default CrearTarjeta

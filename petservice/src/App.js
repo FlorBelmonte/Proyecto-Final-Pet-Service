@@ -1,5 +1,7 @@
-// import Tarjetero from "./tarjetero/Tarjetero";
-//  import BlogContainer from './Blog/BlogContainer.js';
+
+ import BlogContainer from './Blog/BlogContainer.js';
+
+
 import Home from "./Home/Home.js";
 
 // import ServiciosContextProvider from './context/ServiciosContext.js';
@@ -10,18 +12,13 @@ function App() {
   return (
     <div >
 
-      {/* <Tarjetero/> */}
-
       <Home/>
 
-      {/* <BlogContainer/>
-      <ServiciosContextProvider>
+      <BlogContainer/>
+      {/* <ServiciosContextProvider>
         <Tarjetero/>
       </ServiciosContextProvider> */}
-      
 
-     {/* <BlogContainer/> */}
-      {/* <Tarjetero/> */}
     </div>
   );
 }
