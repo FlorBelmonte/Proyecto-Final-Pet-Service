@@ -1,22 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
 import "./modalTarjeta.css"
+import { Button } from 'react-bootstrap';
 
-
-
-
-
-
- 
 const ModalTarjeta = ({ onClose, arrValores, actualizarPuntaje, puntaje, voto, actualizarSumaValoraciones, votar }) => {
-
 
 
 const [modalValues, setModalValues] = useState(arrValores);
 
 const [valor, setValor]=useState(5);
   
-
 
  // handleInputChange captura el valor que se le esta dando en el input de de valoracion //
 
@@ -55,18 +48,17 @@ const [valor, setValor]=useState(5);
     onClose();
   };
 
-  
-
   return (
     <div className="modal">
-      <div className='contenidoModal'>
-      <button className='cancelar' onClick={onClose}>X</button>
-      <h2>{arrValores[1]}</h2>
-      <div className='contImgYValoracion'>
-        <img className="imgTarjeta" src={arrValores[3]} alt="imagen"></img>
-        <div className='conValoracion'>
-            <div className='contenedorPValorar'>
-              <p>Valorar min1 max5</p>
+      <div className="contenidoModal">
+      <div className="position-relative"><Button className="btn btn-danger float-end" onClick={onClose}>X</Button>
+      </div>
+        <h2>{arrValores[1]}</h2>
+        <div className="contImgYValoracion">
+          <img className="imgTarjeta" src={arrValores[3]} alt="imagen" />
+          <div className="conValoracion">
+            <div className="contenedorPValorar">
+              <p className="text-secondary">Valorar min1 max5</p>
             </div>
             <input
               key={arrValores[1] + arrValores[7]}
@@ -77,16 +69,14 @@ const [valor, setValor]=useState(5);
               name="valoracion"
               onChange={handleInputChange}
             />
-            <button onClick={guardarCambios}>Guardar cambios</button>
-            
+            <Button className="btn btn-primary custom-btn" onClick={guardarCambios}>Guardar</Button>
+          </div>
         </div>
-        
-      </div> 
-      <div className="info">{arrValores[6]}</div>
+        <div className="info">{arrValores[6]}</div>
       </div>
     </div>
   );
 };
 
 export default ModalTarjeta;
- 
+

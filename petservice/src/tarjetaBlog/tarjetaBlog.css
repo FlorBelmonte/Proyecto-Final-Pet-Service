@@ -1,99 +1,73 @@
-
-
-.tarjetaBlog{
+.tarjetaBlog {
     width: 310px;
     height: 256px;
-    border:3px solid  rgb(54, 91, 109) ;
+    border: 3px solid rgb(54, 91, 109);
     border-radius: 5px;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+    background-image: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
     margin: 5px;
-    color:rgb(54, 91, 109)  ;
+    color: rgb(54, 91, 109);
     display: flex;
     flex-wrap: wrap;
+  }
+  
+  .tarjetaBlog .btnCerrar {
+    visibility: hidden;
+  }
+  
+  .tarjetaBlogModal {
+    position: relative;
+    background-image: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+  }
+  
+  .tarjetaBlogModal div {
+    background-color: white;
+    width: 90%;
+    margin: 5% auto;
+  }
+  
+  .tarjetaBlogModal .btnAbrir {
+    visibility: hidden;
+  }
+  
+  .btnCerrar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: red;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      color: white;
+      font-weight: bold;
+    }
     
-        
-}
-.tarjetaBlog .btnCerrar{
-    visibility: hidden;
-        
-}
-
-/**********************modal**************************/
-.tarjetaBlogModal{
-   position: fixed;
-   background-color: rgba(0, 0, 0, 0.7); 
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100vh;
-   z-index: 999;
-   display: flex;
-   flex-wrap: wrap;
-
-}
-
-.tarjetaBlogModal div{
-background-color: white;
-width: 90%;
-}
-
-.tarjetaBlogModal .btnAbrir{
-    visibility: hidden;
-}
-
-.tarjetaBlogModal .btnCerrar{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    background-color: red;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    color: white;
-    font-weight: bold;
-}
-/***********************fin modal***********************/
-
-
-.conenedorParrafo{
+  
+  .conenedorParrafo {
     width: 80%;
     height: auto;
     overflow: hidden;
     margin: 5%;
-    
-}
-
-.conenedorParrafo p {
-    white-space: nowrap; /* Fuerza todo el texto en una sola línea */
-    overflow: hidden; /* Oculta el texto que sobrepase */
-    text-overflow: ellipsis; /* Muestra los tres puntos */
   }
-
-
-.imgTarjetaBlog{
+  
+  .conenedorParrafo p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .imgTarjetaBlog {
     width: 80%;
     height: 60%;
     margin: auto;
     border-radius: 5px;
     border: 3px solid rgb(54, 91, 109);
-
-}
-
-
-
-.btnEnviarTarjetaBlog{
-    width: 30%;
-    height: 10%;
-    border-radius: 5px;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
-    color: rgb(54, 91, 109) ;
-    margin-left: 60%;
-
-}
-
-.descripcionTarjetaBlog{
+  }
+  
+  
+  .descripcionTarjetaBlog {
     margin-left: 10%;
-    
-}
+  }
+  
