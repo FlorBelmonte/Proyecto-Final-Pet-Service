@@ -49,7 +49,7 @@ const [valor, setValor]=useState(5);
   };
 
   return (
-    <div className="modal">
+    <div className="modalTarjeta">
       <div className="contenidoModal">
       <div className="position-relative"><Button className="btn btn-danger float-end" onClick={onClose}>X</Button>
       </div>
