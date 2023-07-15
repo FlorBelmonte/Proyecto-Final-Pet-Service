@@ -15,12 +15,12 @@ const TarjetBlog = ({ image, text, id }) => {
   };
 
   return (
-    <div className="tarjetaBlog">
-      <img className="imgTarjetaBlog" src={image} alt={image} />
-      <div className="conenedorParrafo">
-        <p className="descripcionTarjetaBlog">{text}</p>
+    <div className="tarjetaBlog card shadow">
+      <img className="imgTarjetaBlog card-img-top" src={image} alt={image} />
+      <div className="conenedorParrafo card-body">
+        <p className="descripcionTarjetaBlog card-text">{text}</p>
       </div>
-      <Button className="btnAbrir" onClick={handleAbrirModal}>
+      <Button className="btn btn-primary btn-sm btnAbrir" onClick={handleAbrirModal}> {/* Agregamos la clase 'btn-sm' */}
         Abrir
       </Button>
       <Modal show={modal} onHide={handleCerrarModal} centered>
@@ -28,9 +28,9 @@ const TarjetBlog = ({ image, text, id }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="tarjetaBlogModal">
-            <img className="imgTarjetaBlog" src={image} alt={image} />
-            <div className="conenedorParrafo">
-              <p className="descripcionTarjetaBlog">{text}</p>
+            <img className="imgTarjetaBlog card-img-top" src={image} alt={image} />
+            <div className="conenedorParrafo card-body">
+              <p className="descripcionTarjetaBlog card-text">{text}</p>
             </div>
           </div>
         </Modal.Body>

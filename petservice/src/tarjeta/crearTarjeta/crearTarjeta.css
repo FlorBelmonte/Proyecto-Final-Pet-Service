@@ -1,58 +1,55 @@
 .marcoCrearTarjeta {
-    background-image:linear-gradient(90deg, var(--color-primario) ,var(--color-secundario));
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
+  background-color: rgb(189, 179, 173);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.formCrearTarjeta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Aseguramos que el tamaño incluya el borde */
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-enviar {
+  width: 30%;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-enviar:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+@media (min-width: 768px) {
   .formCrearTarjeta {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  .btn-enviar {
-    width: 20%;
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-  }
-  
-  .btn-enviar:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
-  
-  @media (min-width: 768px) {
-    .formCrearTarjeta {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-
-
-
-
+}

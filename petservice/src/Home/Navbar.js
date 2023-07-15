@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Search from './Search';
 import './Home.css';
 
-function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, onBlogClick}) {
+function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, onBlogClick, onMasClick}) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
@@ -40,7 +40,9 @@ function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresC
   const handleNavbarBlogClick=()=>{
     onBlogClick();
   };
-
+const handleNavbarMasClick=()=>{
+  onMasClick();
+}
   const navbarClass = isCollapsed ? 'navbar-collapse collapse' : 'navbar-collapse collapse show';
 
   return (
@@ -73,6 +75,9 @@ function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresC
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={handleNavbarBlogClick}>Blog</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={handleNavbarMasClick}>Más</a>
           </li>
           <li className="nav-item">
             <div className="search-container">

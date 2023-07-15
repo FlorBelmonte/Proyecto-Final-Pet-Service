@@ -3,9 +3,6 @@ import { Button, Form } from 'react-bootstrap';
 import "./LoginFormulario.css";
 
 function LoginFormulario({ onClose, onSubmit }) {
-
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nombreMascota, setNombreMascota] = useState('');
@@ -19,8 +16,6 @@ function LoginFormulario({ onClose, onSubmit }) {
     setMostrarErrorExcepcion(false);
     if (validateForm()) {
       const data = {
-        nombre,
-        apellido,
         email,
         password,
         nombreMascota,
@@ -41,10 +36,8 @@ function LoginFormulario({ onClose, onSubmit }) {
         if (response.ok) {
           alert("Se envió correctamente el formulario")
           //Limpia los campos después del envío
-          setNombre('');
-          setApellido('');
           setEmail('');
-          setPassword ('');
+          setPassword('');
           setNombreMascota('');
           setEspecieMascota('');
           setLibretaSanitaria('');
@@ -66,16 +59,6 @@ function LoginFormulario({ onClose, onSubmit }) {
     let formIsValid = true;
     const errors = {};
 
-    if (!nombre) {
-      errors.nombre = 'El nombre es requerido';
-      formIsValid = false;
-    }
-
-    if (!apellido) {
-      errors.apellido = 'El apellido es requerido';
-      formIsValid = false;
-    }
-
     if (!email) {
       errors.email = 'El email es requerido';
       formIsValid = false;
@@ -84,7 +67,6 @@ function LoginFormulario({ onClose, onSubmit }) {
       formIsValid = false;
     }
 
-    
     if (password.trim() === '') {
       errors.password = 'Debe ingresar una contraseña';
       formIsValid = false;
@@ -123,29 +105,6 @@ function LoginFormulario({ onClose, onSubmit }) {
   return (
     <div className="contenedor">
       <Form className="formulario">
-
-        <Form.Group controlId="nombre">
-          <Form.Label>Nombre:</Form.Label>
-          <Form.Control
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-          {errors.nombre && <Form.Text className="text-danger">{errors.nombre}</Form.Text>}
-        </Form.Group>
-
-        <Form.Group controlId="apellido">
-          <Form.Label>Apellido:</Form.Label>
-          <Form.Control
-            type="text"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
-          {errors.apellido && <Form.Text className="text-danger">{errors.apellido}</Form.Text>}
-        </Form.Group>
-
         <Form.Group controlId="email">
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -167,7 +126,6 @@ function LoginFormulario({ onClose, onSubmit }) {
           />
           {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
         </Form.Group>
-        
 
         <Form.Group controlId="nombreMascota">
           <Form.Label>Nombre de la mascota:</Form.Label>
@@ -214,7 +172,7 @@ function LoginFormulario({ onClose, onSubmit }) {
         </Form.Group>
         
         <div>
-        {mostrarErrorExcepcion && <div>Ocurrió un error, intente mas tarde.</div>}
+          {mostrarErrorExcepcion && <div>Ocurrió un error, intente más tarde.</div>}
         </div>
 
         <Button onClick={handleSubmit} type="button" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
