@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
+import NavBar2 from './Navbar2';
 import './Home.css';
 import logo from '../assets/logo.png';
 import Portada from './Portada';
@@ -50,40 +51,53 @@ function Home() {
 
   const handleNavbarHotelesClick= ()=>{  //manejador de evento para la seccion "Hoteles"
     setActiveComponent('Hoteles');
-  }
+  };
 
   const handleNavBarRestaurantesClick=()=>{ //manejador de evento para la seccion "Restaurantes"
     setActiveComponent('Restaurantes');
-  }
+  };
 
   const handleNavBarPaseadoresClick=()=>{ //manejador de evento para la seccion "Paseadores"
     setActiveComponent('Paseadores');
-  }
+  };
 
   const handleNavBarVeterinariasClick=()=>{ //manejador de evento para la seccion "Veterinarias"
     setActiveComponent('Veterinarias');
-  }
+  };
 
   const handleNavBarActividadesClick=()=>{ //manejador de evento para la seccion "Actividades"
     setActiveComponent('Actividades');
-  }
+  };
 
   const handleNavBarAerolineasClick=()=>{ //manejador de evento para la seccion "Aerolineas"
     setActiveComponent('Aerolineas');
-  }
+  };
 
   const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
     setActiveComponent('BlogActivo');
-  }
+  };
+
+  const handleNavbarMasClick = () => {
+    setActiveComponent('Mas');
+  };
 
   return (
     <div>
-      <header>
-        <img src={logo} alt="Logo" width="170" height="170" style={{ marginRight: 'auto' }} />
-        <Navbar onSearchClick={handleNavbarSearchClick} onHotelesClick={handleNavbarHotelesClick}
-                onAerolineasClick={handleNavBarAerolineasClick} onPaseadoresClick={handleNavBarPaseadoresClick}
-                onRestaurantesClick={handleNavBarRestaurantesClick} onVeterinariasClick={handleNavBarVeterinariasClick} 
-                onActividadesClick={handleNavBarActividadesClick} onBlogClick={handleNavBarBlogClick}/>
+      <header className="header-box">
+        <a href="/">
+          <img src={logo} alt="Logo" width="90" height="90" style={{ marginRight: 'auto' }} />
+        </a>
+        <Navbar
+          onSearchClick={handleNavbarSearchClick}
+          onHotelesClick={handleNavbarHotelesClick}
+          onAerolineasClick={handleNavBarAerolineasClick}
+          onPaseadoresClick={handleNavBarPaseadoresClick}
+          onRestaurantesClick={handleNavBarRestaurantesClick}
+          onVeterinariasClick={handleNavBarVeterinariasClick}
+          onActividadesClick={handleNavBarActividadesClick}
+          onBlogClick={handleNavBarBlogClick}
+          onMasClick={handleNavbarMasClick}
+        />
         <div className="login-link">
           {isLoggedIn ? (
             <>
@@ -96,15 +110,15 @@ function Home() {
               </button>
             </>
           ) : (
-            <>
-              <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
-                Crear cuenta
+              <>
+                <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
+                  Crear cuenta
               </button>
-              <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
-                Iniciar Sesión
+                <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
+                  Iniciar Sesión
               </button>
-            </>
-          )}
+              </>
+            )}
         </div>
       </header>
 
@@ -120,36 +134,42 @@ function Home() {
         <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
       )}
 
-       {activeComponent === 'Hoteles' && (
-        <Tarjetero servicioElejido={'Hotel'}/>
+      {activeComponent === 'Hoteles' && (
+        <Tarjetero servicioElejido={'Hotel'} />
       )}
 
-        {activeComponent === 'Aerolineas' && (
-        <Tarjetero servicioElejido={'Aerolinea'}/>
+      {activeComponent === 'Aerolineas' && (
+        <Tarjetero servicioElejido={'Aerolinea'} />
       )}
 
       {activeComponent === 'Restaurantes' && (
-        <Tarjetero servicioElejido={'Restaurante'}/>
+        <Tarjetero servicioElejido={'Restaurante'} />
       )}
 
       {activeComponent === 'Paseadores' && (
-        <Tarjetero servicioElejido={'Paseador'}/>
+        <Tarjetero servicioElejido={'Paseador'} />
       )}
 
       {activeComponent === 'Veterinarias' && (
-        <Tarjetero servicioElejido={'Veterinaria'}/>
+        <Tarjetero servicioElejido={'Veterinaria'} />
       )}
 
       {activeComponent === 'Actividades' && (
-        <Tarjetero servicioElejido={'Actividad'}/>
+        <Tarjetero servicioElejido={'Actividad'} />
       )}
 
       {activeComponent === 'BlogActivo' && (
-        <BlogContainer/>
+        <BlogContainer />
       )}
 
+      {(!activeComponent || (activeComponent === 'Mas' && activeComponent === 'NavBar2')) && <Portada />}
 
-      {(!activeComponent || activeComponent === 'Portada') && <Portada />}
+      {activeComponent === 'Mas' && (
+        <>
+          <NavBar2 />
+          <Portada />
+        </>
+      )}
 
       <Footer />
     </div>
@@ -157,3 +177,5 @@ function Home() {
 }
 
 export default Home;
+
+

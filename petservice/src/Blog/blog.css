@@ -8,9 +8,8 @@
 .formularioBlog{
     width: 310px;
     height: 256px;
-    border:3px solid  rgb(54, 91, 109) ;
     border-radius: 5px;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
+    background-color: rgb(226, 226, 226);
     margin: 5px;
     color:rgb(54, 91, 109)  ;
     display: flex;
@@ -42,7 +41,7 @@
 }
 
 .contenedorBlog{
-    background-color:var(--color-secundario) ;
+    background-color: rgb(247, 238, 235);
     width: 99vw;
     height:auto;
 }

@@ -7,7 +7,7 @@
 .acceder-container {
     background-image: url('../assets/img14.jpg'); 
     background-size: cover;
-    min-height: 90vh; 
+    min-height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;

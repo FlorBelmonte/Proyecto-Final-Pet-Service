@@ -1,8 +1,10 @@
 body{
     font-family: Arial, Helvetica, sans-serif;   
+    background-color: rgb(225, 225, 225);
 }
 
   .container {
     margin-top: 50px;
+    margin-bottom: 20px;
   }
   

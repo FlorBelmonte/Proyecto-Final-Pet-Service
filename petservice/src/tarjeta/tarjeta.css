@@ -8,16 +8,14 @@
 .tarjeta{
     width: 400px;
     height: 300px;
-    border:3px solid  rgb(54, 91, 109) ;
+    margin-top: 10px;
+    margin-bottom: 10px;;
+    border:1px solid  rgb(185, 185, 185) ;
     border-radius: 5px;
-    background-image:linear-gradient(90deg ,var(--color-primario),var(--color-secundario) );
-    
     color:rgb(54, 91, 109)  ;
     
-    
 }
-
-   
+  
 
 .tarjeta-content{
     width: 380px;
@@ -31,7 +29,6 @@
 .imgTarjeta{
     width: 500%;
     height: 65%;
-    border:3px solid  rgb(54, 91, 109) ;
     border-radius: 5px;
     margin-top: 3px;
     margin-left: 3px;
