@@ -53,7 +53,10 @@ header {
   margin-top: 70px; 
 }
 
-
+/* search */
+.custom-dropdown {
+  width: 250px; 
+}
 
 /*estilo del boton hamburguesa*/
 .navbar-toggler {
