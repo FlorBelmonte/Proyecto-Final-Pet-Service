@@ -10,7 +10,7 @@ import Acceder from '../Ingreso/Acceder';
 import icono from '../assets/acceso.png';
 import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados.js';
 import Tarjetero from '../tarjetero/Tarjetero';
-import BlogContainer from '../Blog/BlogContainer';
+// import BlogContainer from '../Blog/BlogContainer';
 
 
 function Home() {
@@ -73,9 +73,9 @@ function Home() {
     setActiveComponent('Aerolineas');
   };
 
-  const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
-    setActiveComponent('BlogActivo');
-  };
+  // const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
+  //   setActiveComponent('BlogActivo');
+  // };
 
   const handleNavbarMasClick = () => {
     setActiveComponent('Mas');
@@ -95,7 +95,7 @@ function Home() {
           onRestaurantesClick={handleNavBarRestaurantesClick}
           onVeterinariasClick={handleNavBarVeterinariasClick}
           onActividadesClick={handleNavBarActividadesClick}
-          onBlogClick={handleNavBarBlogClick}
+          // onBlogClick={handleNavBarBlogClick}
           onMasClick={handleNavbarMasClick}
         />
         <div className="login-link">
@@ -158,9 +158,9 @@ function Home() {
         <Tarjetero servicioElejido={'Actividad'} />
       )}
 
-      {activeComponent === 'BlogActivo' && (
+      {/* {activeComponent === 'BlogActivo' && (
         <BlogContainer />
-      )}
+      )} */}
 
       {(!activeComponent || (activeComponent === 'Mas' && activeComponent === 'NavBar2')) && <Portada />}
 
