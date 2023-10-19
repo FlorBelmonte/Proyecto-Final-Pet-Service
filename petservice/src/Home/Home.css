@@ -12,7 +12,7 @@ header {
 }
 
 .navbar-nav .nav-item {
-  margin-right: 6px;
+  margin-right: 10px;
 }
 
 .login-link {
@@ -53,7 +53,10 @@ header {
   margin-top: 70px; 
 }
 
-
+/* search */
+.custom-dropdown {
+  width: 250px; 
+}
 
 /*estilo del boton hamburguesa*/
 .navbar-toggler {

@@ -1,24 +1,74 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Dropdown, ButtonGroup, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function Search() {
-    const [searchTerm, setSearchTerm] = useState('');
-  
-    function handleSubmit(event) {
-      event.preventDefault();
-      // Aca va la logica de búsqueda para hacer una búsqueda y mostrar los resultados
-    }
-  
-    return (
-      <Form onSubmit={handleSubmit} className="position-relative top-30 start-30 translate-middle d-flex justify-content-center align-items-center">
-        <Form.Control type="text" placeholder="Buscar..." value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} className="me-2 wider-input" />
-        <Button variant="btn btn-outline-primary me-2" type="submit"> <FontAwesomeIcon icon={faSearch}/></Button>
-      </Form>
-    );
-  }
-  
-  export default Search;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedService, setSelectedService] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const servicios = ['Hotel', 'Restaurante', 'Paseador', 'Aerolínea', 'Veterinaria', 'Actividad'];
+
+  const provinciasArgentinas = [
+    'CABA', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos',
+    'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta',
+    'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán',
+  ];
+
+  const handleProvinceClick = (provincia) => {
+    setSearchTerm(provincia);
+    setShowDropdown(false);
+  };
+
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
+  };
+
+  return (
+    <Dropdown show={showDropdown} onToggle={(isOpen) => setShowDropdown(isOpen)} className="custom-dropdown">
+      <Dropdown.Toggle variant="outline-primary">
+        {searchTerm ? (
+          <>
+            <FontAwesomeIcon icon={faMagnifyingGlass} /> {searchTerm}
+          </>
+        ) : (
+          <>
+            <FontAwesomeIcon icon={faMagnifyingGlass} /> Seleccionar ubicación
+          </>
+        )}
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <ButtonGroup className="d-flex">
+          <Dropdown as={ButtonGroup}>
+            <Button variant="outline-primary">Servicio</Button>
+            <Dropdown.Toggle split variant="outline-primary" />
+            <Dropdown.Menu>
+              {servicios.map((servicio) => (
+                <Dropdown.Item key={servicio} onClick={() => handleServiceClick(servicio)}>
+                  {servicio}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown as={ButtonGroup}>
+            <Button variant="outline-primary">Seleccionar provincia</Button>
+            <Dropdown.Toggle split variant="outline-primary" />
+            <Dropdown.Menu>
+              {provinciasArgentinas.map((provincia) => (
+                <Dropdown.Item key={provincia} onClick={() => handleProvinceClick(provincia)}>
+                  {provincia}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </ButtonGroup>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+
+export default Search;
+
   
 

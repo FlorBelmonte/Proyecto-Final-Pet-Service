@@ -45,8 +45,6 @@ function Footer() {
             <>
               <p className='pregunta'>- ¿El sitio ofrece recomendaciones de veterinarios o servicios de emergencia para mascotas?</p>
               <p>Sí,el sitio ofrece recomendaciones de veterinarios y servicios de emergencia para mascotas. Contamos con una sección especial donde puedes encontrar información sobre veterinarios de confianza y servicios de emergencia cercanos a tu ubicación.</p>
-              <p className='pregunta'>-¿Puedo compartir mis experiencias y opiniones sobre los lugares que visité con mi mascota?</p>
-              <p>Sí, puedes compartir tus experiencias y opiniones sobre los lugares que visitaste con tu mascota en nuestro Blog.</p>
               <p className='pregunta'>-¿El sitio proporciona información sobre parques o áreas de recreación para mascotas?</p>
               <p>Sí, el sitio proporciona información detallada sobre parques y áreas de recreación para mascotas. Encontrarás una sección dedicada a destacar parques, espacios al aire libre y áreas recreativas</p>
             </>
