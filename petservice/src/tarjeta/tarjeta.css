@@ -50,6 +50,7 @@ h4{
 .info{
   width: 80%;
   height: 30%;
+  padding-top: 6%;
   margin-top: 3px;
   margin-left: 5px;  
   overflow: hidden; /* Oculta el texto que sobrepase */
