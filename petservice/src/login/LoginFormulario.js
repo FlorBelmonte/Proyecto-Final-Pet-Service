@@ -16,15 +16,17 @@ function LoginFormulario({ onClose, onSubmit }) {
     setMostrarErrorExcepcion(false);
     if (validateForm()) {
       const data = {
-        nombre,
-        apellido,
-        email,
-        password,
-        tipoUsuario,
+        nombre:nombre,
+        apellido:apellido,
+        correo:email,
+        password:password,
+        tipo:tipoUsuario,
       };
+
+      
       
       // Realiza la solicitud al servidor
-      fetch('http://localhost:3000/usuario/', {
+      fetch('http://localhost:3000/usuario/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,9 +42,8 @@ function LoginFormulario({ onClose, onSubmit }) {
           setApellido('');
           setEmail('');
           setPassword('');
-          // setLibretaSanitaria('');
           onClose();
-          onSubmit({ username: email });
+          // onSubmit({ username: email });
         } else {
           setMostrarErrorExcepcion(true);
           throw new Error('Error al enviar el formulario');
@@ -87,12 +88,6 @@ function LoginFormulario({ onClose, onSubmit }) {
       errors.password = 'La contraseña debe contener letras y números';
       formIsValid = false;
     }
-
-    
-    // if (!libretaSanitaria) {
-    //   errors.libretaSanitaria = 'La libreta sanitaria es requerida';
-    //   formIsValid = false;
-    // }
 
     if (!aceptaTerminos) {
       errors.aceptaTerminos = 'Debes aceptar los términos y condiciones';
@@ -152,18 +147,6 @@ function LoginFormulario({ onClose, onSubmit }) {
           {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
         </Form.Group>
 
-        
-
-        {/* <Form.Group controlId="libretaSanitaria">
-          <Form.Label>Libreta sanitaria:</Form.Label>
-          <Form.Control
-            type="text"
-            value={libretaSanitaria}
-            onChange={(e) => setLibretaSanitaria(e.target.value)}
-            required
-          />
-          {errors.libretaSanitaria && <Form.Text className="text-danger">{errors.libretaSanitaria}</Form.Text>}
-        </Form.Group> */}
 
         <Form.Group controlId="aceptaTerminos">
           <Form.Check

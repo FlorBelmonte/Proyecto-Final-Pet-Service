@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import './Acceder.css'
 
-function Acceder({ onLogin }) {
+function Acceder({ onClose,onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -50,26 +50,31 @@ function Acceder({ onLogin }) {
     if (validateAcceder()) {
       setMostrarDivError(false);
       setMostrarErrorExcepcion(false);
+
+      const dataAEnviar = { correo: email, password: password };
+
       try { // Envío de la solicitud de inicio de sesión
-        const response = await fetch('http://localhost:3000/usuario/login/', {
+        const response = await fetch('http://localhost:3000/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
+          body: JSON.stringify(dataAEnviar),
         });
         if (response.ok) {
           const data = await response.json();
           console.log('Respuesta:', data);
-          if(data.Estado===200 && data.Existe){
-            onLogin({ username: email }); //se llama a la funcion de inicio de sesion
+
+          sessionStorage.setItem("usuarioLogueado", JSON.stringify(data));
+
+          if(data.succes===true){
+            onClose();
+            onLogin({ username: data.nombre }); //se llama a la funcion de inicio de sesion
             // Restablecer los campos a vacio
             setEmail('');
             setPassword('');
             setErrors({});
+            
 
           }else if(data.Estado==200 && !data.Existe){
             setMostrarDivError(true);
