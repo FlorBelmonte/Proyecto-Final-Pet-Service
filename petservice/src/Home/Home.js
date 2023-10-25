@@ -17,6 +17,8 @@ function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
 
   const handleLoginClick = () => { //manejador de evento para el boton "Crear Cuenta"
     setActiveComponent('LoginFormulario')
@@ -51,26 +53,32 @@ function Home() {
 
   const handleNavbarHotelesClick= ()=>{  //manejador de evento para la seccion "Hoteles"
     setActiveComponent('Hoteles');
+    setSelectedCategory('1');
   };
 
   const handleNavBarRestaurantesClick=()=>{ //manejador de evento para la seccion "Restaurantes"
     setActiveComponent('Restaurantes');
+    setSelectedCategory('2');
   };
 
   const handleNavBarPaseadoresClick=()=>{ //manejador de evento para la seccion "Paseadores"
     setActiveComponent('Paseadores');
+    setSelectedCategory('4');
   };
 
   const handleNavBarVeterinariasClick=()=>{ //manejador de evento para la seccion "Veterinarias"
     setActiveComponent('Veterinarias');
+    setSelectedCategory('5');
   };
 
   const handleNavBarActividadesClick=()=>{ //manejador de evento para la seccion "Actividades"
     setActiveComponent('Actividades');
+    setSelectedCategory('6');
   };
 
   const handleNavBarAerolineasClick=()=>{ //manejador de evento para la seccion "Aerolineas"
     setActiveComponent('Aerolineas');
+    setSelectedCategory('3');
   };
 
   // const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
@@ -135,27 +143,27 @@ function Home() {
       )}
 
       {activeComponent === 'Hoteles' && (
-        <Tarjetero servicioElejido={'1'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '1' }} />
       )}
 
       {activeComponent === 'Aerolineas' && (
-        <Tarjetero servicioElejido={'3'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '3' }} />
       )}
 
       {activeComponent === 'Restaurantes' && (
-        <Tarjetero servicioElejido={'2'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '2' }} />
       )}
 
       {activeComponent === 'Paseadores' && (
-        <Tarjetero servicioElejido={'4'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '4' }} />
       )}
 
       {activeComponent === 'Veterinarias' && (
-        <Tarjetero servicioElejido={'V5'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '5' }} />
       )}
 
       {activeComponent === 'Actividades' && (
-        <Tarjetero servicioElejido={'6'} />
+        <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
       )}
 
       {/* {activeComponent === 'BlogActivo' && (

@@ -9,7 +9,7 @@ import { ServiciosContext } from '../context/ServiciosContext'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Tarjetero = (servicioElejido) => {
+const Tarjetero = ({servicioElejido}) => {
   
   //const contextServicios=useContext(ServiciosContext)
   
@@ -17,21 +17,20 @@ const Tarjetero = (servicioElejido) => {
   const [interData, setInterData]= useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:3000/tarjeta-servicio')
+    axios.get(`http://localhost:3000/tarjeta-servicio/categoria/${servicioElejido.servicioElejido}`)
       .then(response => {
-        /* console.log(response);
-        console.log(response.data) */
-        setData(response.data) 
         console.log(response.data)
+        setData(response.data.data) 
+        console.log(response.data.data)
         axios.get(`http://localhost:3000/tarjeta-servicio/categoria/${servicioElejido.servicioElejido}`)
-        .then(response=>{setInterData(response.data)})
+        .then(response=>{setInterData(response.data.data)})
         console.log(`http://localhost:3000/tarjeta-servicio/categoria/${servicioElejido.servicioElejido}`)
-      })
+       })
       .catch(error => {
         console.error(error);
 
       });
-  }, [servicioElejido.servicioElejido]);
+  }, [servicioElejido]);
 
 console.log(interData.data)
    
