@@ -135,27 +135,27 @@ function Home() {
       )}
 
       {activeComponent === 'Hoteles' && (
-        <Tarjetero servicioElejido={'Hotel'} />
+        <Tarjetero servicioElejido={'1'} />
       )}
 
       {activeComponent === 'Aerolineas' && (
-        <Tarjetero servicioElejido={'Aerolinea'} />
+        <Tarjetero servicioElejido={'3'} />
       )}
 
       {activeComponent === 'Restaurantes' && (
-        <Tarjetero servicioElejido={'Restaurante'} />
+        <Tarjetero servicioElejido={'2'} />
       )}
 
       {activeComponent === 'Paseadores' && (
-        <Tarjetero servicioElejido={'Paseador'} />
+        <Tarjetero servicioElejido={'4'} />
       )}
 
       {activeComponent === 'Veterinarias' && (
-        <Tarjetero servicioElejido={'Veterinaria'} />
+        <Tarjetero servicioElejido={'V5'} />
       )}
 
       {activeComponent === 'Actividades' && (
-        <Tarjetero servicioElejido={'Actividad'} />
+        <Tarjetero servicioElejido={'6'} />
       )}
 
       {/* {activeComponent === 'BlogActivo' && (

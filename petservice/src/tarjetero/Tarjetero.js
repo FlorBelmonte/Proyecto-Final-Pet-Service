@@ -10,8 +10,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Tarjetero = (servicioElejido) => {
-
-  const contextServicios=useContext(ServiciosContext)
+  
+  //const contextServicios=useContext(ServiciosContext)
   
   const [data, setData] = useState([]);
   const [interData, setInterData]= useState([]);
@@ -22,18 +22,20 @@ const Tarjetero = (servicioElejido) => {
         /* console.log(response);
         console.log(response.data) */
         setData(response.data) 
-        axios.get(`http://localhost:3000/valoracion-servicio/valoresTarjeta`)
+        console.log(response.data)
+        axios.get(`http://localhost:3000/tarjeta-servicio/categoria/${servicioElejido.servicioElejido}`)
         .then(response=>{setInterData(response.data)})
+        console.log(`http://localhost:3000/tarjeta-servicio/categoria/${servicioElejido.servicioElejido}`)
       })
       .catch(error => {
         console.error(error);
 
       });
-  }, []);
+  }, [servicioElejido.servicioElejido]);
 
-   console.log(data)
-   console.log(interData)
+console.log(interData.data)
    
+// habria que cambiar en la linea de abajo data x iterData.data pero da error
    const tarjetas=data.map((t)=>(
    
     <Tarjeta  key={t.nombre} id={t.nombre} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />
