@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import Portada from "./Portada";
 import Footer from "./Footer";
 import LoginFormulario from "../login/LoginFormulario";
-import RegistroMascota from "../registroMascota/RegistroMascota";
+import RegistroMascota from "../registroMascota/registroMascota";
 import Acceder from "../Ingreso/Acceder";
 import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
@@ -133,9 +133,11 @@ function Home() {
           {isLoggedIn ? (
             <>
               <div className="greeting">
-                <img src={icono} alt="Acceso" className="acceso-img" />
+                <img src={icono} alt="Acceso" className="acceso-img" width="20" height= "20"/>
                 <span>¡Hola, {username}!</span>
               </div>
+              <div className="button-container2">
+                 <div className="button-row">
               <button
                 className="btn btn-outline-primary"
                 type="button"
@@ -149,7 +151,9 @@ function Home() {
                 onClick={handleRegistroMascotaClick}
               >
                 Registra a tu mascota
-              </button>
+                </button>
+                </div>
+                </div>
             </>
           ) : (
             <>
