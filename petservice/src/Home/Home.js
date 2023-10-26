@@ -1,34 +1,52 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import NavBar2 from './Navbar2';
-import './Home.css';
-import logo from '../assets/logo.png';
-import Portada from './Portada';
-import Footer from './Footer';
-import LoginFormulario from '../login/LoginFormulario';
-import Acceder from '../Ingreso/Acceder';
-import icono from '../assets/acceso.png';
-import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados.js';
-import Tarjetero from '../tarjetero/Tarjetero';
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import NavBar2 from "./Navbar2";
+import "./Home.css";
+import logo from "../assets/logo.png";
+import Portada from "./Portada";
+import Footer from "./Footer";
+import LoginFormulario from "../login/LoginFormulario";
+import RegistroMascota from "../registroMascota/registroMascota";
+import Acceder from "../Ingreso/Acceder";
+import icono from "../assets/acceso.png";
+import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
+import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
-
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [username, setUsername] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
 
 
-  const handleLoginClick = () => { //manejador de evento para el boton "Crear Cuenta"
-    setActiveComponent('LoginFormulario')
+  const handleLoginClick = () => {
+    //manejador de evento para el boton "Crear Cuenta"
+    setActiveComponent("LoginFormulario");
+  };
+  const handleRegistroMascotaClick = () => {
+    //manejador de evento para el boton "Registra a tu mascota"
+    setActiveComponent("RegistroMascota");
   };
 
-  const handleCloseLoginForm = () => {  // manejador de evento para cerrar el componente "LoginFormulario"
+  const handleCloseLoginForm = () => {
+    // manejador de evento para cerrar el componente "LoginFormulario"
+    setActiveComponent(null);
+  };
+  const handleCloseRegistroMascotaForm = () => {
+    // manejador de evento para cerrar el componente "RegistroMascota"
     setActiveComponent(null);
   };
 
-  const handleLoginFormSubmit = ({ username }) => { // Manejador de evento para enviar el LoginFormulario
+  const handleLoginFormSubmit = ({ username }) => {
+    // Manejador de evento para enviar el LoginFormulario
+    setIsLoggedIn(true);
+    setUsername(username);
+    setActiveComponent(null); // establece el componente activo como null y muestra la Portada
+  };
+  const handleRegistroMascotaFormSubmit = ({ username }) => {
+    // Manejador de evento para enviar el RegistroMascota
     setIsLoggedIn(true);
     setUsername(username);
     setActiveComponent(null); // establece el componente activo como null y muestra la Portada
@@ -36,20 +54,23 @@ function Home() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUsername('');
+    setUsername("");
   };
 
-  const handleAccessClick = () => {  // Manejador de evento para el botón "Iniciar Sesión"
-    setActiveComponent('Acceder');
+  const handleAccessClick = () => {
+    // Manejador de evento para el botón "Iniciar Sesión"
+    setActiveComponent("Acceder");
   };
 
-  const handleNavbarSearchClick = () => {   //manejador de evento para la sección "Búsqueda"
-    setActiveComponent('FormPerdidosEncontrados');
+  const handleNavbarSearchClick = () => {
+    //manejador de evento para la sección "Búsqueda"
+    setActiveComponent("FormPerdidosEncontrados");
   };
 
   const handleFormSubmit = () => {
     setActiveComponent(null);
   };
+
 
   const handleNavbarHotelesClick= ()=>{  //manejador de evento para la seccion "Hoteles"
     setActiveComponent('Hoteles');
@@ -86,14 +107,20 @@ function Home() {
   // };
 
   const handleNavbarMasClick = () => {
-    setActiveComponent('Mas');
+    setActiveComponent("Mas");
   };
 
   return (
     <div>
       <header className="header-box">
         <a href="/">
-          <img src={logo} alt="Logo" width="90" height="90" style={{ marginRight: 'auto' }} />
+          <img
+            src={logo}
+            alt="Logo"
+            width="90"
+            height="90"
+            style={{ marginRight: "auto" }}
+          />
         </a>
         <Navbar
           onSearchClick={handleNavbarSearchClick}
@@ -110,38 +137,74 @@ function Home() {
           {isLoggedIn ? (
             <>
               <div className="greeting">
-                <img src={icono} alt="Acceso" className="acceso-img" />
+                <img src={icono} alt="Acceso" className="acceso-img" width="20" height= "20"/>
                 <span>¡Hola, {username}!</span>
               </div>
-              <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
+              <div className="button-container2">
+                 <div className="button-row">
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleLogout}
+              >
                 Cerrar sesión
               </button>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleRegistroMascotaClick}
+              >
+                Registra a tu mascota
+                </button>
+                </div>
+                </div>
             </>
           ) : (
-              <>
-                <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
-                  Crear cuenta
+            <>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleLoginClick}
+              >
+                Crear cuenta
               </button>
-                <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
-                  Iniciar Sesión
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleAccessClick}
+              >
+                Iniciar Sesión
               </button>
-              </>
-            )}
+            </>
+          )}
         </div>
       </header>
 
-      {activeComponent === 'LoginFormulario' && (
-        <LoginFormulario onClose={handleCloseLoginForm} onSubmit={handleLoginFormSubmit} />
+      {activeComponent === "LoginFormulario" && (
+        <LoginFormulario
+          onClose={handleCloseLoginForm}
+          onSubmit={handleLoginFormSubmit}
+        />
       )}
 
-      {activeComponent === 'Acceder' && (
-        <Acceder onClose={() => setActiveComponent(null)} onLogin={handleLoginFormSubmit} />
+      {activeComponent === "RegistroMascota" && (
+        <RegistroMascota
+          onClose={handleCloseRegistroMascotaForm}
+          onSubmit={handleRegistroMascotaFormSubmit}
+        />
       )}
 
-      {activeComponent === 'FormPerdidosEncontrados' && (
+      {activeComponent === "Acceder" && (
+        <Acceder
+          onClose={() => setActiveComponent(null)}
+          onLogin={handleLoginFormSubmit}
+        />
+      )}
+      
+      {activeComponent === "FormPerdidosEncontrados" && (
         <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
       )}
-
+      
       {activeComponent === 'Hoteles' && (
         <Tarjetero servicioElejido={{ servicioElejido: '1' }} />
       )}
@@ -164,15 +227,17 @@ function Home() {
 
       {activeComponent === 'Actividades' && (
         <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
-      )}
 
       {/* {activeComponent === 'BlogActivo' && (
         <BlogContainer />
       )} */}
 
-      {(!activeComponent || (activeComponent === 'Mas' && activeComponent === 'NavBar2')) && <Portada />}
+      {(!activeComponent ||
+        (activeComponent === "Mas" && activeComponent === "NavBar2")) && (
+        <Portada />
+      )}
 
-      {activeComponent === 'Mas' && (
+      {activeComponent === "Mas" && (
         <>
           <NavBar2 />
           <Portada />
@@ -185,5 +250,3 @@ function Home() {
 }
 
 export default Home;
-
-

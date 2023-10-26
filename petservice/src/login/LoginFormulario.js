@@ -3,11 +3,11 @@ import { Button, Form } from 'react-bootstrap';
 import "./LoginFormulario.css";
 
 function LoginFormulario({ onClose, onSubmit }) {
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [nombreMascota, setNombreMascota] = useState('');
-  const [especieMascota, setEspecieMascota] = useState('');
-  const [libretaSanitaria, setLibretaSanitaria] = useState('');
+  const [tipoUsuario, setTipoUsuario] = useState(1);
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [errors, setErrors] = useState({});
   const [mostrarErrorExcepcion, setMostrarErrorExcepcion] = useState(false);
@@ -16,15 +16,17 @@ function LoginFormulario({ onClose, onSubmit }) {
     setMostrarErrorExcepcion(false);
     if (validateForm()) {
       const data = {
-        email,
-        password,
-        nombreMascota,
-        especieMascota,
-        libretaSanitaria
+        nombre:nombre,
+        apellido:apellido,
+        correo:email,
+        password:password,
+        tipo:tipoUsuario,
       };
+
+      
       
       // Realiza la solicitud al servidor
-      fetch('http://localhost:3000/usuario/', {
+      fetch('http://localhost:3000/usuario/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,13 +38,13 @@ function LoginFormulario({ onClose, onSubmit }) {
         if (response.ok) {
           alert("Se envió correctamente el formulario")
           //Limpia los campos después del envío
+          setNombre('');
+          setApellido('');
           setEmail('');
           setPassword('');
-          setNombreMascota('');
-          setEspecieMascota('');
-          setLibretaSanitaria('');
+          setTipoUsuario('');
           onClose();
-          onSubmit({ username: email });
+          // onSubmit({ username: email });
         } else {
           setMostrarErrorExcepcion(true);
           throw new Error('Error al enviar el formulario');
@@ -58,6 +60,16 @@ function LoginFormulario({ onClose, onSubmit }) {
   const validateForm = () => {
     let formIsValid = true;
     const errors = {};
+
+    if (!nombre) {
+      errors.nombre = 'El nombre es requerido';
+      formIsValid = false;
+    }
+
+    if (!apellido) {
+      errors.apellido = 'El apellido es requerido';
+      formIsValid = false;
+    }
 
     if (!email) {
       errors.email = 'El email es requerido';
@@ -78,21 +90,6 @@ function LoginFormulario({ onClose, onSubmit }) {
       formIsValid = false;
     }
 
-    if (!nombreMascota) {
-      errors.nombreMascota = 'El nombre de la mascota es requerido';
-      formIsValid = false;
-    }
-
-    if (!especieMascota) {
-      errors.especieMascota = 'La especie de la mascota es requerida';
-      formIsValid = false;
-    }
-
-    if (!libretaSanitaria) {
-      errors.libretaSanitaria = 'La libreta sanitaria es requerida';
-      formIsValid = false;
-    }
-
     if (!aceptaTerminos) {
       errors.aceptaTerminos = 'Debes aceptar los términos y condiciones';
       formIsValid = false;
@@ -105,6 +102,30 @@ function LoginFormulario({ onClose, onSubmit }) {
   return (
     <div className="contenedor">
       <Form className="formulario">
+        
+        <Form.Group controlId="nombre">
+          <Form.Label>Nombre:</Form.Label>
+          <Form.Control
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          {errors.nombre && <Form.Text className="text-danger">{errors.nombre}</Form.Text>}
+        </Form.Group>
+
+        <Form.Group controlId="apellido">
+          <Form.Label>Apellido:</Form.Label>
+          <Form.Control
+            type="text"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            required
+          />
+          {errors.apellido && <Form.Text className="text-danger">{errors.apellido}</Form.Text>}
+        </Form.Group>
+
+
         <Form.Group controlId="email">
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -127,38 +148,6 @@ function LoginFormulario({ onClose, onSubmit }) {
           {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
         </Form.Group>
 
-        <Form.Group controlId="nombreMascota">
-          <Form.Label>Nombre de la mascota:</Form.Label>
-          <Form.Control
-            type="text"
-            value={nombreMascota}
-            onChange={(e) => setNombreMascota(e.target.value)}
-            required
-          />
-          {errors.nombreMascota && <Form.Text className="text-danger">{errors.nombreMascota}</Form.Text>}
-        </Form.Group>
-
-        <Form.Group controlId="especieMascota">
-          <Form.Label>Especie de la mascota:</Form.Label>
-          <Form.Control
-            type="text"
-            value={especieMascota}
-            onChange={(e) => setEspecieMascota(e.target.value)}
-            required
-          />
-          {errors.especieMascota && <Form.Text className="text-danger">{errors.especieMascota}</Form.Text>}
-        </Form.Group>
-
-        <Form.Group controlId="libretaSanitaria">
-          <Form.Label>Libreta sanitaria:</Form.Label>
-          <Form.Control
-            type="text"
-            value={libretaSanitaria}
-            onChange={(e) => setLibretaSanitaria(e.target.value)}
-            required
-          />
-          {errors.libretaSanitaria && <Form.Text className="text-danger">{errors.libretaSanitaria}</Form.Text>}
-        </Form.Group>
 
         <Form.Group controlId="aceptaTerminos">
           <Form.Check
