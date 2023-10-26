@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 import Portada from './Portada';
 import Footer from './Footer';
 import LoginFormulario from '../login/LoginFormulario';
+import RegistroMascota from '../registroMascota/RegistroMascota';
 import Acceder from '../Ingreso/Acceder';
 import icono from '../assets/acceso.png';
 import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados.js';
@@ -21,12 +22,23 @@ function Home() {
   const handleLoginClick = () => { //manejador de evento para el boton "Crear Cuenta"
     setActiveComponent('LoginFormulario')
   };
+  const handleRegistroMascotaClick = () => { //manejador de evento para el boton "Registra a tu mascota"
+    setActiveComponent('RegistroMascota')
+  };
 
   const handleCloseLoginForm = () => {  // manejador de evento para cerrar el componente "LoginFormulario"
     setActiveComponent(null);
   };
+  const handleCloseRegistroMascotaForm = () => {  // manejador de evento para cerrar el componente "RegistroMascota"
+    setActiveComponent(null);
+  };
 
   const handleLoginFormSubmit = ({ username }) => { // Manejador de evento para enviar el LoginFormulario
+    setIsLoggedIn(true);
+    setUsername(username);
+    setActiveComponent(null); // establece el componente activo como null y muestra la Portada
+  };
+  const handleRegistroMascotaFormSubmit = ({ username }) => { // Manejador de evento para enviar el RegistroMascota
     setIsLoggedIn(true);
     setUsername(username);
     setActiveComponent(null); // establece el componente activo como null y muestra la Portada
@@ -40,6 +52,7 @@ function Home() {
   const handleAccessClick = () => {  // Manejador de evento para el botón "Iniciar Sesión"
     setActiveComponent('Acceder');
   };
+  
 
   const handleNavbarSearchClick = () => {   //manejador de evento para la sección "Búsqueda"
     setActiveComponent('FormPerdidosEncontrados');
@@ -108,6 +121,9 @@ function Home() {
               <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
                 Cerrar sesión
               </button>
+              <button className="btn btn-outline-primary" type="button" onClick={handleRegistroMascotaClick}>
+                Registra a tu mascota
+              </button>
             </>
           ) : (
               <>
@@ -125,6 +141,10 @@ function Home() {
       {activeComponent === 'LoginFormulario' && (
         <LoginFormulario onClose={handleCloseLoginForm} onSubmit={handleLoginFormSubmit} />
       )}
+
+      {activeComponent === 'RegistroMascota' && (
+        <RegistroMascota onClose={handleCloseRegistroMascotaForm} onSubmit={handleRegistroMascotaFormSubmit} />
+      )} 
 
       {activeComponent === 'Acceder' && (
         <Acceder onClose={() => setActiveComponent(null)} onLogin={handleLoginFormSubmit} />

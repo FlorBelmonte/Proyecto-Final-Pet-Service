@@ -76,7 +76,7 @@ function Acceder({ onClose,onLogin }) {
             setErrors({});
             
 
-          }else if(data.Estado==200 && !data.Existe){
+          }else if(data.Estado===200 && !data.Existe){
             setMostrarDivError(true);
           }
         } else {

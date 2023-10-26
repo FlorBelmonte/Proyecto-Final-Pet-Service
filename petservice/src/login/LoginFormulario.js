@@ -42,6 +42,7 @@ function LoginFormulario({ onClose, onSubmit }) {
           setApellido('');
           setEmail('');
           setPassword('');
+          setTipoUsuario('');
           onClose();
           // onSubmit({ username: email });
         } else {
