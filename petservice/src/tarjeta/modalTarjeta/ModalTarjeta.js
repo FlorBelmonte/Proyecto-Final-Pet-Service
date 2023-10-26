@@ -3,7 +3,7 @@ import { useState } from 'react';
 import "./modalTarjeta.css"
 import { Button } from 'react-bootstrap';
 
-const ModalTarjeta = ({ onClose, arrValores, actualizarPuntaje, puntaje, voto, actualizarSumaValoraciones, votar }) => {
+const ModalTarjeta = ({ onClose, arrValores, actualizarPuntaje, miPuntaje, voto, actualizarSumaValoraciones, votar }) => {
 
 
 const [modalValues, setModalValues] = useState(arrValores);
@@ -24,29 +24,47 @@ const [valor, setValor]=useState(5);
   };
   
   console.log("valor ", valor)
-  
+   
    //valor es lo que vale la votacion realizada
    //voto es la cantidad de votantes
    //puntaje es la suma de todos los valores realizada por todos los votantes
 
   const [puntuacion, setPuntuacion]=useState(voto);
 
-  const guardarCambios = () => {
-    
+/*el siguiente bloque de codigo realiza el post de valoracion servicio */
+async function guardarCambios()
+{
+  let votacion =
+  {
+    "idTarjetaServicio": arrValores[0],
+    "comentario": " ",
+    "idUsuario": 1,
+    "valoracion": valor
+  }
+  let respuesta = await fetch(`http://localhost:3000/valoracion-servicio/${arrValores[0]}`, {
+           method :'PUT',
+           headers: { 'Content-Type' : 'application/json' },
+           body : JSON.stringify(votacion)
+  })
+  onClose();
+}
+
+/* const guardarCambios = () => {
+
     votar();
         
     setPuntuacion(puntuacion+valor )
        
     
     console.log('valor de value en guardar cambios: ',parseInt(valor) )
-    console.log("valor de puntuacion sumando el ultimo valor dado", (puntaje + parseInt(valor))) 
-    const nuevaSumaValoracion=puntaje + parseInt(valor);
+    console.log("valor de puntuacion sumando el ultimo valor dado", (miPuntaje + parseInt(valor))) 
+    const nuevaSumaValoracion=miPuntaje + parseInt(valor);
     actualizarSumaValoraciones(nuevaSumaValoracion) //valor del puntaje votado mas los puntajes preexistentes
     actualizarPuntaje(nuevaSumaValoracion) // devuelve el valor del puntaje votado mas los puntajes preexistentes a la tarjeta
 
     
     onClose();
-  };
+  }; */
 
   return (
     <div className="modalTarjeta">
@@ -61,7 +79,7 @@ const [valor, setValor]=useState(5);
               <p className="text-secondary">Valorar min1 max5</p>
             </div>
             <input
-              key={arrValores[1] + arrValores[7]}
+              key={arrValores[0] /* + arrValores[7] */}
               className="inpValoracion"
               type="range"
               min="1"

@@ -37,7 +37,7 @@ console.log(interData.data)
 // habria que cambiar en la linea de abajo data x iterData.data pero da error
    const tarjetas=data.map((t)=>(
    
-    <Tarjeta  key={t.nombre} id={t.nombre} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />
+    <Tarjeta  key={t.nombre} id={t.idTarjetaServicio} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />
     
   
     )) 

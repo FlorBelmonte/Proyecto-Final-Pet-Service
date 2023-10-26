@@ -15,22 +15,31 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
   
 
   
-  
-  /* const actualizarPuntaje = (nuevoPuntaje) => {
+  /****************************** */
+  const actualizarPuntaje = (nuevoPuntaje) => {
     
-    setPuntaje(nuevoPuntaje);
-  }; */
+    setMiPuntaje(nuevoPuntaje);
+  };
 
-  /* const actualizarSumaValoraciones=(nuevaSumaValoraciones)=>{
+   const actualizarSumaValoraciones=(nuevaSumaValoraciones)=>{
     setSumaValoraciones(nuevaSumaValoraciones)
-  }; */
-
-  const [showModal, setShowModal] = useState(false);
-  //const [puntaje, setPuntaje] = useState(arrValores[4]);
-  //const [voto, setVoto] = useState(arrValores[7]);
+  }; 
+  /************************************************** */
   
-  //const [sumaValoraciones, setSumaValoraciones]=useState(puntuacion)
 
+
+  
+  const [showModal, setShowModal] = useState(false);
+  const [miPuntaje, setMiPuntaje] = useState(arrValores[4]);
+  const [voto, setVoto] = useState(arrValores[7]);
+  
+
+
+
+
+  /************************************************ */
+  const [sumaValoraciones, setSumaValoraciones]=useState(puntuacion)
+/***************************************************** */
   
   
   
@@ -48,7 +57,7 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
    const votar = () => {
     
     //setVoto(voto + 1);
-    console.log("valor de puntaje en votar", puntaje ) 
+    console.log("valor de puntaje en votar", miPuntaje ) 
   }; 
  
 
@@ -85,7 +94,7 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
       </div>
 
       {showModal && (
-        <ModalTarjeta onClose={ocultar} actualizarArr={actualizarArr} /* actualizarPuntaje={actualizarPuntaje} */ arrValores={arrValores} puntaje={puntaje} /* voto={voto} */ /* actualizarSumaValoraciones={actualizarSumaValoraciones} */ votar={votar}/>
+        <ModalTarjeta onClose={ocultar} actualizarArr={actualizarArr} actualizarPuntaje={actualizarPuntaje}  arrValores={arrValores} miPuntaje={miPuntaje}   voto={voto} actualizarSumaValoraciones={actualizarSumaValoraciones}  votar={votar}/>
       )}
     </div>
   );
