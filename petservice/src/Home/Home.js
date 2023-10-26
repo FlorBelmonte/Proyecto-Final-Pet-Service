@@ -102,7 +102,7 @@ function Home() {
           {isLoggedIn ? (
             <>
               <div className="greeting">
-                <img src={icono} alt="Acceso" className="acceso-img" />
+                <img src={icono} alt="Acceso" className="acceso-img" width= "20" height="20"  />
                 <span>¡Hola, {username}!</span>
               </div>
               <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
