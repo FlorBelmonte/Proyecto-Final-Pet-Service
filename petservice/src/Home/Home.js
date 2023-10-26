@@ -1,44 +1,49 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import NavBar2 from './Navbar2';
-import './Home.css';
-import logo from '../assets/logo.png';
-import Portada from './Portada';
-import Footer from './Footer';
-import LoginFormulario from '../login/LoginFormulario';
-import RegistroMascota from '../registroMascota/RegistroMascota';
-import Acceder from '../Ingreso/Acceder';
-import icono from '../assets/acceso.png';
-import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados.js';
-import Tarjetero from '../tarjetero/Tarjetero';
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import NavBar2 from "./Navbar2";
+import "./Home.css";
+import logo from "../assets/logo.png";
+import Portada from "./Portada";
+import Footer from "./Footer";
+import LoginFormulario from "../login/LoginFormulario";
+import RegistroMascota from "../registroMascota/RegistroMascota";
+import Acceder from "../Ingreso/Acceder";
+import icono from "../assets/acceso.png";
+import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
+import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
-
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
 
-  const handleLoginClick = () => { //manejador de evento para el boton "Crear Cuenta"
-    setActiveComponent('LoginFormulario')
+  const handleLoginClick = () => {
+    //manejador de evento para el boton "Crear Cuenta"
+    setActiveComponent("LoginFormulario");
   };
-  const handleRegistroMascotaClick = () => { //manejador de evento para el boton "Registra a tu mascota"
-    setActiveComponent('RegistroMascota')
+  const handleRegistroMascotaClick = () => {
+    //manejador de evento para el boton "Registra a tu mascota"
+    setActiveComponent("RegistroMascota");
   };
 
-  const handleCloseLoginForm = () => {  // manejador de evento para cerrar el componente "LoginFormulario"
+  const handleCloseLoginForm = () => {
+    // manejador de evento para cerrar el componente "LoginFormulario"
     setActiveComponent(null);
   };
-  const handleCloseRegistroMascotaForm = () => {  // manejador de evento para cerrar el componente "RegistroMascota"
+  const handleCloseRegistroMascotaForm = () => {
+    // manejador de evento para cerrar el componente "RegistroMascota"
     setActiveComponent(null);
   };
 
-  const handleLoginFormSubmit = ({ username }) => { // Manejador de evento para enviar el LoginFormulario
+  const handleLoginFormSubmit = ({ username }) => {
+    // Manejador de evento para enviar el LoginFormulario
     setIsLoggedIn(true);
     setUsername(username);
     setActiveComponent(null); // establece el componente activo como null y muestra la Portada
   };
-  const handleRegistroMascotaFormSubmit = ({ username }) => { // Manejador de evento para enviar el RegistroMascota
+  const handleRegistroMascotaFormSubmit = ({ username }) => {
+    // Manejador de evento para enviar el RegistroMascota
     setIsLoggedIn(true);
     setUsername(username);
     setActiveComponent(null); // establece el componente activo como null y muestra la Portada
@@ -46,44 +51,51 @@ function Home() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUsername('');
+    setUsername("");
   };
 
-  const handleAccessClick = () => {  // Manejador de evento para el botón "Iniciar Sesión"
-    setActiveComponent('Acceder');
+  const handleAccessClick = () => {
+    // Manejador de evento para el botón "Iniciar Sesión"
+    setActiveComponent("Acceder");
   };
-  
 
-  const handleNavbarSearchClick = () => {   //manejador de evento para la sección "Búsqueda"
-    setActiveComponent('FormPerdidosEncontrados');
+  const handleNavbarSearchClick = () => {
+    //manejador de evento para la sección "Búsqueda"
+    setActiveComponent("FormPerdidosEncontrados");
   };
 
   const handleFormSubmit = () => {
     setActiveComponent(null);
   };
 
-  const handleNavbarHotelesClick= ()=>{  //manejador de evento para la seccion "Hoteles"
-    setActiveComponent('Hoteles');
+  const handleNavbarHotelesClick = () => {
+    //manejador de evento para la seccion "Hoteles"
+    setActiveComponent("Hoteles");
   };
 
-  const handleNavBarRestaurantesClick=()=>{ //manejador de evento para la seccion "Restaurantes"
-    setActiveComponent('Restaurantes');
+  const handleNavBarRestaurantesClick = () => {
+    //manejador de evento para la seccion "Restaurantes"
+    setActiveComponent("Restaurantes");
   };
 
-  const handleNavBarPaseadoresClick=()=>{ //manejador de evento para la seccion "Paseadores"
-    setActiveComponent('Paseadores');
+  const handleNavBarPaseadoresClick = () => {
+    //manejador de evento para la seccion "Paseadores"
+    setActiveComponent("Paseadores");
   };
 
-  const handleNavBarVeterinariasClick=()=>{ //manejador de evento para la seccion "Veterinarias"
-    setActiveComponent('Veterinarias');
+  const handleNavBarVeterinariasClick = () => {
+    //manejador de evento para la seccion "Veterinarias"
+    setActiveComponent("Veterinarias");
   };
 
-  const handleNavBarActividadesClick=()=>{ //manejador de evento para la seccion "Actividades"
-    setActiveComponent('Actividades');
+  const handleNavBarActividadesClick = () => {
+    //manejador de evento para la seccion "Actividades"
+    setActiveComponent("Actividades");
   };
 
-  const handleNavBarAerolineasClick=()=>{ //manejador de evento para la seccion "Aerolineas"
-    setActiveComponent('Aerolineas');
+  const handleNavBarAerolineasClick = () => {
+    //manejador de evento para la seccion "Aerolineas"
+    setActiveComponent("Aerolineas");
   };
 
   // const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
@@ -91,14 +103,20 @@ function Home() {
   // };
 
   const handleNavbarMasClick = () => {
-    setActiveComponent('Mas');
+    setActiveComponent("Mas");
   };
 
   return (
     <div>
       <header className="header-box">
         <a href="/">
-          <img src={logo} alt="Logo" width="90" height="90" style={{ marginRight: 'auto' }} />
+          <img
+            src={logo}
+            alt="Logo"
+            width="90"
+            height="90"
+            style={{ marginRight: "auto" }}
+          />
         </a>
         <Navbar
           onSearchClick={handleNavbarSearchClick}
@@ -118,73 +136,99 @@ function Home() {
                 <img src={icono} alt="Acceso" className="acceso-img" />
                 <span>¡Hola, {username}!</span>
               </div>
-              <button className="btn btn-outline-primary" type="button" onClick={handleLogout}>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleLogout}
+              >
                 Cerrar sesión
               </button>
-              <button className="btn btn-outline-primary" type="button" onClick={handleRegistroMascotaClick}>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleRegistroMascotaClick}
+              >
                 Registra a tu mascota
               </button>
             </>
           ) : (
-              <>
-                <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
-                  Crear cuenta
+            <>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleLoginClick}
+              >
+                Crear cuenta
               </button>
-                <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
-                  Iniciar Sesión
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleAccessClick}
+              >
+                Iniciar Sesión
               </button>
-              </>
-            )}
+            </>
+          )}
         </div>
       </header>
 
-      {activeComponent === 'LoginFormulario' && (
-        <LoginFormulario onClose={handleCloseLoginForm} onSubmit={handleLoginFormSubmit} />
+      {activeComponent === "LoginFormulario" && (
+        <LoginFormulario
+          onClose={handleCloseLoginForm}
+          onSubmit={handleLoginFormSubmit}
+        />
       )}
 
-      {activeComponent === 'RegistroMascota' && (
-        <RegistroMascota onClose={handleCloseRegistroMascotaForm} onSubmit={handleRegistroMascotaFormSubmit} />
-      )} 
-
-      {activeComponent === 'Acceder' && (
-        <Acceder onClose={() => setActiveComponent(null)} onLogin={handleLoginFormSubmit} />
+      {activeComponent === "RegistroMascota" && (
+        <RegistroMascota
+          onClose={handleCloseRegistroMascotaForm}
+          onSubmit={handleRegistroMascotaFormSubmit}
+        />
       )}
 
-      {activeComponent === 'FormPerdidosEncontrados' && (
+      {activeComponent === "Acceder" && (
+        <Acceder
+          onClose={() => setActiveComponent(null)}
+          onLogin={handleLoginFormSubmit}
+        />
+      )}
+
+      {activeComponent === "FormPerdidosEncontrados" && (
         <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
       )}
 
-      {activeComponent === 'Hoteles' && (
-        <Tarjetero servicioElejido={'Hotel'} />
+      {activeComponent === "Hoteles" && <Tarjetero servicioElejido={"Hotel"} />}
+
+      {activeComponent === "Aerolineas" && (
+        <Tarjetero servicioElejido={"Aerolinea"} />
       )}
 
-      {activeComponent === 'Aerolineas' && (
-        <Tarjetero servicioElejido={'Aerolinea'} />
+      {activeComponent === "Restaurantes" && (
+        <Tarjetero servicioElejido={"Restaurante"} />
       )}
 
-      {activeComponent === 'Restaurantes' && (
-        <Tarjetero servicioElejido={'Restaurante'} />
+      {activeComponent === "Paseadores" && (
+        <Tarjetero servicioElejido={"Paseador"} />
       )}
 
-      {activeComponent === 'Paseadores' && (
-        <Tarjetero servicioElejido={'Paseador'} />
+      {activeComponent === "Veterinarias" && (
+        <Tarjetero servicioElejido={"Veterinaria"} />
       )}
 
-      {activeComponent === 'Veterinarias' && (
-        <Tarjetero servicioElejido={'Veterinaria'} />
-      )}
-
-      {activeComponent === 'Actividades' && (
-        <Tarjetero servicioElejido={'Actividad'} />
+      {activeComponent === "Actividades" && (
+        <Tarjetero servicioElejido={"Actividad"} />
       )}
 
       {/* {activeComponent === 'BlogActivo' && (
         <BlogContainer />
       )} */}
 
-      {(!activeComponent || (activeComponent === 'Mas' && activeComponent === 'NavBar2')) && <Portada />}
+      {(!activeComponent ||
+        (activeComponent === "Mas" && activeComponent === "NavBar2")) && (
+        <Portada />
+      )}
 
-      {activeComponent === 'Mas' && (
+      {activeComponent === "Mas" && (
         <>
           <NavBar2 />
           <Portada />
@@ -197,5 +241,3 @@ function Home() {
 }
 
 export default Home;
-
-

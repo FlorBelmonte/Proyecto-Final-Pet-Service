@@ -13,6 +13,7 @@ function RegistroMascota({ onClose }) {
 
   const handleSubmit = (e) => {
     setMostrarErrorExcepcion(false);
+
     if (validateForm()) {
       const dataAEnviar = {
         nombre: nombreMascota,
