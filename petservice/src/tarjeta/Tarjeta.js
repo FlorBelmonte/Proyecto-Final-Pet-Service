@@ -6,31 +6,40 @@ import PuntuarTarjeta from './puntuarTarjeta/PuntuarTarjeta';
 
 
 
-const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos}) => {
+const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos, provincia, puntaje}) => {
   
-  const [arrValores, setArrValores ] =useState([id, nombre, servicio, imagen,puntuacion, precio, info, votos ]);
+  const [arrValores, setArrValores ] =useState([id, nombre, servicio, imagen,puntuacion, precio, info, votos, provincia, puntaje ]);
   const actualizarArr=(nuevoArrValores)=>{
     setArrValores(nuevoArrValores)
   };
   
 
   
-  
+  /****************************** */
   const actualizarPuntaje = (nuevoPuntaje) => {
     
-    setPuntaje(nuevoPuntaje);
+    setMiPuntaje(nuevoPuntaje);
   };
 
-  const actualizarSumaValoraciones=(nuevaSumaValoraciones)=>{
+   const actualizarSumaValoraciones=(nuevaSumaValoraciones)=>{
     setSumaValoraciones(nuevaSumaValoraciones)
-  };
+  }; 
+  /************************************************** */
+  
 
+
+  
   const [showModal, setShowModal] = useState(false);
-  const [puntaje, setPuntaje] = useState(arrValores[4]);
+  const [miPuntaje, setMiPuntaje] = useState(arrValores[4]);
   const [voto, setVoto] = useState(arrValores[7]);
   
-  const [sumaValoraciones, setSumaValoraciones]=useState(puntuacion)
 
+
+
+
+  /************************************************ */
+  const [sumaValoraciones, setSumaValoraciones]=useState(puntuacion)
+/***************************************************** */
   
   
   
@@ -47,8 +56,8 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos}
 
    const votar = () => {
     
-    setVoto(voto + 1);
-    console.log("valor de puntaje en votar", puntaje ) 
+    //setVoto(voto + 1);
+    console.log("valor de puntaje en votar", miPuntaje ) 
   }; 
  
 
@@ -62,10 +71,11 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos}
           <div>
             <h4>{arrValores[1]}</h4>
           </div>
-          <PuntuarTarjeta puntuacion={ sumaValoraciones} votos={voto} />
+          <PuntuarTarjeta valoracion={arrValores[4]}/* puntuacion={arrValores[9]} votos={arrValores[7] */ />
           <div className="precio">$ {arrValores[5]}</div>
           {/* <div className="nuevoPuntaje">Nuevo puntaje: {puntaje}</div>  div de prueba para chequear que se esten enviando los puntajes desde el componente hijo al componente padre*/}  
-          <div>votos: {voto}</div>
+          <div>votos: {arrValores[7]}</div>
+          <div className='provincia'>provincia: {arrValores[8]}</div>
           <div className="menuVotar">
             <button className="cancelar" onClick={ocultar}>
               X
@@ -84,7 +94,7 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos}
       </div>
 
       {showModal && (
-        <ModalTarjeta onClose={ocultar} actualizarArr={actualizarArr} actualizarPuntaje={actualizarPuntaje} arrValores={arrValores} puntaje={puntaje} voto={voto} actualizarSumaValoraciones={actualizarSumaValoraciones} votar={votar}/>
+        <ModalTarjeta onClose={ocultar} actualizarArr={actualizarArr} actualizarPuntaje={actualizarPuntaje}  arrValores={arrValores} miPuntaje={miPuntaje}   voto={voto} actualizarSumaValoraciones={actualizarSumaValoraciones}  votar={votar}/>
       )}
     </div>
   );
