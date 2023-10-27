@@ -13,46 +13,62 @@ function RegistroMascota({ onClose }) {
 
   const handleSubmit = (e) => {
     setMostrarErrorExcepcion(false);
+    alert("entro");
 
-    if (validateForm()) {
-      const dataAEnviar = {
-        nombre: nombreMascota,
-        tipo: especieMascota,
-        libreta: libretaSanitaria,
-        foto: imagenMascota,
-      };
-      const token = sessionStorage.getItem("usuarioLogueado.token");
+    const sessionData = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
-      // Realiza la solicitud al servidor
-      fetch("http://localhost:3000/mascota/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
-        },
-        body: JSON.stringify(dataAEnviar),
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.ok) {
-            alert("Se envió correctamente el formulario");
-            //Limpia los campos después del envío
+    if (sessionData && sessionData.token) {
+      console.log("entro al if 1");
+      alert("entro al if 1");
+      const { token, correo, nombre, tipo, idUsuario } = sessionData;
 
-            setNombreMascota("");
-            setEspecieMascota("");
-            setLibretaSanitaria("");
-            setImagenMascota("");
-            onClose();
-            // onSubmit({ username: email });
-          } else {
-            setMostrarErrorExcepcion(true);
-            throw new Error("Error al enviar el formulario");
-          }
+      if (validateForm()) {
+        alert("entro al if 2");
+        console.log("entro al if 2");
+        const dataAEnviar = {
+          nombre: nombreMascota,
+          tipo: especieMascota,
+          libreta: libretaSanitaria,
+          foto: "https://example.com/luna.jpg",
+          duenioIdUsuario: idUsuario,
+        };
+
+        alert("data a enviar: ", dataAEnviar);
+
+        // Realiza la solicitud al servidor
+        fetch("http://localhost:3000/mascota/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
+          },
+          body: JSON.stringify(dataAEnviar),
         })
-        .catch((error) => {
-          setMostrarErrorExcepcion(true);
-          console.error(error);
-        });
+          .then((response) => {
+            console.log(response);
+            if (response.ok) {
+              alert("Se envió correctamente el formulario");
+              //Limpia los campos después del envío
+
+              setNombreMascota("");
+              setEspecieMascota("");
+              setLibretaSanitaria("");
+              setImagenMascota("");
+              onClose();
+              // onSubmit({ username: email });
+            } else {
+              setMostrarErrorExcepcion(true);
+              throw new Error("Error al enviar el formulario");
+            }
+          })
+          .catch((error) => {
+            setMostrarErrorExcepcion(true);
+            console.error(error);
+          });
+      } else {
+        setMostrarErrorExcepcion(true);
+        throw new Error("Error, debe iniciar sesion para continuar");
+      }
     }
   };
 
