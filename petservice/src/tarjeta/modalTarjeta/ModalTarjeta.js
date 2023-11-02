@@ -23,7 +23,14 @@ const [valor, setValor]=useState(5);
     }));
   };
   
-  console.log("valor ", valor)
+  
+  // agrega los comentarios y los votos de los usuarios en la modal.
+  const valoresyvotos = arrValores[10].map((v) => (
+    <>
+      <>comentario = {v.comentario} </>
+      <>voto = {v.valoracion} </>
+    </>
+  ))
    
    //valor es lo que vale la votacion realizada
    //voto es la cantidad de votantes
@@ -49,6 +56,8 @@ async function guardarCambios()
   onClose();
 }
 
+  
+ 
 /* const guardarCambios = () => {
 
     votar();
@@ -91,7 +100,8 @@ async function guardarCambios()
           </div>
         </div>
         <div className="info">{arrValores[6]}</div>
-      </div>
+        <div className="info"> {valoresyvotos}</div>
+        </div>
     </div>
   );
 };

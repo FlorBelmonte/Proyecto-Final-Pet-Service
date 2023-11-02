@@ -227,10 +227,11 @@ function Home() {
 
       {activeComponent === 'Actividades' && (
         <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
+      )}
 
-      {/* {activeComponent === 'BlogActivo' && (
+     {/*  { activeComponent === 'BlogActivo' && (
         <BlogContainer />
-      )} */}
+      ) } */}
 
       {(!activeComponent ||
         (activeComponent === "Mas" && activeComponent === "NavBar2")) && (
