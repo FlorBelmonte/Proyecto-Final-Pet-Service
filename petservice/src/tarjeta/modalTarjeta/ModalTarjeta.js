@@ -37,21 +37,31 @@ const [valor, setValor]=useState(5);
    //puntaje es la suma de todos los valores realizada por todos los votantes
 
   const [puntuacion, setPuntuacion]=useState(voto);
+  const [comentario, setComentario] = useState("");
 
+  
 /*el siguiente bloque de codigo realiza el post de valoracion servicio */
 async function guardarCambios()
 {
   let votacion =
   {
     "idTarjetaServicio": arrValores[0],
-    "comentario": " ",
-    "idUsuario": 1,
+    "comentario": comentario,
+    "idUsuario": 4,
     "valoracion": valor
   }
-  let respuesta = await fetch(`http://localhost:3000/valoracion-servicio/${arrValores[0]}`, {
+   await fetch(`http://localhost:3000/valoracion-servicio/`, {
            method :'PUT',
            headers: { 'Content-Type' : 'application/json' },
            body : JSON.stringify(votacion)
+   }).then(response => {
+     console.log(response)
+     if (response.ok) {
+       alert("se envio la valoracion correctamente")
+     } else { throw new Error('Error al enviar la valoracion') }
+   })
+     .catch(error => {
+    console.log(error)
   })
   onClose();
 }
@@ -85,6 +95,7 @@ async function guardarCambios()
           <img className="imgTarjeta" src={arrValores[3]} alt="imagen" />
           <div className="conValoracion">
             <div className="contenedorPValorar">
+              <textarea onChange={(e) => setComentario(e.target.value)} placeholder="Escribe tus comentarios aquí..."></textarea>
               <p className="text-secondary">Valorar min1 max5</p>
             </div>
             <input
