@@ -18,13 +18,9 @@ function RegistroMascota({ onClose }) {
     const sessionData = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
     if (sessionData && sessionData.token) {
-      console.log("entro al if 1");
-      alert("entro al if 1");
       const { token, correo, nombre, tipo, idUsuario } = sessionData;
 
       if (validateForm()) {
-        alert("entro al if 2");
-        console.log("entro al if 2");
         const dataAEnviar = {
           nombre: nombreMascota,
           tipo: especieMascota,
