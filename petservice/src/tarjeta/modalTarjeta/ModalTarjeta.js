@@ -42,37 +42,43 @@ const ModalTarjeta = ({
   const [puntuacion, setPuntuacion] = useState(voto);
   const [comentario, setComentario] = useState("");
 
-  /*el siguiente bloque de codigo realiza el post de valoracion servicio */
-  async function guardarCambios() {
-    let votacion = {
-      idTarjetaServicio: arrValores[0],
-      comentario: comentario,
-      idUsuario: 4,
-      valoracion: valor,
-    };
+  const token = sessionStorage.getItem("usuarioLogueado.token");
 
-    const token = sessionStorage.getItem("usuarioLogueado.token");
+  if (sessionData && sessionData.token) {
+    const { token, correo, nombre, tipo, idUsuario } = sessionData;
 
-    await fetch(`http://localhost:3000/valoracion-servicio/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
-      },
-      body: JSON.stringify(votacion),
-    })
-      .then((response) => {
-        console.log(response);
-        if (response.ok) {
-          alert("se envio la valoracion correctamente");
-        } else {
-          throw new Error("Error al enviar la valoracion");
-        }
+    /*el siguiente bloque de codigo realiza el post de valoracion servicio */
+    async function guardarCambios() {
+      let votacion = {
+        idTarjetaServicio: arrValores[0],
+        comentario: comentario,
+        idUsuario: idUsuario,
+        valoracion: puntuacion,
+      };
+
+      await fetch(`http://localhost:3000/valoracion-servicio/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
+        },
+        body: JSON.stringify(votacion),
       })
-      .catch((error) => {
-        console.log(error);
-      });
-    onClose();
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            alert("se envio la valoracion correctamente");
+          } else {
+            throw new Error("Error al enviar la valoracion");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      onClose();
+    }
+  } else {
+    throw new Error("Error, debe iniciar sesion para continuar");
   }
 
   /* const guardarCambios = () => {
