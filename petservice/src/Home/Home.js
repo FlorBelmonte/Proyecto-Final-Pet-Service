@@ -229,6 +229,7 @@ function Home() {
         <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
       )}
 
+
       {/* {activeComponent === 'BlogActivo' && (
         <BlogContainer />
       )} */}
