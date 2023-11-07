@@ -228,6 +228,10 @@ function Home() {
       {activeComponent === 'Actividades' && (
         <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
       )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
      {/*  { activeComponent === 'BlogActivo' && (
         <BlogContainer />
