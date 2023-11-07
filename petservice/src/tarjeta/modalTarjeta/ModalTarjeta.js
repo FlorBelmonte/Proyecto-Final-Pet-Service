@@ -42,13 +42,12 @@ const ModalTarjeta = ({
   const [puntuacion, setPuntuacion] = useState(voto);
   const [comentario, setComentario] = useState("");
 
-  const token = sessionStorage.getItem("usuarioLogueado.token");
+  async function guardarCambios() {
+    const sessionData = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
-  if (sessionData && sessionData.token) {
-    const { token, correo, nombre, tipo, idUsuario } = sessionData;
+    if (sessionData && sessionData.token) {
+      const { token, correo, nombre, tipo, idUsuario } = sessionData;
 
-    /*el siguiente bloque de codigo realiza el post de valoracion servicio */
-    async function guardarCambios() {
       let votacion = {
         idTarjetaServicio: arrValores[0],
         comentario: comentario,
@@ -76,9 +75,10 @@ const ModalTarjeta = ({
           console.log(error);
         });
       onClose();
+    } else {
+      alert("Error, debe iniciar sesion para continuar");
+      throw new Error("Error, debe iniciar sesion para continuar");
     }
-  } else {
-    throw new Error("Error, debe iniciar sesion para continuar");
   }
 
   /* const guardarCambios = () => {
