@@ -50,16 +50,16 @@ const ModalTarjeta = ({
 
       let votacion = {
         idTarjetaServicio: arrValores[0],
-        comentario: comentario,
         idUsuario: idUsuario,
         valoracion: puntuacion,
+        comentario: comentario,
       };
 
-      await fetch(`http://localhost:3000/valoracion-servicio/`, {
+      await fetch(`http://localhost:3000/valoracion-servicio`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
+          Authorization: `${token}`, // Agrega el token al encabezado 'Authorization'
         },
         body: JSON.stringify(votacion),
       })
