@@ -19,10 +19,38 @@ function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); //estado para controlar la Sidebar
 
-  const handleNavbarSectionClick = () => {  
-setIsSidebarOpen(!isSidebarOpen);
+
+
+ const handleSidebarSectionClick = (section) => { //se ejecuta cuando se clickea la Sidebar   
+   switch (section) {
+      case 'Hoteles':
+        setActiveComponent('Hoteles');
+        break;
+      case 'Aerolíneas':
+        setActiveComponent('Aerolineas');
+        break;
+      case 'Paseadores':
+        setActiveComponent('Paseadores');
+       break;
+           case 'Restaurantes':
+        setActiveComponent('Restaurantes');
+       break;
+           case 'Veterinarias':
+        setActiveComponent('Veterinarias');
+       break;
+           case 'Actividades':
+        setActiveComponent('Actividades');
+       break;
+           case 'Búsquedas':
+        setActiveComponent('FormPerdidosEncontrados');
+       break;
+     
+     default:
+        setActiveComponent(null);
+    }
+    setIsSidebarOpen(false); 
   };
 
 const handleHeaderToggleClick = () => {
@@ -186,7 +214,7 @@ const handleHeaderToggleClick = () => {
           )}
         </div>
       </header>
-      {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)}onSectionClick={handleNavbarSectionClick} />}
+      {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)} onSidebarSectionClick={handleSidebarSectionClick} />}
 
 
       {activeComponent === "LoginFormulario" && (

@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "animate.css": "^4.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
@@ -20,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "copy:files": "xcopy /s /e /y build D:\\source_noe\\pet-service-backend\\client",
-    "build": "react-scripts build && npm run copy:files",    
+    "build": "react-scripts build && npm run copy:files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

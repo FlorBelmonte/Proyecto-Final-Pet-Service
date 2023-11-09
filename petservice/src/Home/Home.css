@@ -139,14 +139,47 @@ header {
 }
 
 .sidebar {
-  width: 400px;
+  width: 350px;
   height: 100%;
   background-color: #ffffff;
-  color: white;
+  color: #000000;
   position: fixed;
   top: 0;
   left: 0;
   padding-top: 60px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.sidebar.animate__animated {
+  opacity: 1;
+}
+
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000000;
+  transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #eaeaea;
+}
+
+.sidebar button {
+  display: block;
+  width: 50%;
+  margin: 60px auto;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar button:hover {
+  background-color: #0056b3;
 }
 
 .hamburger {
