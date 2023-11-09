@@ -5,7 +5,7 @@ import "./puntuarTarjeta.css"
 
 
 
-const PuntuarTarjeta = ({puntuacion, votos}) => {
+const PuntuarTarjeta = ({puntuacion, votos, valoracion}) => {
 
   /* redondeo de la division entre la suma de todos los puntajes dados dividido la cantidad de votos */
 
@@ -17,6 +17,10 @@ const PuntuarTarjeta = ({puntuacion, votos}) => {
   for (let i=0;i<votosResultado;i++){
     votacion.push(i)
   } 
+ /*  const votacion=[];
+  for (let i=0;i<valoracion;i++){
+    votacion.push(i) 
+  }*/
 
   // por cada numero del arreglo se genera la imagen de una pata 
 
