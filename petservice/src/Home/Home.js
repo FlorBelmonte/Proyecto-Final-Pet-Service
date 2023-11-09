@@ -12,12 +12,23 @@ import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
 import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
+import Sidebar from "./Sidebar.js";
+
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const handleNavbarSectionClick = () => {  
+setIsSidebarOpen(!isSidebarOpen);
+  };
+
+const handleHeaderToggleClick = () => {
+  setIsSidebarOpen(!isSidebarOpen);
+  };
+  
   const handleLoginClick = () => {
     //manejador de evento para el boton "Crear Cuenta"
     setActiveComponent("LoginFormulario");
@@ -128,23 +139,23 @@ function Home() {
           onActividadesClick={handleNavBarActividadesClick}
           // onBlogClick={handleNavBarBlogClick}
           onMasClick={handleNavbarMasClick}
+          onHeaderToggleClick={handleHeaderToggleClick}
         />
         <div className="login-link">
           {isLoggedIn ? (
             <>
-              <div className="greeting">
-                <img src={icono} alt="Acceso" className="acceso-img" width="20" height= "20"/>
+              <div className="greeting" style={{ fontSize: "12px", marginTop: "-15px", marginBottom: "11px" }}>
                 <span>¡Hola, {username}!</span>
+                 <span style={{ marginLeft: "5px", marginRight: "5px" }}>||</span>
+                  <span
+                    style={{ cursor: "pointer", textDecoration: "underline" }}
+                    onClick={handleLogout}
+                  >
+                Cerrar sesión
+              </span>
               </div>
               <div className="button-container2">
                  <div className="button-row">
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleLogout}
-              >
-                Cerrar sesión
-              </button>
               <button
                 className="btn btn-outline-primary"
                 type="button"
@@ -175,6 +186,8 @@ function Home() {
           )}
         </div>
       </header>
+      {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)}onSectionClick={handleNavbarSectionClick} />}
+
 
       {activeComponent === "LoginFormulario" && (
         <LoginFormulario
