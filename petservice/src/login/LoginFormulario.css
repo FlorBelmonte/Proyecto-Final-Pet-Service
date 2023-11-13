@@ -35,3 +35,13 @@
     cursor: pointer;
   }  
 
+@media only screen and (max-width: 768px) {
+  .formulario {
+    width:60%;
+    margin-left: 10%;
+    padding: 1.5rem;
+  }
+ .estilo-adicional-boton {
+   width: 50%;
+ }
+}

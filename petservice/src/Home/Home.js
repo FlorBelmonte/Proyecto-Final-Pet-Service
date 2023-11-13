@@ -13,7 +13,7 @@ import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEnco
 import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
 import Sidebar from "./Sidebar.js";
-
+import UserProfile from "./UserProfile.js";
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
@@ -23,7 +23,9 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); //estado para controlar la Sidebar
 
-
+  const handleGreetingClick = () => {
+    setActiveComponent("UserProfile");
+  };
 
  const handleSidebarSectionClick = (section) => { //se ejecuta cuando se clickea la Sidebar   
    switch (section) {
@@ -55,7 +57,8 @@ function Home() {
     setIsSidebarOpen(false); 
   };
 
-const handleHeaderToggleClick = () => {
+  const handleHeaderToggleClick = () => {
+  //manejador de evento para el menú hamburguesa
   setIsSidebarOpen(!isSidebarOpen);
   };
   
@@ -94,6 +97,7 @@ const handleHeaderToggleClick = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername("");
+    setActiveComponent(null);
   };
 
   const handleAccessClick = () => {
@@ -176,8 +180,11 @@ const handleHeaderToggleClick = () => {
         <div className="login-link">
           {isLoggedIn ? (
             <>
-              <div className="greeting" style={{ fontSize: "12px", marginTop: "-15px", marginBottom: "11px" }}>
-                <span>¡Hola, {username}!</span>
+              <div className="greeting" style={{ fontSize: "15px" }}>
+                <span
+                style={{ cursor: "pointer", textDecoration: "underline" }}
+                onClick={handleGreetingClick}
+                >¡Hola, {username}!</span>
                  <span style={{ marginLeft: "5px", marginRight: "5px" }}>||</span>
                   <span
                     style={{ cursor: "pointer", textDecoration: "underline" }}
@@ -186,7 +193,7 @@ const handleHeaderToggleClick = () => {
                 Cerrar sesión
               </span>
               </div>
-              <div className="button-container2">
+              {/* <div className="button-container2">
                  <div className="button-row">
               <button
                 className="btn btn-outline-primary"
@@ -196,30 +203,26 @@ const handleHeaderToggleClick = () => {
                 Registra a tu mascota
                 </button>
                 </div>
-                </div>
+                </div> */}
             </>
           ) : (
             <>
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleLoginClick}
-              >
-                Crear cuenta
-              </button>
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleAccessClick}
-              >
-                Iniciar Sesión
-              </button>
+               <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
+        Crear cuenta
+      </button>
+      <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
+        Iniciar Sesión
+      </button>
             </>
           )}
-        </div>
+          </div>
       </header>
       {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)} onSidebarSectionClick={handleSidebarSectionClick} />}
-
+      
+      {activeComponent === "UserProfile" && (
+        <UserProfile username={username} onClose={() => setActiveComponent(null)}
+        onRegistroMascotaClick={handleRegistroMascotaClick}/>
+      )}
 
       {activeComponent === "LoginFormulario" && (
         <LoginFormulario
