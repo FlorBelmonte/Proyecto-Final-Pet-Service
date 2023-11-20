@@ -5,6 +5,7 @@ import "./tarjetero.css"
 import CrearTarjeta from '../tarjeta/crearTarjeta/CrearTarjeta'
 import { useContext } from 'react'
 import { ServiciosContext } from '../context/ServiciosContext'
+import { ProvinciaContext } from '../context/ProvinciaContext'
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -12,6 +13,7 @@ import axios from 'axios';
 const Tarjetero = ({servicioElejido}) => {
   
   //const contextServicios=useContext(ServiciosContext)
+  const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext); 
   
   const [data, setData] = useState([]);
   const [interData, setInterData]= useState([]);
@@ -33,36 +35,24 @@ const Tarjetero = ({servicioElejido}) => {
   }, [servicioElejido]);
 
 console.log(interData.data)
-   
-// habria que cambiar en la linea de abajo data x iterData.data pero da error
-   const tarjetas=data.map((t)=>(
-   
-    <Tarjeta  key={t.nombre} id={t.idTarjetaServicio} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />
-    
-  
-    )) 
-    
-  
-  //filtro de busqueda segun el servicio seleccionado (desde la barra de navegacion)
-  //const tarjetasFiltradasPorServicio=contextServicios.servicios.filter(tarjeta=>{return tarjeta.servicio===servicioElejido.servicioElejido});
-  
-  //console.log(tarjetasFiltradasPorServicio)
+   console.log("filtraProvincia desde Tarjetero = " + filtraProvincia)
 
-   //crea el arreglo de tarjetas segun los filtros seleccionados en el paso anterior
-   /*  const tarjetas=tarjetasFiltradasPorServicio.map((t)=>(
-   
-    <Tarjeta  key={t.id} id={t.id} nombre={t.nombre} servicio={t.servicio} imagen={t.imagen} puntuacion={t.puntuacion} precio={t.precio} info={t.informacion} votos={t.votos} />
+    
   
   
-    ))  */
+  /************datos filtrados por provincia************ */
+  const tarjetasFiltradas = data.filter(tarjeta => {
+    if (filtraProvincia === 'Todas') {
+      return true
+    }
+    return tarjeta.provincia.nombre===filtraProvincia
+  }).map(t=>(<Tarjeta  key={t.nombre} id={t.idTarjetaServicio} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />))
+  
      
-    
-
-  
   return (
     <div className='tarjetero'>
         <CrearTarjeta/>
-        {tarjetas}
+        {tarjetasFiltradas}
         
     </div>
   )

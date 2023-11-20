@@ -3,10 +3,15 @@ import { Dropdown, ButtonGroup, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+import { useContext } from 'react'; 
+import { ProvinciaContext } from "../context/ProvinciaContext"; // se usa para poder elejir la provincia y usarla en otro contexto
+
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedService, setSelectedService] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext);// se usa el provincia context
 
   const servicios = ['Hotel', 'Restaurante', 'Paseador', 'Aerolínea', 'Veterinaria', 'Actividad'];
 
@@ -16,9 +21,12 @@ function Search() {
     'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán',
   ];
 
+
+  
   const handleProvinceClick = (provincia) => {
     setSearchTerm(provincia);
     setShowDropdown(false);
+    setFiltraProvincia(provincia)  //ofrece el valor de la provincia elejida para poder usarlo como filtro en Tarjetero
   };
 
   const handleServiceClick = (service) => {
