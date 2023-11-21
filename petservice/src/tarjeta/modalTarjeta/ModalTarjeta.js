@@ -42,6 +42,7 @@ const ModalTarjeta = ({
   const [puntuacion, setPuntuacion] = useState(voto);
   const [comentario, setComentario] = useState("");
 
+
   const token = sessionStorage.getItem("usuarioLogueado.token");
 
   if (sessionData && sessionData.token) {
@@ -76,9 +77,11 @@ const ModalTarjeta = ({
           console.log(error);
         });
       onClose();
+
     }
   } else {
     throw new Error("Error, debe iniciar sesion para continuar");
+
   }
 
   /* const guardarCambios = () => {

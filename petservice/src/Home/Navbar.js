@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Search from './Search';
 import './Home.css';
 
-function Navbar({onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, /*onBlogClick*/ onMasClick}) {
+
+function Navbar({onHeaderToggleClick, onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, /*onBlogClick*/ onMasClick}) {
+
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
@@ -47,7 +49,7 @@ const handleNavbarMasClick=()=>{
 
   return (
     <nav className="navbar navbar-expand-lg justify-content-between">
-      <button className="navbar-toggler" type="button" onClick={handleToggle}>
+      <button className="navbar-toggler" type="button" onClick={onHeaderToggleClick}>
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className={navbarClass} id="navbarNav">
@@ -82,7 +84,10 @@ const handleNavbarMasClick=()=>{
           <li className="nav-item">
             <div className="search-container">
               <div className="search-wrapper">
-                <Search />
+                
+                  <Search />
+                
+                
               </div>
             </div>
           </li>

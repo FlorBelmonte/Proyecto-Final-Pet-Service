@@ -12,15 +12,57 @@ import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
 import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
+import Sidebar from "./Sidebar.js";
+import UserProfile from "./UserProfile.js";
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null); // se agregó estado para controlar el componente activo
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); //estado para controlar la Sidebar
 
 
+  const handleGreetingClick = () => {
+    setActiveComponent("UserProfile");
+  };
+
+ const handleSidebarSectionClick = (section) => { //se ejecuta cuando se clickea la Sidebar   
+   switch (section) {
+      case 'Hoteles':
+        setActiveComponent('Hoteles');
+        break;
+      case 'Aerolíneas':
+        setActiveComponent('Aerolineas');
+        break;
+      case 'Paseadores':
+        setActiveComponent('Paseadores');
+       break;
+           case 'Restaurantes':
+        setActiveComponent('Restaurantes');
+       break;
+           case 'Veterinarias':
+        setActiveComponent('Veterinarias');
+       break;
+           case 'Actividades':
+        setActiveComponent('Actividades');
+       break;
+           case 'Búsquedas':
+        setActiveComponent('FormPerdidosEncontrados');
+       break;
+     
+     default:
+        setActiveComponent(null);
+    }
+    setIsSidebarOpen(false); 
+  };
+
+  const handleHeaderToggleClick = () => {
+  //manejador de evento para el menú hamburguesa
+  setIsSidebarOpen(!isSidebarOpen);
+  };
+  
   const handleLoginClick = () => {
     //manejador de evento para el boton "Crear Cuenta"
     setActiveComponent("LoginFormulario");
@@ -55,6 +97,7 @@ function Home() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername("");
+    setActiveComponent(null);
   };
 
   const handleAccessClick = () => {
@@ -71,35 +114,40 @@ function Home() {
     setActiveComponent(null);
   };
 
-
-  const handleNavbarHotelesClick= ()=>{  //manejador de evento para la seccion "Hoteles"
-    setActiveComponent('Hoteles');
-    setSelectedCategory('1');
+  const handleNavbarHotelesClick = () => {
+    //manejador de evento para la seccion "Hoteles"
+    setActiveComponent("Hoteles");
+    setSelectedCategory("1");
   };
 
-  const handleNavBarRestaurantesClick=()=>{ //manejador de evento para la seccion "Restaurantes"
-    setActiveComponent('Restaurantes');
-    setSelectedCategory('2');
+  const handleNavBarRestaurantesClick = () => {
+    //manejador de evento para la seccion "Restaurantes"
+    setActiveComponent("Restaurantes");
+    setSelectedCategory("2");
   };
 
-  const handleNavBarPaseadoresClick=()=>{ //manejador de evento para la seccion "Paseadores"
-    setActiveComponent('Paseadores');
-    setSelectedCategory('4');
+  const handleNavBarPaseadoresClick = () => {
+    //manejador de evento para la seccion "Paseadores"
+    setActiveComponent("Paseadores");
+    setSelectedCategory("4");
   };
 
-  const handleNavBarVeterinariasClick=()=>{ //manejador de evento para la seccion "Veterinarias"
-    setActiveComponent('Veterinarias');
-    setSelectedCategory('5');
+  const handleNavBarVeterinariasClick = () => {
+    //manejador de evento para la seccion "Veterinarias"
+    setActiveComponent("Veterinarias");
+    setSelectedCategory("5");
   };
 
-  const handleNavBarActividadesClick=()=>{ //manejador de evento para la seccion "Actividades"
-    setActiveComponent('Actividades');
-    setSelectedCategory('6');
+  const handleNavBarActividadesClick = () => {
+    //manejador de evento para la seccion "Actividades"
+    setActiveComponent("Actividades");
+    setSelectedCategory("6");
   };
 
-  const handleNavBarAerolineasClick=()=>{ //manejador de evento para la seccion "Aerolineas"
-    setActiveComponent('Aerolineas');
-    setSelectedCategory('3');
+  const handleNavBarAerolineasClick = () => {
+    //manejador de evento para la seccion "Aerolineas"
+    setActiveComponent("Aerolineas");
+    setSelectedCategory("3");
   };
 
   // const handleNavBarBlogClick=()=>{ //manejador de evento para la seccion "Blog"
@@ -132,23 +180,27 @@ function Home() {
           onActividadesClick={handleNavBarActividadesClick}
           // onBlogClick={handleNavBarBlogClick}
           onMasClick={handleNavbarMasClick}
+          onHeaderToggleClick={handleHeaderToggleClick}
         />
         <div className="login-link">
           {isLoggedIn ? (
             <>
-              <div className="greeting">
-                <img src={icono} alt="Acceso" className="acceso-img" width="20" height= "20"/>
-                <span>¡Hola, {username}!</span>
-              </div>
-              <div className="button-container2">
-                 <div className="button-row">
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleLogout}
-              >
+
+              <div className="greeting" style={{ fontSize: "15px" }}>
+                <span
+                style={{ cursor: "pointer", textDecoration: "underline" }}
+                onClick={handleGreetingClick}
+                >¡Hola, {username}!</span>
+                 <span style={{ marginLeft: "5px", marginRight: "5px" }}>||</span>
+                  <span
+                    style={{ cursor: "pointer", textDecoration: "underline" }}
+                    onClick={handleLogout}
+                  >
                 Cerrar sesión
-              </button>
+              </span>
+              </div>
+              {/* <div className="button-container2">
+                 <div className="button-row">
               <button
                 className="btn btn-outline-primary"
                 type="button"
@@ -157,28 +209,26 @@ function Home() {
                 Registra a tu mascota
                 </button>
                 </div>
-                </div>
+                </div> */}
             </>
           ) : (
             <>
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleLoginClick}
-              >
-                Crear cuenta
-              </button>
-              <button
-                className="btn btn-outline-primary"
-                type="button"
-                onClick={handleAccessClick}
-              >
-                Iniciar Sesión
-              </button>
+               <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
+        Crear cuenta
+      </button>
+      <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
+        Iniciar Sesión
+      </button>
             </>
           )}
-        </div>
+          </div>
       </header>
+      {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)} onSidebarSectionClick={handleSidebarSectionClick} />}
+      
+      {activeComponent === "UserProfile" && (
+        <UserProfile username={username} onClose={() => setActiveComponent(null)}
+        onRegistroMascotaClick={handleRegistroMascotaClick}/>
+      )}
 
       {activeComponent === "LoginFormulario" && (
         <LoginFormulario
@@ -200,36 +250,38 @@ function Home() {
           onLogin={handleLoginFormSubmit}
         />
       )}
-      
+
       {activeComponent === "FormPerdidosEncontrados" && (
         <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
       )}
-      
-      {activeComponent === 'Hoteles' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '1' }} />
+
+      {activeComponent === "Hoteles" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "1" }} />
       )}
 
-      {activeComponent === 'Aerolineas' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '3' }} />
+      {activeComponent === "Aerolineas" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "3" }} />
       )}
 
-      {activeComponent === 'Restaurantes' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '2' }} />
+      {activeComponent === "Restaurantes" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "2" }} />
       )}
 
-      {activeComponent === 'Paseadores' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '4' }} />
+      {activeComponent === "Paseadores" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "4" }} />
       )}
 
-      {activeComponent === 'Veterinarias' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '5' }} />
+      {activeComponent === "Veterinarias" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "5" }} />
       )}
 
-      {activeComponent === 'Actividades' && (
-        <Tarjetero servicioElejido={{ servicioElejido: '6' }} />
+
+      {activeComponent === "Actividades" && (
+        <Tarjetero servicioElejido={{ servicioElejido: "6" }} />
       )}
 
-     {/*  { activeComponent === 'BlogActivo' && (
+      {/*  { activeComponent === 'BlogActivo' && (
+
         <BlogContainer />
       ) } */}
 

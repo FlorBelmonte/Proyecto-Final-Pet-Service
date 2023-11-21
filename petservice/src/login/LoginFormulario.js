@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form } from "react-bootstrap";
+import { Eye, EyeSlash } from "react-bootstrap-icons"
+
 import "./LoginFormulario.css";
 
 function LoginFormulario({ onClose, onSubmit }) {
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [tipoUsuario, setTipoUsuario] = useState(1);
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
   const [errors, setErrors] = useState({});
@@ -16,44 +20,42 @@ function LoginFormulario({ onClose, onSubmit }) {
     setMostrarErrorExcepcion(false);
     if (validateForm()) {
       const data = {
-        nombre:nombre,
-        apellido:apellido,
-        correo:email,
-        password:password,
-        tipo:tipoUsuario,
+        nombre: nombre,
+        apellido: apellido,
+        correo: email,
+        password: password,
+        tipo: tipoUsuario,
       };
 
-      
-      
       // Realiza la solicitud al servidor
-      fetch('http://localhost:3000/usuario/create', {
-        method: 'POST',
+      fetch("http://localhost:3000/usuario/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       })
-      .then(response => {
-        console.log(response)
-        if (response.ok) {
-          alert("Se envió correctamente el formulario")
-          //Limpia los campos después del envío
-          setNombre('');
-          setApellido('');
-          setEmail('');
-          setPassword('');
-          setTipoUsuario('');
-          onClose();
-          // onSubmit({ username: email });
-        } else {
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            alert("Se envió correctamente el formulario");
+            //Limpia los campos después del envío
+            setNombre("");
+            setApellido("");
+            setEmail("");
+            setPassword("");
+            setTipoUsuario("");
+            onClose();
+            // onSubmit({ username: email });
+          } else {
+            setMostrarErrorExcepcion(true);
+            throw new Error("Error al enviar el formulario");
+          }
+        })
+        .catch((error) => {
           setMostrarErrorExcepcion(true);
-          throw new Error('Error al enviar el formulario');
-        }
-      })
-      .catch(error => {
-        setMostrarErrorExcepcion(true);
-        console.error(error);
-      });
+          console.error(error);
+        });
     }
   };
 
@@ -62,36 +64,40 @@ function LoginFormulario({ onClose, onSubmit }) {
     const errors = {};
 
     if (!nombre) {
-      errors.nombre = 'El nombre es requerido';
+      errors.nombre = "El nombre es requerido";
       formIsValid = false;
     }
 
     if (!apellido) {
-      errors.apellido = 'El apellido es requerido';
+      errors.apellido = "El apellido es requerido";
       formIsValid = false;
     }
 
     if (!email) {
-      errors.email = 'El email es requerido';
+      errors.email = "El email es requerido";
       formIsValid = false;
     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      errors.email = 'El email es inválido';
+      errors.email = "El email es inválido";
       formIsValid = false;
     }
 
-    if (password.trim() === '') {
-      errors.password = 'Debe ingresar una contraseña';
+    if (password.trim() === "") {
+      errors.password = "Debe ingresar una contraseña";
       formIsValid = false;
     } else if (password.length < 6) {
-      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      errors.password = "La contraseña debe tener al menos 6 caracteres";
       formIsValid = false;
-    }else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
-      errors.password = 'La contraseña debe contener letras y números';
+    } else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+      errors.password = "La contraseña debe contener letras y números";
+      formIsValid = false;
+    } else if (password !== confirmPassword) {
+      errors.confirmPassword =
+        "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.";
       formIsValid = false;
     }
 
     if (!aceptaTerminos) {
-      errors.aceptaTerminos = 'Debes aceptar los términos y condiciones';
+      errors.aceptaTerminos = "Debes aceptar los términos y condiciones";
       formIsValid = false;
     }
 
@@ -102,7 +108,6 @@ function LoginFormulario({ onClose, onSubmit }) {
   return (
     <div className="contenedor">
       <Form className="formulario">
-        
         <Form.Group controlId="nombre">
           <Form.Label>Nombre:</Form.Label>
           <Form.Control
@@ -111,7 +116,9 @@ function LoginFormulario({ onClose, onSubmit }) {
             onChange={(e) => setNombre(e.target.value)}
             required
           />
-          {errors.nombre && <Form.Text className="text-danger">{errors.nombre}</Form.Text>}
+          {errors.nombre && (
+            <Form.Text className="text-danger">{errors.nombre}</Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group controlId="apellido">
@@ -122,9 +129,10 @@ function LoginFormulario({ onClose, onSubmit }) {
             onChange={(e) => setApellido(e.target.value)}
             required
           />
-          {errors.apellido && <Form.Text className="text-danger">{errors.apellido}</Form.Text>}
+          {errors.apellido && (
+            <Form.Text className="text-danger">{errors.apellido}</Form.Text>
+          )}
         </Form.Group>
-
 
         <Form.Group controlId="email">
           <Form.Label>Email:</Form.Label>
@@ -134,20 +142,48 @@ function LoginFormulario({ onClose, onSubmit }) {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          {errors.email && <Form.Text className="text-danger">{errors.email}</Form.Text>}
+          {errors.email && (
+            <Form.Text className="text-danger">{errors.email}</Form.Text>
+          )}
         </Form.Group>
 
         <Form.Group controlId="password">
           <Form.Label>Password:</Form.Label>
+           <div className="password-input-container">
           <Form.Control
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+
+          <Button
+            variant="outline-secondary"
+            onClick={() => setShowPassword(!showPassword)}
+             className="password-toggle-btn"
+          >
+             {showPassword ? <EyeSlash /> : <Eye />}
+              </Button>
+          </div>
+          {errors.password && (
+            <Form.Text className="text-danger">{errors.password}</Form.Text>
+          )}
         </Form.Group>
 
+        <Form.Group controlId="confirmPassword">
+          <Form.Label>Confirmar Password:</Form.Label>
+          <Form.Control
+            type={showPassword ? "text" : "password"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {errors.confirmPassword && (
+            <Form.Text className="text-danger">
+              {errors.confirmPassword}
+            </Form.Text>
+          )}
+        </Form.Group>
 
         <Form.Group controlId="aceptaTerminos">
           <Form.Check
@@ -157,14 +193,26 @@ function LoginFormulario({ onClose, onSubmit }) {
             onChange={(e) => setAceptaTerminos(e.target.checked)}
             isInvalid={!!errors.aceptaTerminos}
           />
-          {errors.aceptaTerminos && <Form.Text className="text-danger">{errors.aceptaTerminos}</Form.Text>}
+          {errors.aceptaTerminos && (
+            <Form.Text className="text-danger">
+              {errors.aceptaTerminos}
+            </Form.Text>
+          )}
         </Form.Group>
-        
+
         <div>
-          {mostrarErrorExcepcion && <div>Ocurrió un error, intente más tarde.</div>}
+          {mostrarErrorExcepcion && (
+            <div>Ocurrió un error, intente más tarde.</div>
+          )}
         </div>
 
-        <Button onClick={handleSubmit} type="button" className="btn btn-primary rounded-lg me-2 estilo-adicional-boton">Enviar</Button>
+        <Button
+          type="button"
+          onClick={onSubmit}
+          className="btn btn-primary rounded-lg me-2 estilo-adicional-boton"
+        >
+          Enviar
+        </Button>
       </Form>
     </div>
   );
