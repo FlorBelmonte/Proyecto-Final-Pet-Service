@@ -150,12 +150,14 @@ function LoginFormulario({ onClose, onSubmit }) {
         <Form.Group controlId="password">
           <Form.Label>Password:</Form.Label>
            <div className="password-input-container">
-          <Form.Control
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="password-input-wrapper">
+      <Form.Control
+        type={showPassword ? "text" : "password"}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+    </div>
 
           <Button
             variant="outline-secondary"

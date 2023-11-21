@@ -23,7 +23,7 @@ const PerdidosyEncontrados =()=>{
         <div className='mascota'>
             <div className=' flip-frente'>
               <p>{mascota.tipo}</p>
-              <img src={mascota.imagen.data} alt={mascota.nombre} />  
+              <img src={mascota.imagen} alt={mascota.nombre} />  
             </div>
             <div className=' flip-dorso'>
               <p>nombre: { mascota.nombre}</p>
