@@ -35,13 +35,14 @@
     cursor: pointer;
   }  
 
-.password-input-container {
-  position: relative;
-}
 
-.password-toggle-btn {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
+@media only screen and (max-width: 768px) {
+  .formulario {
+    width:60%;
+    margin-left: 10%;
+    padding: 1.5rem;
+  }
+ .estilo-adicional-boton {
+   width: 50%;
+ }
 }
