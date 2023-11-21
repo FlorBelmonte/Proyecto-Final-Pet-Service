@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './FormPerdidosEncontrados.css'
 
+import PerdidosyEncontrados from "../PerdidosyEncontrados/PerdidosyEncontrados";
+
 function FormPerdidosEncontrados({onSubmit}) {
   const [nombre, setNombre] = useState("");
   const [raza, setRaza] = useState("");
@@ -44,6 +46,7 @@ function FormPerdidosEncontrados({onSubmit}) {
         compañero peludo o a reunir a una mascota perdida con su dueño. Por favor, ayúdanos a brindar la información
         necesaria para que podamos difundir su búsqueda. ¡Juntos podemos encontrar a nuestras mascotas desaparecidas!"
       </p>
+     
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="nombre" className="form-label">Nombre de la Mascota:</label>
@@ -67,6 +70,7 @@ function FormPerdidosEncontrados({onSubmit}) {
 
         <button type="submit" className="btn btn-primary">Enviar</button>
       </form>
+      <PerdidosyEncontrados/>
     </div>
   );
 }
