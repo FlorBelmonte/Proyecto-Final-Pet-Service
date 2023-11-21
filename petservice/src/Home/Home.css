@@ -106,38 +106,140 @@ header {
 }
 
 /* Estilos para la portada */
+.portada-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .portada-img {
   position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.contenido-especial {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.portada-img {
+.fondo-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 50%;
-  max-width: 100%;
-  transition: opacity 0.5s ease-in-out;
-  animation: fadeInOut 10s ease-in-out infinite;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
 }
 
+.perro-img {
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.perro-montaje {
+  width: 40%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(0, 0);
+}
+
+.texto-imagen-fondo {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  transform: translate(-50%);
+  text-align: left;
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .portada-container {
+    height: 50vh;
+  }
+
+  .perro-img,
+  .perro-montaje {
+    width: 50%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .portada-img {
+    height: 50vh;
+  }
+
+  .logos-img,
+  .paisaje-img {
+    width: 100%;
+  }
+
+  .texto-imagen-fondo {
+    top: 3%;
+    left: 2%;
+  }
+}
+
+.titulo-texto {
+  font-size: 2em;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.publicidad {
+  font-family: 'Woodland', sans-serif;
+  font-size: 2.1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.linea1,
+.linea2 {
+  margin-bottom: 10px;
+}
+
+.ubicacion-texto {
+  font-size: 1.4em;
+  color: rgb(90, 84, 1);
+  margin-top: 10px;
+}
+.titulo-texto.publicidad2 {
+  font-size: 2.5em;
+  color: #ffA500;
+}
+
+.ubicacion-texto2 {
+  font-size: 1.8em;
+  color: #fff;
+  margin-top: 5px;
+}
+.transicion-salida {
+  transition: transform 1s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.transicion-entrada {
+  transition: transform 1s ease-in-out;
+  transform: translateX(0);
+}
+/* Estilo para sidebar */
 .sidebar {
   width: 350px;
   height: 100%;
