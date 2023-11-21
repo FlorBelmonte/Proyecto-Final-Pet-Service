@@ -3,7 +3,7 @@
 
 
 import Home from "./Home/Home.js";
-
+import ProvinciaContextProvider from './context/ProvinciaContext.js';
  import ServiciosContextProvider from './context/ServiciosContext.js';
 // import Tarjetero from "./tarjetero/Tarjetero";
 
@@ -14,10 +14,11 @@ function App() {
 
 
       {/* <Tarjetero/> */}
+      <ProvinciaContextProvider>
       <ServiciosContextProvider>
         <Home/>
       </ServiciosContextProvider>
-      
+      </ProvinciaContextProvider>
 
 
       {/* <BlogContainer/> */}
