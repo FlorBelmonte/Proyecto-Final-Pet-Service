@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Search from './Search';
 import './Home.css';
 
+
 function Navbar({onHeaderToggleClick, onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, /*onBlogClick*/ onMasClick}) {
+
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
@@ -82,7 +84,10 @@ const handleNavbarMasClick=()=>{
           <li className="nav-item">
             <div className="search-container">
               <div className="search-wrapper">
-                <Search />
+                
+                  <Search />
+                
+                
               </div>
             </div>
           </li>

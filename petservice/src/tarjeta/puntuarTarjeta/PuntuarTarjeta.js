@@ -5,11 +5,11 @@ import "./puntuarTarjeta.css"
 
 
 
-const PuntuarTarjeta = ({puntuacion, votos, valoracion}) => {
+const PuntuarTarjeta = ({valoracion}) => {
 
   /* redondeo de la division entre la suma de todos los puntajes dados dividido la cantidad de votos */
 
-   const votosResultado= Math.floor( puntuacion/votos)
+   const votosResultado= Math.floor( valoracion)
    
    
   // se crea un arreglo con la cantidad de posiciones segun el resultado de votosResultado 

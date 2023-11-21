@@ -6,9 +6,9 @@ import PuntuarTarjeta from './puntuarTarjeta/PuntuarTarjeta';
 
 
 
-const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos, provincia, puntaje}) => {
+const Tarjeta = ({id, nombre, servicio, imagen, promedio, precio, info, votos, provincia, puntaje, valoraciones}) => {
   
-  const [arrValores, setArrValores ] =useState([id, nombre, servicio, imagen,puntuacion, precio, info, votos, provincia, puntaje ]);
+  const [arrValores, setArrValores ] =useState([id, nombre, servicio, imagen, promedio, precio, info, votos, provincia, puntaje, valoraciones ]);
   const actualizarArr=(nuevoArrValores)=>{
     setArrValores(nuevoArrValores)
   };
@@ -38,7 +38,7 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
 
 
   /************************************************ */
-  const [sumaValoraciones, setSumaValoraciones]=useState(puntuacion)
+  const [sumaValoraciones, setSumaValoraciones]=useState(promedio)
 /***************************************************** */
   
   
@@ -46,8 +46,11 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
   
   const mostrar = () => {
     if (showModal===false)setShowModal(true) 
-     console.log(arrValores)
-     
+    console.log("puntuacion = " + arrValores[4])
+    console.log("votos = " + arrValores[7])
+    console.log("puntaje = " + arrValores[9] )
+    console.log("largo valoraciones = " + arrValores[10].length)
+    console.log("valoraciones comentario=" + valoraciones[0].comentario)
   };
 
   const ocultar = () => {
@@ -57,7 +60,7 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
    const votar = () => {
     
     //setVoto(voto + 1);
-    console.log("valor de puntaje en votar", miPuntaje ) 
+    //console.log("valor de puntaje en votar", miPuntaje ) 
   }; 
  
 
@@ -94,7 +97,16 @@ const Tarjeta = ({id, nombre, servicio, imagen, puntuacion, precio, info, votos,
       </div>
 
       {showModal && (
-        <ModalTarjeta onClose={ocultar} actualizarArr={actualizarArr} actualizarPuntaje={actualizarPuntaje}  arrValores={arrValores} miPuntaje={miPuntaje}   voto={voto} actualizarSumaValoraciones={actualizarSumaValoraciones}  votar={votar}/>
+        <ModalTarjeta
+          onClose={ocultar}
+          actualizarArr={actualizarArr}
+          actualizarPuntaje={actualizarPuntaje}
+          arrValores={arrValores}
+          miPuntaje={miPuntaje}
+          voto={voto}
+          actualizarSumaValoraciones={actualizarSumaValoraciones}
+          votar={votar}
+          valoraciones={valoraciones} />
       )}
     </div>
   );

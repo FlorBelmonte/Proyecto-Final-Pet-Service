@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Dropdown, ButtonGroup, Button } from 'react-bootstrap';
 
+import { useContext } from 'react'; 
+import { ProvinciaContext } from "../context/ProvinciaContext"; // se usa para poder elejir la provincia y usarla en otro contexto
+
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -11,9 +14,12 @@ function Search() {
     'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán',
   ];
 
+
+  
   const handleProvinceClick = (provincia) => {
     setSearchTerm(provincia);
     setShowDropdown(false);
+    setFiltraProvincia(provincia)  //ofrece el valor de la provincia elejida para poder usarlo como filtro en Tarjetero
   };
 
 
