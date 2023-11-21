@@ -275,11 +275,13 @@ function Home() {
         <Tarjetero servicioElejido={{ servicioElejido: "5" }} />
       )}
 
+
       {activeComponent === "Actividades" && (
         <Tarjetero servicioElejido={{ servicioElejido: "6" }} />
       )}
 
       {/*  { activeComponent === 'BlogActivo' && (
+
         <BlogContainer />
       ) } */}
 
