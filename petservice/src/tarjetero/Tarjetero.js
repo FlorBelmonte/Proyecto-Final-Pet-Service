@@ -107,12 +107,11 @@ console.log(interData.data)
   }).map(t=>(<Tarjeta  key={t.nombre} id={t.idTarjetaServicio} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />))
   
      
-  return (
-    <div className='tarjetero'>
-        <CrearTarjeta/>
-        {tarjetasFiltradas}
-        
-
+ return (
+    <div className="tarjetero">
+      {mostrarCrearTarjeta && <CrearTarjeta />}
+     {tarjetasFiltradas}
+     
     </div>
   );
 };

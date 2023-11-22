@@ -42,26 +42,24 @@ const ModalTarjeta = ({
   const [puntuacion, setPuntuacion] = useState(voto);
   const [comentario, setComentario] = useState("");
 
+  async function guardarCambios() {
+    const sessionData = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
-  const token = sessionStorage.getItem("usuarioLogueado.token");
+    if (sessionData && sessionData.token) {
+      const { token, correo, nombre, tipo, idUsuario } = sessionData;
 
-  if (sessionData && sessionData.token) {
-    const { token, correo, nombre, tipo, idUsuario } = sessionData;
-
-    /*el siguiente bloque de codigo realiza el post de valoracion servicio */
-    async function guardarCambios() {
       let votacion = {
         idTarjetaServicio: arrValores[0],
-        comentario: comentario,
         idUsuario: idUsuario,
         valoracion: puntuacion,
+        comentario: comentario,
       };
 
-      await fetch(`http://localhost:3000/valoracion-servicio/`, {
+      await fetch(`http://localhost:3000/valoracion-servicio`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
+          Authorization: `${token}`, // Agrega el token al encabezado 'Authorization'
         },
         body: JSON.stringify(votacion),
       })
@@ -77,11 +75,10 @@ const ModalTarjeta = ({
           console.log(error);
         });
       onClose();
-
+    } else {
+      alert("Error, debe iniciar sesion para continuar");
+      throw new Error("Error, debe iniciar sesion para continuar");
     }
-  } else {
-    throw new Error("Error, debe iniciar sesion para continuar");
-
   }
 
   /* const guardarCambios = () => {
