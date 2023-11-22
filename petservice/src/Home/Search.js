@@ -7,7 +7,8 @@ import { ProvinciaContext } from "../context/ProvinciaContext"; // se usa para p
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-
+ const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext);
+  
   const provinciasArgentinas = [
     'CABA', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos',
     'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta',
