@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import Portada from "./Portada";
 import Footer from "./Footer";
 import LoginFormulario from "../login/LoginFormulario";
-import RegistroMascota from "../registroMascota/registroMascota";
+import RegistroMascota from "../registroMascota/RegistroMascota";
 import Acceder from "../Ingreso/Acceder";
 import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
@@ -23,46 +23,46 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); //estado para controlar la Sidebar
 
-
   const handleGreetingClick = () => {
     setActiveComponent("UserProfile");
   };
 
- const handleSidebarSectionClick = (section) => { //se ejecuta cuando se clickea la Sidebar   
-   switch (section) {
-      case 'Hoteles':
-        setActiveComponent('Hoteles');
+  const handleSidebarSectionClick = (section) => {
+    //se ejecuta cuando se clickea la Sidebar
+    switch (section) {
+      case "Hoteles":
+        setActiveComponent("Hoteles");
         break;
-      case 'Aerolíneas':
-        setActiveComponent('Aerolineas');
+      case "Aerolíneas":
+        setActiveComponent("Aerolineas");
         break;
-      case 'Paseadores':
-        setActiveComponent('Paseadores');
-       break;
-           case 'Restaurantes':
-        setActiveComponent('Restaurantes');
-       break;
-           case 'Veterinarias':
-        setActiveComponent('Veterinarias');
-       break;
-           case 'Actividades':
-        setActiveComponent('Actividades');
-       break;
-           case 'Búsquedas':
-        setActiveComponent('FormPerdidosEncontrados');
-       break;
-     
-     default:
+      case "Paseadores":
+        setActiveComponent("Paseadores");
+        break;
+      case "Restaurantes":
+        setActiveComponent("Restaurantes");
+        break;
+      case "Veterinarias":
+        setActiveComponent("Veterinarias");
+        break;
+      case "Actividades":
+        setActiveComponent("Actividades");
+        break;
+      case "Búsquedas":
+        setActiveComponent("FormPerdidosEncontrados");
+        break;
+
+      default:
         setActiveComponent(null);
     }
-    setIsSidebarOpen(false); 
+    setIsSidebarOpen(false);
   };
 
   const handleHeaderToggleClick = () => {
-  //manejador de evento para el menú hamburguesa
-  setIsSidebarOpen(!isSidebarOpen);
+    //manejador de evento para el menú hamburguesa
+    setIsSidebarOpen(!isSidebarOpen);
   };
-  
+
   const handleLoginClick = () => {
     //manejador de evento para el boton "Crear Cuenta"
     setActiveComponent("LoginFormulario");
@@ -185,19 +185,22 @@ function Home() {
         <div className="login-link">
           {isLoggedIn ? (
             <>
-
               <div className="greeting" style={{ fontSize: "15px" }}>
                 <span
-                style={{ cursor: "pointer", textDecoration: "underline" }}
-                onClick={handleGreetingClick}
-                >¡Hola, {username}!</span>
-                 <span style={{ marginLeft: "5px", marginRight: "5px" }}>||</span>
-                  <span
-                    style={{ cursor: "pointer", textDecoration: "underline" }}
-                    onClick={handleLogout}
-                  >
-                Cerrar sesión
-              </span>
+                  style={{ cursor: "pointer", textDecoration: "underline" }}
+                  onClick={handleGreetingClick}
+                >
+                  ¡Hola, {username}!
+                </span>
+                <span style={{ marginLeft: "5px", marginRight: "5px" }}>
+                  ||
+                </span>
+                <span
+                  style={{ cursor: "pointer", textDecoration: "underline" }}
+                  onClick={handleLogout}
+                >
+                  Cerrar sesión
+                </span>
               </div>
               {/* <div className="button-container2">
                  <div className="button-row">
@@ -213,21 +216,37 @@ function Home() {
             </>
           ) : (
             <>
-               <button className="btn btn-outline-primary" type="button" onClick={handleLoginClick}>
-        Crear cuenta
-      </button>
-      <button className="btn btn-outline-primary" type="button" onClick={handleAccessClick}>
-        Iniciar Sesión
-      </button>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleLoginClick}
+              >
+                Crear cuenta
+              </button>
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={handleAccessClick}
+              >
+                Iniciar Sesión
+              </button>
             </>
           )}
-          </div>
+        </div>
       </header>
-      {isSidebarOpen && <Sidebar onClose={() => setIsSidebarOpen(false)} onSidebarSectionClick={handleSidebarSectionClick} />}
-      
+      {isSidebarOpen && (
+        <Sidebar
+          onClose={() => setIsSidebarOpen(false)}
+          onSidebarSectionClick={handleSidebarSectionClick}
+        />
+      )}
+
       {activeComponent === "UserProfile" && (
-        <UserProfile username={username} onClose={() => setActiveComponent(null)}
-        onRegistroMascotaClick={handleRegistroMascotaClick}/>
+        <UserProfile
+          username={username}
+          onClose={() => setActiveComponent(null)}
+          onRegistroMascotaClick={handleRegistroMascotaClick}
+        />
       )}
 
       {activeComponent === "LoginFormulario" && (
@@ -274,7 +293,6 @@ function Home() {
       {activeComponent === "Veterinarias" && (
         <Tarjetero servicioElejido={{ servicioElejido: "5" }} />
       )}
-
 
       {activeComponent === "Actividades" && (
         <Tarjetero servicioElejido={{ servicioElejido: "6" }} />
