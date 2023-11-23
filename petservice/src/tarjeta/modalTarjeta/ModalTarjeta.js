@@ -29,18 +29,31 @@ const ModalTarjeta = ({
 
   // agrega los comentarios y los votos de los usuarios en la modal.
   const valoresyvotos = arrValores[10].map((v) => (
-    <>
+    <div className="comentario-y-voto">
       <>comentario = {v.comentario} </>
       <>voto = {v.valoracion} </>
-    </>
+    </div>
   ));
 
   //valor es lo que vale la votacion realizada
   //voto es la cantidad de votantes
   //puntaje es la suma de todos los valores realizada por todos los votantes
 
+/*************************************************** */
+  const [showComentario, setShowComentario] = useState(false);
   const [puntuacion, setPuntuacion] = useState(voto);
   const [comentario, setComentario] = useState("");
+
+
+const mostrarComentarios = () => {
+    if (showComentario===false)setShowComentario(true) 
+  };
+  
+  const ocultarComentarios = () => {
+    setShowComentario(false) 
+  };
+
+/*********************************************************** */
 
   async function guardarCambios() {
     const sessionData = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
@@ -108,7 +121,8 @@ const ModalTarjeta = ({
         </div>
         <h2>{arrValores[1]}</h2>
         <div className="contImgYValoracion">
-          <img className="imgTarjeta" src={arrValores[3]} alt="imagen" />
+          <div className="contenedorImagenTarjetaModal"><img className="imgTarjetaModal" src={arrValores[3]} alt="imagen" /></div>
+          
           <div className="conValoracion">
             <div className="contenedorPValorar">
               <textarea
@@ -134,8 +148,30 @@ const ModalTarjeta = ({
             </Button>
           </div>
         </div>
-        <div className="info">{arrValores[6]}</div>
-        <div className="info"> {valoresyvotos}</div>
+        
+        <div className="info-modal">{arrValores[6]}</div>
+            <Button
+              className="btn btn-primary custom-btn mostrar-comentarios-btn"
+              onClick={mostrarComentarios}
+            >
+              Mostrar Comentarios
+            </Button>
+        {showComentario && (<div className="contenedor-tarjeta-modal-info-comentarios">
+          <Button
+              className="btn btn-primary custom-btn ocultar-comentarios-btn"
+              onClick={ocultarComentarios}
+            >
+              Ocultar Comentarios
+            </Button>
+          
+          <div className="infoComentariosModal"> {valoresyvotos}</div>
+        </div>)}
+        {/* 
+        <div className="contenedor-tarjeta-modal-info-comentarios">
+          <div className="info">{arrValores[6]}</div>
+          <div className="infoComentariosModal"> {valoresyvotos}</div>
+        </div> */}
+        
       </div>
     </div>
   );
