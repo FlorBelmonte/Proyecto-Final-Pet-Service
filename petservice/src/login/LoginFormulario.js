@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Eye, EyeSlash } from "react-bootstrap-icons"
+import { Eye, EyeSlash } from "react-bootstrap-icons";
 
 import "./LoginFormulario.css";
 
@@ -149,23 +149,23 @@ function LoginFormulario({ onClose, onSubmit }) {
 
         <Form.Group controlId="password">
           <Form.Label>Password:</Form.Label>
-           <div className="password-input-container">
-          <div className="password-input-wrapper">
-        <Form.Control
-        type={showPassword ? "text" : "password"}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        />
-       </div>
+          <div className="password-input-container">
+            <div className="password-input-wrapper">
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-          <Button
-            variant="outline-secondary"
-            onClick={() => setShowPassword(!showPassword)}
-             className="password-toggle-btn"
-          >
-             {showPassword ? <EyeSlash /> : <Eye />}
-              </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setShowPassword(!showPassword)}
+              className="password-toggle-btn"
+            >
+              {showPassword ? <EyeSlash /> : <Eye />}
+            </Button>
           </div>
           {errors.password && (
             <Form.Text className="text-danger">{errors.password}</Form.Text>
@@ -210,7 +210,7 @@ function LoginFormulario({ onClose, onSubmit }) {
 
         <Button
           type="button"
-          onClick={onSubmit}
+          onClick={handleSubmit}
           className="btn btn-primary rounded-lg me-2 estilo-adicional-boton"
         >
           Enviar
