@@ -70,23 +70,7 @@ const Tarjetero = ({ servicioElejido }) => {
 console.log(interData.data)
    
 // habria que cambiar en la linea de abajo data x iterData.data pero da error
-   const tarjetas=data.map((t)=>(
-   
-     <Tarjeta
-       key={t.nombre}
-       id={t.idTarjetaServicio}
-       nombre={t.nombre}
-       servicio={t.categoria.nombre}
-       imagen={t.imagen}
-       promedio={t.promedio}
-       precio={t.precio}
-       info={t.descripcion}
-       votos={t.votos}
-       provincia={t.provincia.nombre}
-       valoraciones={t.valoraciones} />
-    
-  
-    )) 
+
     
   
   //filtro de busqueda segun el servicio seleccionado (desde la barra de navegacion)
@@ -104,8 +88,23 @@ console.log(interData.data)
       return true
     }
     return tarjeta.provincia.nombre===filtraProvincia
-  }).map(t=>(<Tarjeta  key={t.nombre} id={t.idTarjetaServicio} nombre={t.nombre} servicio={t.categoria.nombre} imagen={t.imagen} puntuacion={t.promedio} precio={t.precio} info={t.descripcion} votos={t.votos} provincia={t.provincia.nombre} />))
+  }).map((t)=>(
+   
+     <Tarjeta
+       key={t.nombre}
+       id={t.idTarjetaServicio}
+       nombre={t.nombre}
+       servicio={t.categoria.nombre}
+       imagen={t.imagen}
+       promedio={t.promedio}
+       precio={t.precio}
+       info={t.descripcion}
+       votos={t.votos}
+       provincia={t.provincia.nombre}
+       valoraciones={t.valoraciones} />
+    
   
+    )) 
      
  return (
     <div className="tarjetero">

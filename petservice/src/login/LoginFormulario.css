@@ -46,3 +46,15 @@
    width: 50%;
  }
 }
+.password-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper {
+  flex: 1;
+}
+
+.password-toggle-btn {
+  width: 40px;
+}
