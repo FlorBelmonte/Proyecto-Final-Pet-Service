@@ -2,11 +2,14 @@ import React, { useState} from 'react';
 import "./Home.css";
 import 'animate.css';
 import logo2 from "../assets/logo2.png";
+import { ProvinciaContext } from "../context/ProvinciaContext"; // se usa para poder elejir la provincia y usarla en otro contexto
+import { useContext } from 'react'; 
 
 function Sidebar({ onClose, onSidebarSectionClick }) {
   const [showProvinces, setShowProvinces] = useState(false);
   const [selectedProvince, setSelectedProvince] = useState(null);
-  
+  const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext);
+
    const handleSectionClick = (section) => {
     onSidebarSectionClick(section);
     onClose(); 
@@ -17,6 +20,7 @@ function Sidebar({ onClose, onSidebarSectionClick }) {
   };
   const handleProvinceSelect = (province) => {
     setSelectedProvince(province);
+    setFiltraProvincia(province)  //ofrece el valor de la provincia elejida para poder usarlo como filtro en Tarjetero
   };
 
 const provincias = [

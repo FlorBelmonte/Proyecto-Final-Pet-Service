@@ -51,8 +51,9 @@ h4{
   width: 80%;
   height: 30%;
   padding-top: 6%;
-  margin-top: 3px;
-  margin-left: 5px;  
+  margin-top: 20px;
+  margin-left: 5px;
+  text-align: center;  
   overflow: hidden; /* Oculta el texto que sobrepase */
   text-overflow: ellipsis; /* Muestra los tres puntos */
 }
