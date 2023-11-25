@@ -7,6 +7,7 @@ import CrearTarjeta from '../tarjeta/crearTarjeta/CrearTarjeta'
 import { useContext } from 'react'
 import { ServiciosContext } from '../context/ServiciosContext'
 import { ProvinciaContext } from '../context/ProvinciaContext'
+import perroygato  from '../../src/assets/perroygato.jpg'
 
 
 import React, { useState, useEffect } from "react";
@@ -106,13 +107,39 @@ console.log(interData.data)
   
     )) 
      
- return (
+  if (tarjetasFiltradas.length > 0) {
+    return (
+  
     <div className="tarjetero">
       {mostrarCrearTarjeta && <CrearTarjeta />}
      {tarjetasFiltradas}
      
     </div>
   );
+  }
+  else if (data.length > 0){
+    return (
+      <div className="tarjetasSinResultados">
+        <p>Lo sentimos. No se ha encontrado resultados para la busqueda especificada.</p>
+         <img
+                src={perroygato}
+                className="imagenTarjetaSinResultado"
+                alt="imagen perro y gato mirando hacia arriba"
+                
+              />
+      </div>
+    )
+  }
+  else{
+  // Si data está vacío, aún está cargando los datos
+  return (
+    <div className="cargandoDatos">
+      <p>Cargando datos...</p>
+    </div>
+  );
+}
+  
+  
 };
 
 export default Tarjetero;

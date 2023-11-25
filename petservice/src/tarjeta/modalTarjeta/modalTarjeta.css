@@ -148,7 +148,9 @@ h2{
 .ocultar-comentarios-btn{
     margin-top: 5%;
     position: absolute;
-    right: 5% ;
+    right: 15% ;
+    border-radius: 50%;
+    background-color: red;
 }
 
 .comentario-y-voto{
