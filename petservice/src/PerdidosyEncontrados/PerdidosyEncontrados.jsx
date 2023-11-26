@@ -1,11 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./perdidosyEncontrados.css"
+import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados';
 
 const PerdidosyEncontrados =()=>{
      
   const [data, setData] = useState([]);
-  const [interData, setInterData]= useState([]);
+  const [interData, setInterData] = useState([]);
+  const [usuarioLogueado, setUsuarioLogueado] = useState(false);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false)
+  
+  
+  useEffect(() => {
+    const usuarioStorage = sessionStorage.getItem('usuarioLogueado');
+    const usuario = usuarioStorage ? JSON.parse(usuarioStorage) : null;
+    setUsuarioLogueado(Boolean(usuario));
+  }, []);
+
+
+  const handleMostrarFormulario = () => {
+    if (usuarioLogueado) {
+      setMostrarFormulario(true);
+    } else {
+      alert('Debes iniciar sesión para publicar una mascota.');
+    }
+  };
+
+  const handleSubmitFormulario = () => {
+    setMostrarFormulario(false);
+  };
   
   useEffect(() => {
     axios.get(`http://localhost:3000/perdidos-yencontrados`)
@@ -35,10 +58,29 @@ const PerdidosyEncontrados =()=>{
     ))
    
     
-    return (
-        <div className='contenedorMascota'>
-            {mascotas}
-        </div>
+  return (
+    <div className="container">
+      <h2>Mascotas perdidas y encontradas</h2>
+      <p>
+        "Bienvenido al portal de mascotas perdidas y encontradas. Nuestro
+        objetivo es ayudarte a encontrar a tu compañero peludo o a reunir a una
+        mascota perdida con su dueño. Por favor, ayúdanos a brindar la
+        información necesaria para que podamos difundir su búsqueda. ¡Juntos
+        podemos encontrar a nuestras mascotas desaparecidas!"
+      </p>
+      
+      <button onClick={handleMostrarFormulario}>Publicar mascota</button>
+
+      {usuarioLogueado && mostrarFormulario && (
+        <FormPerdidosEncontrados onSubmit={handleSubmitFormulario} />
+      )}
+
+      <div className='contenedorMascota'>
+        {mascotas}
+      </div>
+
+    </div>
+        
     )
 }
 export default PerdidosyEncontrados;

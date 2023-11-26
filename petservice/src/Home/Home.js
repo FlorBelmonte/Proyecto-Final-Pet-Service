@@ -10,6 +10,7 @@ import RegistroMascota from "../registroMascota/RegistroMascota";
 import Acceder from "../Ingreso/Acceder";
 import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";
+import PerdidosyEncontrados from "../PerdidosyEncontrados/PerdidosyEncontrados";
 import Tarjetero from "../tarjetero/Tarjetero";
 // import BlogContainer from '../Blog/BlogContainer';
 import Sidebar from "./Sidebar.js";
@@ -49,7 +50,7 @@ function Home() {
         setActiveComponent("Actividades");
         break;
       case "Búsquedas":
-        setActiveComponent("FormPerdidosEncontrados");
+        setActiveComponent("PerdidosyEncontrados");
         break;
 
       default:
@@ -107,7 +108,7 @@ function Home() {
 
   const handleNavbarSearchClick = () => {
     //manejador de evento para la sección "Búsqueda"
-    setActiveComponent("FormPerdidosEncontrados");
+    setActiveComponent("PerdidosyEncontrados");
   };
 
   const handleFormSubmit = () => {
@@ -270,8 +271,9 @@ function Home() {
         />
       )}
 
-      {activeComponent === "FormPerdidosEncontrados" && (
-        <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
+      {activeComponent === "PerdidosyEncontrados" && (
+        // <FormPerdidosEncontrados onSubmit={handleFormSubmit} />
+        <PerdidosyEncontrados />
       )}
 
       {activeComponent === "Hoteles" && (
