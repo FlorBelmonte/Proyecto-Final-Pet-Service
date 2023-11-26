@@ -5,3 +5,22 @@
     justify-content: space-around;
     margin-bottom: 2%;
 }
+
+.tarjetasSinResultados{
+    width: 70vw;
+    height: 60%;
+    text-align: center;
+    margin: auto;
+    background-color: white;
+}
+
+.tarjetasSinResultados p{
+    font-size: 2rem;
+    padding-top: 2rem;
+    margin-bottom: 0;
+   
+}
+
+.tarjetasSinResultados img{
+   width: 40%;
+}

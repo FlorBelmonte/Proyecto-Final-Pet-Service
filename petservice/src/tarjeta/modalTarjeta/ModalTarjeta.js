@@ -164,10 +164,10 @@ const ModalTarjeta = ({
         {showComentario && (
           <div className="contenedor-tarjeta-modal-info-comentarios">
             <Button
-              className="btn btn-primary custom-btn ocultar-comentarios-btn"
+              className=" ocultar-comentarios-btn"
               onClick={ocultarComentarios}
             >
-              Ocultar Comentarios
+              X
             </Button>
 
             <div className="infoComentariosModal"> {valoresyvotos}</div>
