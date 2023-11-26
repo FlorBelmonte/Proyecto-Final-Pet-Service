@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 
 import imagen1 from '../assets/facebook.png';
 import imagen2 from '../assets/instagram.png';
-import imagen3 from '../assets/twitter.png';
+import imagen3 from '../assets/twitterX.png';
 
 function Footer() {
   const [seleccionarPregunta, setSeleccionarPregunta] = useState(null);
