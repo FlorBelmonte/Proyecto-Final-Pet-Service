@@ -1,16 +1,33 @@
-import React, { useState } from "react";
-import './FormPerdidosEncontrados.css'
+import React, { useState, useEffect } from "react";
+import "./FormPerdidosEncontrados.css";
 
-import PerdidosyEncontrados from "../PerdidosyEncontrados/PerdidosyEncontrados";
+// import PerdidosyEncontrados from "../PerdidosyEncontrados/PerdidosyEncontrados";
 
-function FormPerdidosEncontrados({onSubmit}) {
+function FormPerdidosEncontrados({ onSubmit }) {
   const [nombre, setNombre] = useState("");
   const [tipo, setTipo] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [contacto, setContacto] = useState("");
   const [ubicacion, setUbicacion] = useState("");
   const [imagen, setImagen] = useState(null);
-  const [usuario, setUsuario] = useState(1)
+  const [idUsuario, setIdUsuario] = useState(null);
+  const [usuarioLogueado, setUsuarioLogueado] = useState(false);
+  const [token, setToken] = useState("");
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const usuarioStorage = sessionStorage.getItem("usuarioLogueado");
+    const usuario = usuarioStorage ? JSON.parse(usuarioStorage) : null;
+
+    if (usuario) {
+      const { token, idUsuario } = usuario;
+      setUsuarioLogueado(true);
+      setIdUsuario(idUsuario);
+      setToken(token);
+    } else {
+      setUsuarioLogueado(false);
+    }
+  }, []);
 
   function handleNombreChange(e) {
     setNombre(e.target.value);
@@ -33,90 +50,184 @@ function FormPerdidosEncontrados({onSubmit}) {
   }
 
   function handleImagenChange(e) {
-    setImagen(e.target.files[0]);
+    setImagen(e.target.value);
   }
 
+  const validateForm = () => {
+    setErrors({}); // Restablece el estado de los errores al inicio
+
+    let formIsValid = true;
+    const errors = {};
+
+    if (!nombre) {
+      errors.nombre = "El nombre es requerido";
+      formIsValid = false;
+    }
+
+    if (!descripcion) {
+      errors.descripcion = "La descripcion es requerida";
+      formIsValid = false;
+    }
+
+    if (!contacto) {
+      errors.contacto = "El contacto es requerido";
+      formIsValid = false;
+    }
+
+    if (!ubicacion) {
+      errors.ubicacion = "La ubicacion es requerida";
+      formIsValid = false;
+    }
+
+    if (!imagen) {
+      errors.imagen = "La imagen es requerida";
+      formIsValid = false;
+    }
+
+    setErrors(errors);
+    return formIsValid;
+  };
+
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
 
-    const formData = new FormData();
+    // Validar campos obligatorios
+    if (!validateForm()) {
+      alert(
+        "Todos los campos son obligatorios. Por favor, completa la información."
+      );
+      return;
+    }
 
-    formData.append("nombre", nombre);
-    formData.append("tipo", tipo);
-    formData.append("descripcion", descripcion);
-    formData.append("contacto", contacto);
-    formData.append("ubicacion", ubicacion);
-    formData.append("imagen", imagen);
-    formData.append("usuario", usuario);
-    console.log(formData)
-    onSubmit()
-    console.log(formData)
-    
-    
+    const formData = {
+      nombre,
+      tipo,
+      descripcion,
+      contacto,
+      ubicacion,
+      imagen,
+      contactoUsuarioIdUsuario: idUsuario,
+    };
+
+    console.log(formData);
+
     try {
-      const response = await fetch('http://localhost:3000/perdidos-yencontrados', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData),
-      });
-      console.log(response)
+      const response = await fetch(
+        "http://localhost:3000/perdidos-yencontrados",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      console.log(response);
+
       if (response.ok) {
         const data = await response.json();
-        console.log('Respuesta:', data);
-        
+        console.log("Respuesta:", data);
+        alert("El formulario se envió correctamente");
+        onSubmit();
+      } else {
+        alert("Error al enviar el formulario, verifica los datos nuevamente");
       }
     } catch (error) {
-         console.error('Error:', error);
+      console.error("Error:", error);
     }
-    
-    }
+  };
 
   return (
     <div className="container">
-      <h2>Mascotas perdidas y encontradas</h2>
-      <p>
-        "Bienvenido al portal de mascotas perdidas y encontradas. Nuestro objetivo es ayudarte a encontrar a tu
-        compañero peludo o a reunir a una mascota perdida con su dueño. Por favor, ayúdanos a brindar la información
-        necesaria para que podamos difundir su búsqueda. ¡Juntos podemos encontrar a nuestras mascotas desaparecidas!"
-      </p>
-     
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">Nombre de la Mascota:</label>
-          <input type="text" id="nombre" name="nombre" value={nombre} onChange={handleNombreChange} className="form-control" />
+          <label htmlFor="nombre" className="form-label">
+            Nombre de la Mascota:
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={nombre}
+            onChange={handleNombreChange}
+            className="form-control"
+          />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="tipo" className="form-label">Situacion:</label>
-          <input type="text" id="tipo" name="tipo" value={tipo} onChange={handleTipoChange} className="form-control" />
+          <label htmlFor="tipo" className="form-label">
+            Situacion:
+          </label>
+          <select
+            id="tipo"
+            name="tipo"
+            value={tipo}
+            onChange={handleTipoChange}
+            className="form-control"
+          >
+            <option value="Perdido">Perdido</option>
+            <option value="Encontrado">Encontrado</option>
+          </select>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="descripcion" className="form-label">Descripción:</label>
-          <input type="text" id="descripcion" value={descripcion} onChange={handleDescripcionChange} className="form-control" />
+          <label htmlFor="descripcion" className="form-label">
+            Descripción:
+          </label>
+          <input
+            type="text"
+            id="descripcion"
+            value={descripcion}
+            onChange={handleDescripcionChange}
+            className="form-control"
+          />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="contacto" className="form-label">Contacto:</label>
-          <input type="text" id="contacto" value={contacto} onChange={handleContactoChange} className="form-control" />
+          <label htmlFor="contacto" className="form-label">
+            Contacto:
+          </label>
+          <input
+            type="text"
+            id="contacto"
+            value={contacto}
+            onChange={handleContactoChange}
+            className="form-control"
+          />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="ubicacion" className="form-label">Ubicación:</label>
-          <input type="text" id="ubicacion" value={ubicacion} onChange={handleUbicacionChange} className="form-control" />
+          <label htmlFor="ubicacion" className="form-label">
+            Ubicación:
+          </label>
+          <input
+            type="text"
+            id="ubicacion"
+            value={ubicacion}
+            onChange={handleUbicacionChange}
+            className="form-control"
+          />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="imagen" className="form-label">Adjuntar imagen</label>
-          <input type="file" id="imagen" accept="image/*" onChange={handleImagenChange} className="form-control" />
+          <label htmlFor="imagen" className="form-label">
+            Cargar imagen:
+          </label>
+          <input
+            type="text"
+            id="imagen"
+            value={imagen}
+            onChange={handleImagenChange}
+            className="form-control"
+          />
         </div>
 
-        <button type="submit" className="btn btn-primary">Enviar</button>
+        <button type="submit" className="btn btn-primary">
+          Enviar
+        </button>
       </form>
-      <PerdidosyEncontrados/>
     </div>
   );
 }
