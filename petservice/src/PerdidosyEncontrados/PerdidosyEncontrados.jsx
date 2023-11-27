@@ -28,19 +28,24 @@ const PerdidosyEncontrados =()=>{
 
   const handleSubmitFormulario = () => {
     setMostrarFormulario(false);
+    obtenerPublicaciones();
   };
-  
-  useEffect(() => {
+
+  const obtenerPublicaciones = () => {
     axios.get(`http://localhost:3000/perdidos-yencontrados`)
       .then(response => {
-        console.log(response.data)
-         setData(response.data) 
-       })
+        console.log(response.data);
+        setData(response.data);
+      })
       .catch(error => {
         console.error(error);
-
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    obtenerPublicaciones();
+  }, []); // Llama a obtenerPublicaciones al cargar el componente
+  
 
     const mascotas = data.map((mascota)=> (
         <div className='mascota'>
