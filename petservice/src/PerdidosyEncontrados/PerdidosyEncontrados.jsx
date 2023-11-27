@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import "./perdidosyEncontrados.css"
 import FormPerdidosEncontrados from '../FormPerdidosEncontrados/FormPerdidosEncontrados';
 
@@ -74,7 +75,7 @@ const PerdidosyEncontrados =()=>{
         podemos encontrar a nuestras mascotas desaparecidas!"
       </p>
       
-      <button onClick={handleMostrarFormulario}>Publicar mascota</button>
+      <Button onClick={handleMostrarFormulario}>Publicar mascota</Button>
 
       {usuarioLogueado && mostrarFormulario && (
         <FormPerdidosEncontrados onSubmit={handleSubmitFormulario} />
