@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import Portada from "./Portada";
 import Footer from "./Footer";
 import LoginFormulario from "../login/LoginFormulario";
-import RegistroMascota from "../registroMascota/registroMascota";
+import RegistroMascota from "../registroMascota/RegistroMascota";
 import Acceder from "../Ingreso/Acceder";
 import icono from "../assets/acceso.png";
 import FormPerdidosEncontrados from "../FormPerdidosEncontrados/FormPerdidosEncontrados.js";

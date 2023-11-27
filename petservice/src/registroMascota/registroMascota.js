@@ -25,7 +25,7 @@ function RegistroMascota({ onClose }) {
           nombre: nombreMascota,
           tipo: especieMascota,
           libreta: libretaSanitaria,
-          foto: "https://example.com/luna.jpg",
+          foto: "https://andreapetschool.com/wp-content/uploads/2020/12/WhatsApp-Image-2022-02-09-at-18.34.06.jpeg",
           duenioIdUsuario: idUsuario,
         };
 
@@ -36,7 +36,7 @@ function RegistroMascota({ onClose }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Agrega el token al encabezado 'Authorization'
+            Authorization: `${token}`, // Agrega el token al encabezado 'Authorization'
           },
           body: JSON.stringify(dataAEnviar),
         })
