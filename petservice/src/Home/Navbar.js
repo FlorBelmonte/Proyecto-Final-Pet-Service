@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Search from './Search';
 import './Home.css';
-
+import { ProvinciaContext } from '../context/ProvinciaContext';
 
 function Navbar({onHeaderToggleClick, onSearchClick, onHotelesClick, onAerolineasClick, onPaseadoresClick, onRestaurantesClick, onVeterinariasClick, onActividadesClick, /*onBlogClick*/ onMasClick}) {
 
   const [isCollapsed, setIsCollapsed] = useState(true);
-
+  const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext); 
+  
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -21,6 +22,7 @@ function Navbar({onHeaderToggleClick, onSearchClick, onHotelesClick, onAerolinea
 
   const handleNavbarAerolineasClick=()=>{
     onAerolineasClick();
+    console.log(`valor de filtraProvincia ${filtraProvincia}`)
   };
 
   const handleNavbarPaseadoresClick=()=>{

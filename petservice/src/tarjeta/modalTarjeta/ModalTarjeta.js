@@ -45,8 +45,9 @@ const ModalTarjeta = ({
 
   const token = sessionStorage.getItem("usuarioLogueado.token");
 
-  if (sessionData && sessionData.token) {
-    const { token, correo, nombre, tipo, idUsuario } = sessionData;
+  if /* (sessionData && sessionData.token) */ (token) {
+     const { correo, nombre, tipo, idUsuario } = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    /* const { token, correo, nombre, tipo, idUsuario } = sessionData; */
 
     /*el siguiente bloque de codigo realiza el post de valoracion servicio */
     async function guardarCambios() {
@@ -84,7 +85,7 @@ const ModalTarjeta = ({
 
   }
 
-  /* const guardarCambios = () => {
+   const guardarCambios = () => {
 
     votar();
         
@@ -99,7 +100,7 @@ const ModalTarjeta = ({
 
     
     onClose();
-  }; */
+  }; 
 
   return (
     <div className="modalTarjeta">

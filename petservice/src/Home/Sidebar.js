@@ -1,7 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useContext} from 'react';
 import "./Home.css";
 import 'animate.css';
 import logo2 from "../assets/logo2.png";
+import { ProvinciaContext } from '../context/ProvinciaContext';
 
 function Sidebar({ onClose, onSidebarSectionClick }) {
   const [showProvinces, setShowProvinces] = useState(false);
@@ -12,11 +13,15 @@ function Sidebar({ onClose, onSidebarSectionClick }) {
     onClose(); 
   };
 
+  const { filtraProvincia, setFiltraProvincia } = useContext(ProvinciaContext); 
+  
   const handleUbicacionClick = () => {
     setShowProvinces(!showProvinces);
   };
   const handleProvinceSelect = (province) => {
     setSelectedProvince(province);
+    setFiltraProvincia(province);
+    console.log(`valor de provincia elegida en sidebar ${province}`)
   };
 
 const provincias = [
