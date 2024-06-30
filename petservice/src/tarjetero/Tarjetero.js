@@ -67,7 +67,8 @@ const Tarjetero = ({ servicioElejido }) => {
   }, [servicioElejido]);
 
 
-console.log(interData.data)
+  console.log(interData.data)
+  console.log(interData)
    
 // habria que cambiar en la linea de abajo data x iterData.data pero da error
    const tarjetas=data.map((t)=>(
